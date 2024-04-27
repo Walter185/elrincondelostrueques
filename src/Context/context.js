@@ -3,12 +3,12 @@ import { auth } from '../Firebase/firebase';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    // sendPasswordResetEmail,
+    sendPasswordResetEmail,
     onAuthStateChanged,
-    // signInWithPopup,
-    // GoogleAuthProvider,
+    signInWithPopup,
+    GoogleAuthProvider,
     signOut,
-    // confirmPasswordReset,
+    confirmPasswordReset,
   } from 'firebase/auth';
 
 
@@ -50,24 +50,24 @@ function CartProvider(props) {
         return createUserWithEmailAndPassword(auth, email, password)
       }
     
-      // function forgotPassword(email) {
-      //   return sendPasswordResetEmail(auth, email, {
-      //     url: `http://localhost:3000/login`,
-      //   })
-      // }
+      function forgotPassword(email) {
+        return sendPasswordResetEmail(auth, email, {
+          url: `http://localhost:3000/login`,
+        })
+      }
     
-      // function resetPassword(oobCode, newPassword) {
-      //   return confirmPasswordReset(auth, oobCode, newPassword)
-      // }
+      function resetPassword(oobCode, newPassword) {
+        return confirmPasswordReset(auth, oobCode, newPassword)
+      }
     
       function logout() {
         return signOut(auth)
       }
     
-      // function signInWithGoogle() {
-      //   const provider = new GoogleAuthProvider()
-      //   return signInWithPopup(auth, provider)
-      // }
+      function signInWithGoogle() {
+        const provider = new GoogleAuthProvider()
+        return signInWithPopup(auth, provider)
+      }
     
     useEffect(() => {
         (cart.length > 0) ? localStorage.setItem('cart', JSON.stringify(cart)) : localStorage.clear();
@@ -123,12 +123,12 @@ function CartProvider(props) {
         <cartContext.Provider value={{ cart, 
             addToCart,
             currentUser,
-            // signInWithGoogle,
+            signInWithGoogle,
             login,
             register,
             logout,
-            // forgotPassword,
-            // resetPassword, 
+            forgotPassword,
+            resetPassword, 
             removeFromCart, 
             inCart, 
             clearCart, 
