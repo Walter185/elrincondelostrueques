@@ -14,9 +14,9 @@ import { Link } from "react-router-dom";
 const Li = styled.li`
   list-style: none;
   display: block;
+  color: black;
   text-decoration: none;
   margin-top: 5px;
-  color: white;
   margin: 0 0.5rem;
   border-radius: 0.5rem;
   @media screen and (max-width:1000px) {
@@ -29,17 +29,19 @@ const Li = styled.li`
 
 const Ul = styled.ul`
   display: flex;
-  align-items: center;
+  align-items: right;
+  color: black;
   @media screen and (max-width:1000px) {
     display: none;
     flex-direction: column;
     width: 100% !important;
     margin-top: 267px;
-    margin-bottom: 0.25rem;
-    background-color: rgb(212, 57, 18) !important;
+    // margin-bottom: 0.25rem;
+background: linear-gradient(90deg, rgba(0, 147, 216, 1) 0%, rgba(3, 173, 238, 1) 100%);
     &.open {
       display: flex;
       z-index: 5;
+      padding: 20px;
       right: 0;
       top: -195px;
       position: absolute;
@@ -58,17 +60,29 @@ const Pan = styled.div`
 `;
 const Nav = styled.div`
 display: flex;
+width:75%;
+margin-left: 15%;
 justify-content: space-around;
 align-items: center;
-background-color: lightblue;
-color: #fff;
 height: 90px;
 text-decoration: none;
 position: sticky;
 top: 0;
 z-index: 1;
+background: white;
+
+@media screen and (max-width: 768px) {
+  width: 100%;
+  margin-left: 0%;
+
+}
 `;
 
+const Contenedor= styled.div`
+background: linear-gradient(90deg, rgba(0, 147, 216, 1) 0%, rgba(3, 173, 238, 1) 100%);
+color: black;
+
+`;
 
 export default function NavBar(props) {
   const { logout, currentUser } = useAuth();
@@ -77,6 +91,7 @@ export default function NavBar(props) {
 
 
   return (
+    <Contenedor>
     <Nav>
       <Link to="/" className="navbar__logo">
         <img src={logo} alt="Logo" />
@@ -107,16 +122,17 @@ export default function NavBar(props) {
               variant="ghost"
               icon={useColorModeValue(<FaSun />, <FaMoon />)}
               onClick={toggleColorMode}
-              color={"white"}
+              color={"black"}
               aria-label="toggle-dark-mode"
             />
           </Li>
         </Ul>
         <Pan>
-          <Hamburger name="Hamburguesa" toggled={isOpen} toggle={setIsOpen} duration={0.8} color="coral" />
+          <Hamburger name="Hamburguesa" toggled={isOpen} toggle={setIsOpen} duration={0.8} />
         </Pan>
       </div>
     </Nav>
+    </Contenedor>
   );
 };
 

@@ -83,41 +83,41 @@ function CartProvider(props) {
         setCart(newCart);
     }
 
-    function removeFromCart(id){
-        let newCart = [...cart];
+    // function removeFromCart(id){
+    //     let newCart = [...cart];
 
-        let index = newCart.findIndex( element => element.id === id);
-        if(index !== -1){
-            (newCart[index].quantity > 1) ? newCart[index].quantity-- : newCart.splice(index, 1);
-            setCart(newCart);
-        }
-    }
+    //     let index = newCart.findIndex( element => element.id === id);
+    //     if(index !== -1){
+    //         (newCart[index].quantity > 1) ? newCart[index].quantity-- : newCart.splice(index, 1);
+    //         setCart(newCart);
+    //     }
+    // }
 
     function clearCart(){
         setCart([]);
     }
 
-    function inCart(id){
-        let index = cart.findIndex( element => element.id === id);
-        let state = (index !== -1) ? true : false;
-        return state;
-    }
+    // function inCart(id){
+    //     let index = cart.findIndex( element => element.id === id);
+    //     let state = (index !== -1) ? true : false;
+    //     return state;
+    // }
 
-    function getTotalQuantity(){
-        let totalQ = 0;
-        for(const product of cart){
-            totalQ += product.quantity;
-        }
-        return totalQ;
-    }
+    // function getTotalQuantity(){
+    //     let totalQ = 0;
+    //     for(const product of cart){
+    //         totalQ += product.quantity;
+    //     }
+    //     return totalQ;
+    // }
 
-    function getTotalPrice(){
-        let totalP = 0;
-        for(const product of cart){
-            totalP += (product.price * product.quantity);
-        }
-        return totalP;
-    }
+    // function getTotalPrice(){
+    //     let totalP = 0;
+    //     for(const product of cart){
+    //         totalP += (product.price * product.quantity);
+    //     }
+    //     return totalP;
+    // }
    
     return(
         <cartContext.Provider value={{ cart, 
@@ -129,11 +129,12 @@ function CartProvider(props) {
             logout,
             forgotPassword,
             resetPassword, 
-            removeFromCart, 
-            inCart, 
+            // removeFromCart, 
+            // inCart, 
             clearCart, 
-            getTotalQuantity, 
-            getTotalPrice }}>
+            // getTotalQuantity, 
+            // getTotalPrice 
+            }}>
             {props.children}
         </cartContext.Provider>
     )

@@ -6,6 +6,11 @@ import { ToastContainer } from 'react-toastify';
 import Loginpage from './Components/Login';
 import Registerpage from './Components/Register';
 import NotFound from './pages/ErrorPage';
+import Show from './Admin/Show';
+import Edit from './Admin/Edit';
+import Create from './Admin/Create';
+import RequireAuth from './Components/Login/RequireAuth';
+import ItemListContainer from './Components/ItemListContainer';
 
 
 function App(props) {
@@ -15,12 +20,16 @@ function App(props) {
         <CartProvider>
         <BrowserRouter>
           <Navbar />
-
           <Routes >
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Loginpage />} />
             <Route path="/register" element={<Registerpage />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/category/:categoryid" element={<ItemListContainer />} />
+            <Route path="/search/:searchid" element={<ItemListContainer />} />
+            <Route path="/show" element={<RequireAuth><Show /></RequireAuth>} />
+            <Route path="/create" element={<RequireAuth><Create /></RequireAuth>} />
+            <Route path="/edit/:id" element={<RequireAuth><Edit /></RequireAuth>} />
           </Routes>
         </BrowserRouter>
       </CartProvider>
