@@ -70,9 +70,9 @@ z-index: 1;
 `;
 
 
-const Navbar = () => {
+export default function NavBar(props) {
   const { logout, currentUser } = useAuth();
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const { toggleColorMode } = useColorMode();
 
 
@@ -120,4 +120,3 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
