@@ -58,9 +58,9 @@ const Pan = styled.div`
 `;
 const Nav = styled.div`
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 align-items: center;
-background-color: #2E2F81;
+background-color: lightblue;
 color: #fff;
 height: 90px;
 text-decoration: none;

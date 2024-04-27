@@ -4,9 +4,8 @@ import { styled } from "styled-components";
 
 const Form = styled.form`
     width: 50%;
-    height: 40px;
+    height: 50px;
     display:flex;
-    margin-left:20px;
 `;
 
 export default function NavBarSearch(){
