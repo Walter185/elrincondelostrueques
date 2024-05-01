@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import db, { getAllProducts } from "../Firebase/firebase";
+import db, { getAllProducts, getAllProductsbyOwner } from "../Firebase/firebase";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import styled from "styled-components";
@@ -22,15 +22,15 @@ const TD = styled.td`
 const MySwal = withReactContent(Swal)
 
 const Show = () => {
-    const [products, SetProducts] = useState([]);
-    const productsCollection = collection(db, "productos")
+    const [products, setProducts] = useState([]);
+    // const productsCollection = collection(db, "productos")
 
-    const getProductos = async () => {
-        const data = await getDocs(productsCollection)
-        SetProducts(
-            data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        )
-    }
+    // const getProductos = async () => {
+    //     const data = await getDocs(productsCollection)
+    //     SetProducts(
+    //         data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    //     )
+    // }
 
     const deleteProduct = async (id) => {
         const productDoc = doc(db, "productos", id)
@@ -61,8 +61,13 @@ const Show = () => {
     }
 
     useEffect(() => {
-        getProductos()
-    }, [])
+        const fetchProductos = async () => {
+          const productsData = await getAllProductsbyOwner();
+          setProducts(productsData);
+        };
+    
+        fetchProductos();
+      }, []);
 
     return (
         <Div>

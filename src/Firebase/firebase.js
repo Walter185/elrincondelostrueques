@@ -1,11 +1,12 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, getDoc, doc, query, where } from "firebase/firestore";
-import { getAuth } from 'firebase/auth';
+import { GoogleAuthProvider, getAuth } from 'firebase/auth';
 import { deleteObject, ref, getStorage, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
     projectId: process.env.REACT_APP_PROJECTID,
     storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_MESSAGING_SENDERID,
@@ -14,9 +15,10 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app)
 export const auth = getAuth(app);
 export const storage = getStorage(app);
+export const googleProvider = new GoogleAuthProvider();
 
 
 export const DeleteFile = (imageRef) => {
@@ -48,6 +50,18 @@ export async function getAllProducts(){
     const productsRef = collection(db, "productos");
     const snapshot = await getDocs(productsRef);
 
+    const products = snapshot.docs.map(element => {
+        let product = element.data();
+        product.id = element.id;
+        return product;
+    });
+
+    return products;
+}
+export async function getAllProductsbyOwner(){
+    const productsRef = collection(db, "productos");
+    const qry = query(productsRef, where("owner", "==", auth?.currentUser?.uid));
+    const snapshot = await getDocs(qry);
     const products = snapshot.docs.map(element => {
         let product = element.data();
         product.id = element.id;

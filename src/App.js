@@ -21,7 +21,7 @@ function App(props) {
         <BrowserRouter>
           <Navbar />
           <Routes >
-            <Route path="/" element={<LandingPage />} />
+            <Route exact path="/" element={<LandingPage />} />
             <Route path="/login" element={<Loginpage />} />
             <Route path="/register" element={<Registerpage />} />
             <Route path="*" element={<NotFound />} />

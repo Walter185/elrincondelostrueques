@@ -12,22 +12,24 @@ import {
 import { useState } from 'react'
 import { FaGoogle } from 'react-icons/fa'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Card } from '../Card/index.jsx'
-import DividerWithText from '../DividerWithText/index.jsx'
-import { Layout } from '../Layout/Layout.jsx'
-import { useAuth } from '../../Context/context.js'
-import useMounted from '../hooks/useMounted.js'
+import { Card } from '../Card/index'
+import DividerWithText from '../DividerWithText/index'
+import { Layout } from '../Layout/Layout'
+import { useAuth } from '../../Context/context'
+import useMounted from '../hooks/useMounted'
+import { auth } from '../../Firebase/firebase'
 
 export default function Loginpage() {
   let navigate = useNavigate();
   const { login } = useAuth()
+  const { signInWithGoogle } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const toast = useToast()
   const location = useLocation()
   const mounted = useMounted()
-  const { signInWithGoogle } = useAuth()
+  const { currentUser } = useAuth();
 
   function handleRedirectToOrBack() {
     navigate(location.state?.from ?? '/show')
@@ -36,7 +38,7 @@ export default function Loginpage() {
   return (
     <Layout>
       <Heading textAlign='center' my={12}>
-        Panel Administrador
+        No hay Plata | Iniciar sesión
       </Heading>
       <Card maxW='md' mx='auto' mt={4}>
         <chakra.form
@@ -56,6 +58,8 @@ export default function Loginpage() {
             login(email, password)
               .then(res => {
                 handleRedirectToOrBack()
+                // alert(auth.currentUser.uid);
+
               })
               .catch(error => {
                 console.log(error.message)
@@ -106,7 +110,7 @@ export default function Loginpage() {
               fontSize='md'
               isLoading={isSubmitting}
             >
-              Iniciar sesión
+              Ingresar
             </Button>
           </Stack>
         </chakra.form>
@@ -115,7 +119,7 @@ export default function Loginpage() {
             <Link to='/forgot-password'>Forgot password?</Link>
           </Button> 
           <Button variant='link' onClick={() => navigate('/register')}>
-            Register
+            Registrarse
           </Button>
           </HStack>
           <DividerWithText my={6}>OR</DividerWithText>
@@ -127,12 +131,13 @@ export default function Loginpage() {
             signInWithGoogle()
               .then(user => {
                 handleRedirectToOrBack()
+              // alert(auth.currentUser.uid);  
                 console.log(user)
               })
               .catch(e => console.log(e.message))
           }
         >
-          Sign in with Google
+          Ingrese con Google
         </Button>
       </Card>
     </Layout>

@@ -131,11 +131,15 @@ export default function Productos() {
               </div>
           
             </Carousel>
-            <MachineDescription>{producto.description}</MachineDescription>
+            <MachineDescription>Detalle: {producto.description}</MachineDescription>
+            <MachineDescription>Ubicacion: {producto.departamento}</MachineDescription>
+            <MachineDescription>Vendedor: {producto.description}</MachineDescription>
+            <MachineDescription>Tel: {producto.tel}</MachineDescription>
+
             <br />
             {/* <FichaTecnicaButton to={`/detail/${revista.id}`} className="btn btn-outline-primary">Ver más</FichaTecnicaButton> */}
-            <Button><a href="http://wa.me/${producto.tel}?text=¡Hola ${producto.nombreCliente}! Tengo interes en la oferta que publicaste que se llama ''${producto.nombreProducto}'' en la página de El club del trueque, me preguntaba si podrias hacer un intercambio, me gustaria ofrecerte algo a cambio de lo que ofreces ¡Espero tu respuesta!
-  " target="_blank">Hagamos truque</a></Button>
+            {/* <Button><a href="http://wa.me/${producto.tel}?text=¡Hola ${producto.nombreCliente}! Tengo interes en la oferta que publicaste que se llama ''${producto.nombreProducto}'' en la página de El club del trueque, me preguntaba si podrias hacer un intercambio, me gustaria ofrecerte algo a cambio de lo que ofreces ¡Espero tu respuesta!
+  " target="_blank">Hagamos truque</a></Button> */}
             
           </MachineCard>
         ))}

@@ -1,34 +1,54 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import moment from "moment";
 import { collection, addDoc } from "firebase/firestore"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import db, { storage, DeleteFile } from "../Firebase/firebase";
+import db, { storage, DeleteFile, auth } from "../Firebase/firebase";
 
 const Create = () => {
-    const [nombreCliente, setNombreCliente] = useState("");
+    const [ owner, setOwner ] = useState("");
     const [nombreProducto, setNombreProducto] = useState("");
-    const [category, setCategory] = useState("");
+    const [categoriaPublicada, setCategoriaPublicada] = useState("");
+    const [categoriaDeseada, setCategoriaDeseada] = useState("");
     const [description, setDescription] = useState("");
     const [imgUrl, setImgUrl] = useState("");
     const [tel, setTel] = useState("");
     const [departamento, setDepartamento] = useState("");
     const navigate = useNavigate()
-    const productsCollection = collection(db, "productos")
 
     const store = async (e) => {
         e.preventDefault()
-        await addDoc(productsCollection, {
-            nombreCliente: nombreCliente, 
-            nombreProducto: nombreProducto,
-            category: category,
-            description: description, 
-            imgUrl: imgUrl, 
-            departamento: departamento,
-            tel: tel
+        const timestamp = moment().format();
+        try {
+            await addDoc(collection(db,"productos"), {
+            owner: auth?.currentUser?.uid, 
+            nombreProducto,
+            categoriaPublicada,
+            categoriaDeseada,
+            description, 
+            imgUrl,
+            departamento,
+            tel,
+            timestamp
         })
-        navigate("/show")
-    }
+        navigate("/")
+        alert('Funciono bien');
+        setOwner("");
+        setNombreProducto("");
+        setCategoriaPublicada("");
+        setCategoriaDeseada("");
+        setDescription("");
+        setImgUrl("");
+        setTel("");
+        setDepartamento("");
+        } catch (error) {
+            alert('Algo funcionó mal');
+            console.log(error.message);
+        }
 
+        setOwner();
+
+    };
     // const handleUploadPdf = async (e) => {
     //     const file = e.target.files[0];
     //     const storageRef = ref(storage, `pdfs/${file.name}`);
@@ -109,10 +129,23 @@ const Create = () => {
                         </div>
 
                         <div className="mb-3">
-                            <label className="form-label">Categoria</label>
+                            <label className="form-label">Categoria Publicada</label>
                             <select
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
+                                value={categoriaPublicada}
+                                onChange={(e) => setCategoriaPublicada(e.target.value)}
+                                className="form-select"
+                            >
+                                <option value="">Seleccionar categoría</option>
+                                <option value="ropa">Ropa</option>
+                                <option value="juguete">Juguete</option>
+
+                            </select>
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Categoria Buscada</label>
+                            <select
+                                value={categoriaDeseada}
+                                onChange={(e) => setCategoriaDeseada(e.target.value)}
                                 className="form-select"
                             >
                                 <option value="">Seleccionar categoría</option>
@@ -136,7 +169,7 @@ const Create = () => {
                                 </div>
                             )}
                         </div>
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                             <label className="form-label">Nombre del Vendedor</label>
                             <input
                                 type="text"
@@ -145,7 +178,7 @@ const Create = () => {
                                 placeholder="Nombre del Vendedor"
                                 className="form-control"
                             />
-                        </div>
+                        </div> */}
 
                         <div className="mb-3">
                             <label className="form-label">Telefono del Vendedor</label>
