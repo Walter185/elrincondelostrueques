@@ -8,13 +8,13 @@ const Ol=styled.ol`
 
 export default function BreadCrumb({ currentPage }) {
 
-    switch (currentPage) { // fallthrough switch
+    switch (currentPage) { 
         case 'All':
             return (
                 <div className='container pt-4 ps-5 pb-1'>
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><Link to="/">Inicio</Link></li>
-                        <li className="breadcrumb-item active">Productos</li>
+                        <li className="breadcrumb-item active">Trueques</li>
                     </ol>
                 </div>
             )
@@ -36,7 +36,7 @@ export default function BreadCrumb({ currentPage }) {
                 <div className='container pt-4 ps-5 pb-1'>
                     <Ol className="breadcrumb">
                         <li className="breadcrumb-item"><Link to="/">Inicio</Link></li>
-                        <li className="breadcrumb-item"><Link to="/category/All">Productos</Link></li>
+                        <li className="breadcrumb-item"><Link to="/category/All">Trueques</Link></li>
                         <li className="breadcrumb-item active">{currentPage}</li>
                     </Ol>
                 </div>

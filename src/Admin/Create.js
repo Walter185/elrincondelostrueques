@@ -13,7 +13,6 @@ const Create = () => {
     const [categoriaDeseada, setCategoriaDeseada] = useState("");
     const [description, setDescription] = useState("");
     const [imgUrl, setImgUrl] = useState("");
-    const [imgUrl2, setImgUrl2] = useState("");
     const [tel, setTel] = useState("");
     const [departamento, setDepartamento] = useState("");
     const navigate = useNavigate()
@@ -30,7 +29,6 @@ const Create = () => {
             categoriaDeseada,
             description, 
             imgUrl,
-            imgUrl2,
             departamento,
             tel,
             timestamp
@@ -44,7 +42,6 @@ const Create = () => {
         setCategoriaDeseada("");
         setDescription("");
         setImgUrl("");
-        setImgUrl2("");
         setDepartamento("");
         setTel("");
         } catch (error) {
@@ -55,25 +52,7 @@ const Create = () => {
         setOwner();
 
     };
-    // const handleUploadPdf = async (e) => {
-    //     const file = e.target.files[0];
-    //     const storageRef = ref(storage, `pdfs/${file.name}`);
-    //     const uploadTask = uploadBytesResumable(storageRef, file);
-
-    //     uploadTask.on('state_changed',
-    //         null,
-    //         (error) => {
-    //             console.error('Error uploading PDF:', error);
-    //         },
-    //         () => {
-    //             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //                 // Update the state with the download URL
-    //                 setPdf(downloadURL);
-    //             });
-    //         }
-    //     );
-    // };
-
+    
 
     const handleUpload = async (e) => {
         const file = e.target.files[0];
@@ -92,24 +71,6 @@ const Create = () => {
             }
         );
     };
-    const handleUpload2 = async (e) => {
-        const file = e.target.files[0];
-        const storageRef = ref(storage, `images/${file.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-
-        uploadTask.on('state_changed',
-            null,
-            (error) => {
-                console.error('Error uploading file:', error);
-            },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setImgUrl2(downloadURL);
-                });
-            }
-        );
-    };
-
 
     const handleDeleteFile = async (fileURL) => {
         try {
@@ -117,17 +78,6 @@ const Create = () => {
             await DeleteFile(imageRef);
             if (fileURL === imgUrl) {
                 setImgUrl("");
-            } 
-        } catch (error) {
-            console.error("Error deleting image:", error);
-        }
-    };
-    const handleDeleteFile2 = async (fileURL) => {
-        try {
-            const imageRef = ref(storage, fileURL);
-            await DeleteFile(imageRef);
-            if (fileURL === imgUrl2) {
-                setImgUrl2("");
             } 
         } catch (error) {
             console.error("Error deleting image:", error);
@@ -237,22 +187,7 @@ const Create = () => {
                                 </div>
                             )}
                         </div>
-                        <div className="mb-3">
-                            <label className="form-label">Subir Imagen 2</label>
-                            <input
-                                type="file"
-                                accept="image/*;capture=camera"
-                                onChange={handleUpload2}
-                                className="form-control"
-                            />
-                            {imgUrl2 && (
-                                <div>
-                                    <img src={imgUrl2} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
-                                    <button onClick={() => handleDeleteFile2(imgUrl2)}>Eliminar Imagen 2</button>
-                                </div>
-                            )}
-                        </div>
-
+                    
                         <div className="mb-3">
                             <label className="form-label">Teléfono de Contacto</label>
                             <input

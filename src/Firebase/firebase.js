@@ -85,34 +85,6 @@ export async function getProductsByCategory(categoryid){
     return products;
 }
 
-export async function getRopas() {
-    const productsRef = collection(db, "productos");
-    const qry = query(productsRef, where("category", "==", "ropa")); // Filtrar por categoria "usados"
-    const snapshot = await getDocs(qry);
-  
-    const products = snapshot.docs.map((element) => {
-      const product = element.data();
-      product.id = element.id;
-      return product;
-    });
-  
-    return products;
-  }
-
-  export async function getJuguetes() {
-    const productsRef = collection(db, "productos");
-    const qry = query(productsRef, where("category", "==", "juguete")); // Filtrar por categoria "usados"
-    const snapshot = await getDocs(qry);
-  
-    const products = snapshot.docs.map((element) => {
-      const product = element.data();
-      product.id = element.id;
-      return product;
-    });
-  
-    return products;
-  }
-
   export async function getProductsByName(searchid){
     const productsRef = collection(db, "productos");
     const snapshot = await getDocs(productsRef);

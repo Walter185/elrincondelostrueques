@@ -7,7 +7,7 @@ import img2 from "../../Assets/Img/compra-en-casa.jpg"
 import img3 from "../../Assets/Img/trato-hecho.jpg"
 
 const Img = styled.img`
-height: 350px;
+height: 450px;
 object-fit: fill;
 position: initial;
 

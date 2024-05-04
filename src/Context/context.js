@@ -8,7 +8,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
-  confirmPasswordReset,
+  // confirmPasswordReset,
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
@@ -19,7 +19,7 @@ export const truequeContext = createContext({
   login: () => Promise,
   register: () => Promise,
   logout: () => Promise,
-  forgotPassword: () => Promise,
+  // forgotPassword: () => Promise,
   resetPassword: () => Promise,
 })
 

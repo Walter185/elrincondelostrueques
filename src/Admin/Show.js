@@ -26,7 +26,7 @@ const Show = () => {
   const deleteProduct = async (id) => {
     const productDoc = doc(db, "productos", id);
     await deleteDoc(productDoc);
-    getAllProductsbyOwner(); // Update products after deletion (consider state update if needed)
+    getAllProductsbyOwner(); 
   };
 
   const confirmDelete = (id) => {

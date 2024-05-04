@@ -16,15 +16,13 @@ function NavScrollExample() {
     <Navbar expand="lg">
       <Container>
       <Nav.Link href='/'><img src={logo} id='logo' alt="logo trueque" /></Nav.Link>
-        
-
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <NavBarSearch />
           <Nav
             style={{ maxHeight: '250px', marginLeft:'20px'}}
             id='barra'
-          >
+            >
             
             <Nav.Link href='/'>Inicio</Nav.Link>
             <NavBarDropdown />

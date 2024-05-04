@@ -1,44 +1,54 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import db, { storage, DeleteFile } from "../Firebase/firebase"
+import db, { storage, DeleteFile, auth } from "../Firebase/firebase";
+import { useAuth } from "../Context/context";
 
 function Edit() {
     const [category, setCategory] = useState("");
     const [categoriaDeseada, setCategoriaDeseada] = useState("");
     const [description, setDescription] = useState("");
     const [imgUrl, setImgUrl] = useState("");
-    const [imgUrl2, setImgUrl2] = useState("");
     const [tel, setTel] = useState("");
+    const [owner, setOwner] = useState("");
     const [nombreProducto, setNombreProducto] = useState("");
     const [nombreVendedor, setNombreVendedor] = useState("");
     const [departamento,  setDepartamento] = useState("");
     const navigate = useNavigate()
+    const location = useLocation();
     const { id } = useParams()
-    
-    useEffect(() => {
-       const getProductById = async () => {
-           const product = await getDoc(doc(db, "productos", id))
-           if (product.exists()) {
-               setNombreProducto(product.data().nombreProducto)
-               setNombreVendedor(product.data().nombreVendedor)
-               setDepartamento(product.data().departamento)
-               setCategoriaDeseada(product.data().categoriaDeseada)
-               setCategory(product.data().category)
-               setDescription(product.data().description)
-               setImgUrl(product.data().imgUrl)
-               setImgUrl2(product.data().imgUrl2)
-               setTel(product.data().tel)
-           } else {
-               console.log("El producto no existe")
-           }
-       }
-       getProductById()
-   }, [id])
+    const { logout, currentUser } = useAuth();
 
+    useEffect(() => {
+
+
+        const getProductById = async () => {
+            const product = await getDoc(doc(db, "productos", id))
+            if (product.exists()) {
+                setNombreProducto(product.data().nombreProducto)
+                setNombreVendedor(product.data().nombreVendedor)
+                setDepartamento(product.data().departamento)
+                setCategoriaDeseada(product.data().categoriaDeseada)
+                setCategory(product.data().category)
+                setDescription(product.data().description)
+                setImgUrl(product.data().imgUrl)
+                setTel(product.data().tel)
+                setOwner(product.data().owner)
+            } else {
+                console.log("El producto no existe")
+            }
+        }
+        getProductById()
+    }, [id])
+    
+    const handleRedirectToOrBack = () => {
+        navigate(location.state?.from ?? '/');
+      };
+    
     const updateProduct = async (e) => {
         e.preventDefault()
+        if (owner === auth?.currentUser?.uid) {
         const product = doc(db, "productos", id)
         const data = {
             nombreProducto: nombreProducto, 
@@ -47,12 +57,17 @@ function Edit() {
             categoriaDeseada: categoriaDeseada, 
             description: description, 
             imgUrl: imgUrl,
-            imgUrl2: imgUrl2,
             tel: tel,
             departamento: departamento
         }
         await updateDoc(product, data)
         navigate("/show")
+    }else {
+        console.log("No deberias hacer esto, otro intento y quedara bloqueada tu cuenta.", auth?.currentUser?.displayName)
+        await logout();
+        handleRedirectToOrBack();
+
+    }
     }
 
  
@@ -74,52 +89,6 @@ function Edit() {
             }
         );
     };
-    const handleUpload2 = async (e) => {
-        const file = e.target.files[0];
-        const storageRef = ref(storage, `images/${file.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-
-        uploadTask.on('state_changed',
-            null,
-            (error) => {
-                console.error('Error uploading file:', error);
-            },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setImgUrl2(downloadURL);
-                });
-            }
-        );
-    };
-    
-    // const handleUploadPdf = async (e) => {
-    //     const file = e.target.files[0];
-    //     const storageRef = ref(storage, `pdfs/${file.name}`);
-    //     const uploadTask = uploadBytesResumable(storageRef, file);
-
-    //     uploadTask.on('state_changed', 
-    //         null,
-    //         (error) => {
-    //             console.error('Error uploading PDF:', error);
-    //         },
-    //         () => {
-    //             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //                 // Update the state with the download URL
-    //                 setPdf(downloadURL);
-    //             });
-    //         }
-    //     );
-    // };
-
-    // const handleDeleteImage = async (imageURL) => {
-    //     try {
-    //         const imageRef = ref(storage, imageURL);
-    //         await DeleteFile(imageRef);
-    //         setImgUrl("");
-    //     } catch (error) {
-    //         console.error("Error deleting image:", error);
-    //     }
-    // };
 
     
     const handleDeleteFile = async (fileURL) => {
@@ -134,17 +103,7 @@ function Edit() {
         }
     };
 
-    const handleDeleteFile2 = async (fileURL) => {
-        try {
-            const imageRef = ref(storage, fileURL);
-            await DeleteFile(imageRef);
-            if (fileURL === imgUrl2) {
-                setImgUrl2("");
-            } 
-        } catch (error) {
-            console.error("Error deleting image:", error);
-        }
-    };
+ 
     return (
         <div className="container">
             <div className="row">
@@ -245,22 +204,7 @@ function Edit() {
                                 </div>
                             )}
                         </div>
-                        <div className="mb-3">
-                            <label className="form-label">Subir Imagen 2</label>
-                            <input
-                                type="file"
-                                accept="image/*;capture=camera"
-                                onChange={handleUpload2}
-                                className="form-control"
-                            />
-                            {imgUrl2 && (
-                                <div>
-                                    <img src={imgUrl2} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
-                                    <button onClick={() => handleDeleteFile2(imgUrl2)}>Eliminar Imagen 2</button>
-                                </div>
-                            )}
-                        </div>
-
+                       
                         <div className="mb-3">
                             <label className="form-label">Telefono del Vendedor</label>
                             <input

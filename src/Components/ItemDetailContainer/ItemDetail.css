@@ -1,0 +1,36 @@
+#contenedorDetail {
+    margin-left: 30px;
+    max-width: 95%;
+    max-height: auto;
+    padding: 30px;
+    margin-bottom: 30px;
+    margin-right: 20px;
+    border-radius: 8px;
+    display:grid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    &&:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        border: transparent;
+      }
+}
+#subcontenedor {
+    display: flex;
+    padding: 20px;
+}
+#img1 {
+    border-radius: 8px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 10px;
+    width: 75%;
+}
+#deseado {
+    color: green;
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 800px) {
+    #img1 {
+      
+    }
+}

@@ -12,6 +12,7 @@ import Create from './Admin/Create';
 import RequireAuth from './Components/Login/RequireAuth';
 import ItemListContainer from './Components/ItemListContainer';
 import ForgotPassword from './Components/Forgot';
+import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
 
 
 function App(props) {
@@ -25,6 +26,7 @@ function App(props) {
             <Route exact path="/" element={<LandingPage />} />
             <Route path="/login" element={<Loginpage />} />
             <Route path="/register" element={<Registerpage />} />
+            <Route path="/detail/:id" element={<ItemDetailContainer />} />
             <Route path="/forgot" element={<ForgotPassword />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/category/:categoryid" element={<ItemListContainer />} />

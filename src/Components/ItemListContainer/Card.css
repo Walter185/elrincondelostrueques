@@ -1,0 +1,49 @@
+
+.tarjeta {
+    max-width: 250px;
+    margin-inline-end: 10px;
+    max-height: 500px;
+    padding-right: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    &&:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        border: transparent;
+      }
+}
+.tarjeta-img {
+    margin : 15px;
+    width: 98%;
+    max-height:300px;
+    box-sizing: border-box;
+
+}
+.descripcion {
+    margin-left: 15px;
+    margin-top: -10px;
+}
+#nombreProducto {
+ margin-top: -20px;
+ text-align: center;
+}
+#details {
+    margin-left: 15px;
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+}
+#vermas {
+    width: 100px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 5px;
+    margin-left: 130px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    &&:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        border: transparent;
+      }
+    
+}
