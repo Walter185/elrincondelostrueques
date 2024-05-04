@@ -8,10 +8,12 @@ import db, { storage, DeleteFile, auth } from "../Firebase/firebase";
 const Create = () => {
     const [ owner, setOwner ] = useState("");
     const [nombreProducto, setNombreProducto] = useState("");
+    const [nombreVendedor, setNombreVendedor] = useState("");
     const [category, setCategory] = useState("");
     const [categoriaDeseada, setCategoriaDeseada] = useState("");
     const [description, setDescription] = useState("");
     const [imgUrl, setImgUrl] = useState("");
+    const [imgUrl2, setImgUrl2] = useState("");
     const [tel, setTel] = useState("");
     const [departamento, setDepartamento] = useState("");
     const navigate = useNavigate()
@@ -23,10 +25,12 @@ const Create = () => {
             await addDoc(collection(db,"productos"), {
             owner: auth?.currentUser?.uid, 
             nombreProducto,
+            nombreVendedor,
             category,
             categoriaDeseada,
             description, 
             imgUrl,
+            imgUrl2,
             departamento,
             tel,
             timestamp
@@ -35,12 +39,14 @@ const Create = () => {
         alert('Aviso creado satisfactoriamente');
         setOwner("");
         setNombreProducto("");
+        setNombreVendedor("");
         setCategory("");
         setCategoriaDeseada("");
         setDescription("");
         setImgUrl("");
-        setTel("");
+        setImgUrl2("");
         setDepartamento("");
+        setTel("");
         } catch (error) {
             alert('Algo funcionó mal');
             console.log(error.message);
@@ -86,6 +92,23 @@ const Create = () => {
             }
         );
     };
+    const handleUpload2 = async (e) => {
+        const file = e.target.files[0];
+        const storageRef = ref(storage, `images/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on('state_changed',
+            null,
+            (error) => {
+                console.error('Error uploading file:', error);
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImgUrl2(downloadURL);
+                });
+            }
+        );
+    };
 
 
     const handleDeleteFile = async (fileURL) => {
@@ -99,13 +122,23 @@ const Create = () => {
             console.error("Error deleting image:", error);
         }
     };
+    const handleDeleteFile2 = async (fileURL) => {
+        try {
+            const imageRef = ref(storage, fileURL);
+            await DeleteFile(imageRef);
+            if (fileURL === imgUrl2) {
+                setImgUrl2("");
+            } 
+        } catch (error) {
+            console.error("Error deleting image:", error);
+        }
+    };
 
     return (
         <div className="container">
             <div className="row">
                 <div className="col">
                     <h1>Crear Aviso Nuevo</h1>
-
                     <form onSubmit={store}>
                         <div className="mb-3">
                             <label className="form-label">Nombre del Producto</label>
@@ -113,7 +146,17 @@ const Create = () => {
                                 type="text"
                                 value={nombreProducto}
                                 onChange={(e) => setNombreProducto(e.target.value)}
-                                placeholder="Nombre del Producto"
+                                placeholder="Ingrese Nombre del Producto..."
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Persona de contacto</label>
+                            <input
+                                type="text"
+                                value={nombreVendedor}
+                                onChange={(e) => setNombreVendedor(e.target.value)}
+                                placeholder="Ingrese su nombre..."
                                 className="form-control"
                             />
                         </div>
@@ -123,7 +166,7 @@ const Create = () => {
                                 type="text"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
-                                placeholder="Detalle del Producto"
+                                placeholder="Ingrese Detalle del Producto..."
                                 className="form-control"
                             />
                         </div>
@@ -136,8 +179,20 @@ const Create = () => {
                                 className="form-select"
                             >
                                 <option value="">Seleccionar categoría</option>
-                                <option value="ropa">Ropa</option>
-                                <option value="juguete">Juguete</option>
+                                <option value="Tecnología">Tecnología</option>
+                                <option value="Accesorios">Accesorios para Vehículos</option>
+                                <option value="Salud">Salud</option>
+                                <option value="Belleza">Belleza y Cuidado Personal</option>
+                                <option value="Deportes">Deportes</option>
+                                <option value="Hogar">Hogar y Muebles</option>
+                                <option value="Electrodomesticos">Electrodomesticos</option>
+                                <option value="Herramientas">Herramientas</option>
+                                <option value="Contrucción">Contrucción</option>
+                                <option value="Moda">Moda</option>
+                                <option value="Juguetes">Juguetes</option>
+                                <option value="Bebés">Bebés</option>
+                                <option value="Vehículos">Vehículos</option>
+                                <option value="Servicios">Servicios</option>
 
                             </select>
                         </div>
@@ -149,8 +204,21 @@ const Create = () => {
                                 className="form-select"
                             >
                                 <option value="">Seleccionar categoría</option>
-                                <option value="ropa">Ropa</option>
-                                <option value="juguete">Juguete</option>
+                                <option value="Tecnología">Tecnología</option>
+                                <option value="Accesorios">Accesorios para Vehículos</option>
+                                <option value="Salud">Salud</option>
+                                <option value="Belleza">Belleza y Cuidado Personal</option>
+                                <option value="Deportes">Deportes</option>
+                                <option value="Hogar">Hogar y Muebles</option>
+                                <option value="Electrodomesticos">Electrodomesticos</option>
+                                <option value="Herramientas">Herramientas</option>
+                                <option value="Contrucción">Contrucción</option>
+                                <option value="Moda">Moda</option>
+                                <option value="Juguetes">Juguetes</option>
+                                <option value="Bebés">Bebés</option>
+                                <option value="Vehículos">Vehículos</option>
+                                <option value="Servicios">Servicios</option>
+                                <option value="Servicios">Servicios</option>
 
                             </select>
                         </div>
@@ -169,24 +237,29 @@ const Create = () => {
                                 </div>
                             )}
                         </div>
-                        {/* <div className="mb-3">
-                            <label className="form-label">Nombre del Vendedor</label>
+                        <div className="mb-3">
+                            <label className="form-label">Subir Imagen 2</label>
                             <input
-                                type="text"
-                                value={nombreCliente}
-                                onChange={(e) => setNombreCliente(e.target.value)}
-                                placeholder="Nombre del Vendedor"
+                                type="file"
+                                accept="image/*;capture=camera"
+                                onChange={handleUpload2}
                                 className="form-control"
                             />
-                        </div> */}
+                            {imgUrl2 && (
+                                <div>
+                                    <img src={imgUrl2} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                                    <button onClick={() => handleDeleteFile2(imgUrl2)}>Eliminar Imagen 2</button>
+                                </div>
+                            )}
+                        </div>
 
                         <div className="mb-3">
-                            <label className="form-label">Telefono del Vendedor</label>
+                            <label className="form-label">Teléfono de Contacto</label>
                             <input
                                 type="text"
                                 value={tel}
                                 onChange={(e) => setTel(e.target.value)}
-                                placeholder="Telefono del Vendedor"
+                                placeholder="Ingrese teléfono de contacto..."
                                 className="form-control"
                             />
                         </div>
@@ -197,7 +270,7 @@ const Create = () => {
                                 type="text"
                                 value={departamento}
                                 onChange={(e) => setDepartamento(e.target.value)}
-                                placeholder="Lugar donde esta el producto"
+                                placeholder="Ingrese Lugar donde esta el producto ..."
                                 className="form-control"
                             />
                         </div>

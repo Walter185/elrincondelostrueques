@@ -1,0 +1,196 @@
+.textbanner{
+    position: relative;
+    overflow: hidden;
+    height: calc(100vh - 130px);
+    transition: all 0.8 ease;
+    cursor: pointer;
+    font-size: 250%;
+    text-shadow: 2px 3px black; 
+    background: transparent;
+
+}
+
+.textbanner.mid{
+    height: calc(50vh - 77px);
+    
+}
+
+#bannerTecnología{
+    background: url(/public/img/bannerTecnología.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+
+}
+#bannerAccesorios{
+    background: url(/public/img/bannerAccesorios.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+}
+#bannerSalud{
+    background: url(/public/img/bannerSalud.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+    
+}
+#bannerBelleza{
+    background: url(/public/img/bannerBelleza.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+    
+}
+
+#bannerDeportes{
+    background: url(/public/img/bannerDeportes.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+}
+
+#bannerHogar{
+    background: url(/public/img/bannerHogar.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+
+}
+
+#bannerElectrodomesticos{
+    background: url(/public/img/bannerElectrodomesticos.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+
+}
+
+#bannerHerramientas{
+    background: url(/public/img/bannerHerramientas.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+
+} 
+#bannerContrucción{
+    background: url(/public/img/bannerContrucción.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+
+} 
+#bannerModa{
+    background: url(/public/img/bannerModa.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+
+} 
+#bannerJuguetes{
+    background: url(/public/img/bannerJuguetes.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+
+} 
+#bannerBebés{
+    background: url(/public/img/bannerBebés.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+
+} 
+#bannerVehículos{
+    background: url(/public/img/bannerVehículos.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+
+} 
+#bannerServicios{
+    background: url(/public/img/bannerServicios.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+
+} 
+
+
+.img{
+    opacity: 0.9;
+}
+
+.img:hover{
+    -moz-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -o-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01);
+
+    -o-transition: all;
+    -webkit-transition: transform 0.3s ease-in-out;
+    -moz-transition:transform 0.3s ease-in-out;
+    -ms-transition:transform 0.3s ease-in-out;
+}
+
+.textbanner-text{
+    position: absolute;
+    text-align: center;
+    background-color: transparent;
+    top: 30%;
+    width: 100%;
+    text-shadow: 2px 3px black;
+    margin-left: 3%;
+}
+
+.textbanner-title{
+    font-size: 1em;
+    background-color: transparent;
+
+}
+
+.textbanner-button{
+    position: absolute;
+    top: 80%;
+    translate: -104px;
+    background: transparent;
+
+}
+
+.textbanner-button:hover{
+    opacity: 0.8;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(216, 216, 216);
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+@media screen and (max-width: 500px) {
+    .textbanner{
+        font-size: 140%;
+
+    }
+
+}

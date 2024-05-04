@@ -9,9 +9,10 @@ function Edit() {
     const [categoriaDeseada, setCategoriaDeseada] = useState("");
     const [description, setDescription] = useState("");
     const [imgUrl, setImgUrl] = useState("");
+    const [imgUrl2, setImgUrl2] = useState("");
     const [tel, setTel] = useState("");
     const [nombreProducto, setNombreProducto] = useState("");
-    // const [nombreCliente, setNombreCliente] = useState("");
+    const [nombreVendedor, setNombreVendedor] = useState("");
     const [departamento,  setDepartamento] = useState("");
     const navigate = useNavigate()
     const { id } = useParams()
@@ -21,12 +22,13 @@ function Edit() {
            const product = await getDoc(doc(db, "productos", id))
            if (product.exists()) {
                setNombreProducto(product.data().nombreProducto)
-            //    setNombreCliente(product.data().nombreCliente)
+               setNombreVendedor(product.data().nombreVendedor)
                setDepartamento(product.data().departamento)
                setCategoriaDeseada(product.data().categoriaDeseada)
                setCategory(product.data().category)
                setDescription(product.data().description)
                setImgUrl(product.data().imgUrl)
+               setImgUrl2(product.data().imgUrl2)
                setTel(product.data().tel)
            } else {
                console.log("El producto no existe")
@@ -40,12 +42,13 @@ function Edit() {
         const product = doc(db, "productos", id)
         const data = {
             nombreProducto: nombreProducto, 
+            nombreVendedor: nombreVendedor,
             category: category,
             categoriaDeseada: categoriaDeseada, 
             description: description, 
             imgUrl: imgUrl,
+            imgUrl2: imgUrl2,
             tel: tel,
-            // nombreCliente: nombreCliente,
             departamento: departamento
         }
         await updateDoc(product, data)
@@ -71,7 +74,23 @@ function Edit() {
             }
         );
     };
+    const handleUpload2 = async (e) => {
+        const file = e.target.files[0];
+        const storageRef = ref(storage, `images/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
 
+        uploadTask.on('state_changed',
+            null,
+            (error) => {
+                console.error('Error uploading file:', error);
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImgUrl2(downloadURL);
+                });
+            }
+        );
+    };
     
     // const handleUploadPdf = async (e) => {
     //     const file = e.target.files[0];
@@ -115,6 +134,17 @@ function Edit() {
         }
     };
 
+    const handleDeleteFile2 = async (fileURL) => {
+        try {
+            const imageRef = ref(storage, fileURL);
+            await DeleteFile(imageRef);
+            if (fileURL === imgUrl2) {
+                setImgUrl2("");
+            } 
+        } catch (error) {
+            console.error("Error deleting image:", error);
+        }
+    };
     return (
         <div className="container">
             <div className="row">
@@ -128,6 +158,15 @@ function Edit() {
                                 type="text"
                                 value={nombreProducto}
                                 onChange={(e) => setNombreProducto(e.target.value)}
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Persona de contacto</label>
+                            <input
+                                type="text"
+                                value={nombreVendedor}
+                                onChange={(e) => setNombreVendedor(e.target.value)}
                                 className="form-control"
                             />
                         </div>
@@ -149,8 +188,20 @@ function Edit() {
                                 className="form-select"
                             >
                                 <option value="">Seleccionar categoría</option>
-                                <option value="ropa">Ropa</option>
-                                <option value="juguete">Juguete</option>
+                                <option value="Tecnología">Tecnología</option>
+                                <option value="Accesorios">Accesorios para Vehículos</option>
+                                <option value="Salud">Salud</option>
+                                <option value="Belleza">Belleza y Cuidado Personal</option>
+                                <option value="Deportes">Deportes</option>
+                                <option value="Hogar">Hogar y Muebles</option>
+                                <option value="Electrodomesticos">Electrodomesticos</option>
+                                <option value="Herramientas">Herramientas</option>
+                                <option value="Contrucción">Contrucción</option>
+                                <option value="Moda">Moda</option>
+                                <option value="Juguetes">Juguetes</option>
+                                <option value="Bebés">Bebés</option>
+                                <option value="Vehículos">Vehículos</option>
+                                <option value="Servicios">Servicios</option>
 
                             </select>
                         </div>
@@ -162,8 +213,20 @@ function Edit() {
                                 className="form-select"
                             >
                                 <option value="">Seleccionar categoría</option>
-                                <option value="ropa">Ropa</option>
-                                <option value="juguete">Juguete</option>
+                                <option value="Tecnología">Tecnología</option>
+                                <option value="Accesorios">Accesorios para Vehículos</option>
+                                <option value="Salud">Salud</option>
+                                <option value="Belleza">Belleza y Cuidado Personal</option>
+                                <option value="Deportes">Deportes</option>
+                                <option value="Hogar">Hogar y Muebles</option>
+                                <option value="Electrodomesticos">Electrodomesticos</option>
+                                <option value="Herramientas">Herramientas</option>
+                                <option value="Contrucción">Contrucción</option>
+                                <option value="Moda">Moda</option>
+                                <option value="Juguetes">Juguetes</option>
+                                <option value="Bebés">Bebés</option>
+                                <option value="Vehículos">Vehículos</option>
+                                <option value="Servicios">Servicios</option>
 
                             </select>
                         </div>
@@ -182,16 +245,21 @@ function Edit() {
                                 </div>
                             )}
                         </div>
-                        {/* <div className="mb-3">
-                            <label className="form-label">Nombre del Vendedor</label>
+                        <div className="mb-3">
+                            <label className="form-label">Subir Imagen 2</label>
                             <input
-                                type="text"
-                                value={nombreCliente}
-                                onChange={(e) => setNombreCliente(e.target.value)}
-                                placeholder="Nombre del Vendedor"
+                                type="file"
+                                accept="image/*;capture=camera"
+                                onChange={handleUpload2}
                                 className="form-control"
                             />
-                        </div> */}
+                            {imgUrl2 && (
+                                <div>
+                                    <img src={imgUrl2} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                                    <button onClick={() => handleDeleteFile2(imgUrl2)}>Eliminar Imagen 2</button>
+                                </div>
+                            )}
+                        </div>
 
                         <div className="mb-3">
                             <label className="form-label">Telefono del Vendedor</label>

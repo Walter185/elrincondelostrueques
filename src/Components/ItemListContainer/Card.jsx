@@ -72,15 +72,13 @@ const ModalContent = styled.div`
   align-items: center;
 `;
 
-const FichaTecnicaButton = styled(Link)`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+const Titulo=styled.h5`
+padding: 10px;
 `;
 
 
 function Card(props){
-    const {id, description, imgUrl, name, price, category, pdf} = props.product;
+    const {id, nombreProducto, nombreVendedor, description, imgUrl, imgUrl2, category, categoriaDeseada, departamento} = props.product;
     const [expandedImage, setExpandedImage] = useState(null);
 
     const openExpandedImage = (image) => {
@@ -92,29 +90,28 @@ function Card(props){
       };
     
     return (
-      <Section>
-
-      <MachineContainer>
-         <MachineCard>
-             <MachineTitle>{name}</MachineTitle>
-
-                <div onClick={() => openExpandedImage(imgUrl)}>
-                    <img src={imgUrl} alt={name} />
-                </div><br/>
-                <MachineDescription>{description}</MachineDescription>
-                <br />
-                <FichaTecnicaButton to={pdf} target="_blank" rel="noreferrer"className="btn btn-outline-primary">Ver PDF</FichaTecnicaButton>
-         </MachineCard>
-      </MachineContainer>
-
-
+      <div className="d-flex align-content-stretch">
+            <div className="card card-width m-1 pb-5 text-center shadow-sm" onClick={() => openExpandedImage(imgUrl)}>
+                <img className="img-product" src={imgUrl} alt={nombreProducto}/><br/>
+                <p>{description}</p>
+                <h4>{nombreProducto}</h4>                
+                <Titulo>
+                  <b>Ubicacion: {departamento}</b>              
+                  <b>Trueco po: {categoriaDeseada}</b>      
+                </Titulo>
+               
+                <Link to={`/detail/${id}`}>
+                    <button className="btn btn-outline-primary position-absolute bottom-0 end-0 m-3">Ver mas</button>
+                </Link>
+         
+            </div>
 <ModalContainer isOpen={expandedImage}>
   <ModalContent onClick={closeExpandedImage}>
     <img src={expandedImage} alt="Expanded" className="expanded-image" />
   </ModalContent>
 </ModalContainer>
-</Section>
+        </div>
     );
 }
-
+      
 export default Card;

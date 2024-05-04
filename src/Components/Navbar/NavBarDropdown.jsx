@@ -1,6 +1,7 @@
 // import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
+import "./NavBarDropdown.css"
 
 const A= styled.a`
 text-decoration: none ;
@@ -12,7 +13,7 @@ const Ul=styled.ul`
 `;
 
 export default function NavBarDropdown () {
-    const categories = ["ropa", "juguete"];
+    const categories = ["Tecnología", "Accesorios", "Salud","Belleza","Deportes","Hogar","Electrodomesticos","Herramientas","Contrucción","Moda","Juguetes","Bebés","Vehículos","Servicios"];
     // const {t} = useTranslation();
 
     return (

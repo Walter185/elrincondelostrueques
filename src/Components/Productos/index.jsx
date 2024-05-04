@@ -92,6 +92,7 @@ const FichaTecnicaButton = styled(Link)`
 export default function Productos() {
   const [expandedImage, setExpandedImage] = useState(null);
   const [productos, setProductos] = useState([]);
+  const [imgUrl2] = useState(0)
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -118,19 +119,24 @@ export default function Productos() {
       <MachineContainer>
         {productos.map((producto) => (
           <MachineCard key={producto.id} >
-            <MachineTitle>{producto.nombreProducto}</MachineTitle>
 
             <Carousel
               showArrows={true}
               autoPlay={true}
               showThumbs={false}
               infiniteLoop={true}
-            >
+              >
               <div onClick={() => openExpandedImage(producto.imgUrl)}>
                 <img src={producto.imgUrl} alt={producto.nombreProducto} />
               </div>
+                {producto.imgUrl2 ? (
+                <div onClick={() => openExpandedImage(producto.imgUrl2)}>
+                <img src={producto.imgUrl2} alt={producto.nombreProducto} />
+              </div> ): ( ""
+              )}
           
             </Carousel>
+            <MachineTitle>{producto.nombreProducto}</MachineTitle>
             <MachineDescription>Detalle: {producto.description}</MachineDescription>
             <MachineDescription>Ubicacion: {producto.departamento}</MachineDescription>
             <MachineDescription>Vendedor: {producto.description}</MachineDescription>

@@ -22,16 +22,15 @@ function NavScrollExample() {
         <Navbar.Collapse id="navbarScroll">
           <NavBarSearch />
           <Nav
-            style={{ maxHeight: '120px' }}
-            navbarScroll
+            style={{ maxHeight: '250px', marginLeft:'20px'}}
             id='barra'
           >
             
             <Nav.Link href='/'>Inicio</Nav.Link>
             <NavBarDropdown />
        
-              {currentUser && <Nav.Link href="/show">Admin</Nav.Link>}
-              {!currentUser && <Button id='boton'><Nav.Link href="/login" id="tl">Entrar</Nav.Link></Button>}
+              {currentUser && <Nav.Link href="/show">{currentUser.displayName}</Nav.Link>}
+              {!currentUser && <Button id='botonEntrar'><Nav.Link href="/login" id="tl">Entrar</Nav.Link></Button>}
               
           
 

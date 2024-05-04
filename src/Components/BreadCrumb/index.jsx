@@ -18,14 +18,20 @@ export default function BreadCrumb({ currentPage }) {
                     </ol>
                 </div>
             )
-        case 'Cosecha':
-        case 'Almacenamiento':
-        case 'Mixer':
-        case 'Henificacion':
-        case 'Silaje':
-        case 'Repuestos':
-        case 'Manuales':
-        case 'Usados':
+        case 'Tecnología':
+        case 'Accesorios para Vehículos':
+        case 'Salud':
+        case 'Belleza y Cuidado Personal':
+        case 'Deportes':
+        case 'Hogar y Muebles':
+        case 'Electrodomesticos':
+        case 'Herramientas':
+        case 'Contrucción':
+        case 'Moda':
+        case 'Juguetes':
+        case 'Bebés':
+        case 'Vehículos':
+        case 'Servicios':
             return (
                 <div className='container pt-4 ps-5 pb-1'>
                     <Ol className="breadcrumb">

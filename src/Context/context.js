@@ -25,7 +25,6 @@ export const truequeContext = createContext({
 
 export const useAuth = () => useContext(truequeContext)
 
-
 function TruequeProvider({ children }) {
   const [ cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
   const [ currentUser, setCurrentUser] = useState(null)
@@ -158,4 +157,4 @@ function TruequeProvider({ children }) {
   )
 }
 
-export { TruequeProvider}
+export { TruequeProvider};

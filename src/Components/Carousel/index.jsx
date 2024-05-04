@@ -9,7 +9,7 @@ import img3 from "../../Assets/Img/trato-hecho.jpg"
 const Img = styled.img`
 height: 350px;
 object-fit: fill;
-// border-radius: 1em;
+position: initial;
 
 @media screen and (max-width: 768px) {
   object-fit: fill;
