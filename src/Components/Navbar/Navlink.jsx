@@ -1,20 +1,18 @@
-import { NavLink as Link, useLocation } from 'react-router-dom'
-import { Button } from '@chakra-ui/react'
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navlink({ to, name, ...rest }) {
-  const location = useLocation()
+  const location = useLocation();
 
-  const isActive = location.pathname === to
+  const isActive = location.pathname === to;
 
   return (
-    <Link to={to}>
-      <Button
-        variant={isActive ? 'outline' : 'black'}
-        colorScheme={isActive ? 'black' : ''}
+    <Link to={to} style={{ textDecoration: 'none' }}>
+      <button
+        className={`px-3 py-2 rounded-md hover:bg-gray-200 ${isActive ? 'bg-gray-200' : ''}`}
         {...rest}
       >
         {name}
-      </Button>
+      </button>
     </Link>
-  )
+  );
 }

@@ -6,11 +6,12 @@ import db, { storage, DeleteFile } from "../Firebase/firebase"
 
 function Edit() {
     const [category, setCategory] = useState("");
+    const [categoriaDeseada, setCategoriaDeseada] = useState("");
     const [description, setDescription] = useState("");
     const [imgUrl, setImgUrl] = useState("");
     const [tel, setTel] = useState("");
     const [nombreProducto, setNombreProducto] = useState("");
-    const [nombreCliente, setNombreCliente] = useState("");
+    // const [nombreCliente, setNombreCliente] = useState("");
     const [departamento,  setDepartamento] = useState("");
     const navigate = useNavigate()
     const { id } = useParams()
@@ -20,8 +21,9 @@ function Edit() {
            const product = await getDoc(doc(db, "productos", id))
            if (product.exists()) {
                setNombreProducto(product.data().nombreProducto)
-               setNombreCliente(product.data().nombreCliente)
+            //    setNombreCliente(product.data().nombreCliente)
                setDepartamento(product.data().departamento)
+               setCategoriaDeseada(product.data().categoriaDeseada)
                setCategory(product.data().category)
                setDescription(product.data().description)
                setImgUrl(product.data().imgUrl)
@@ -38,11 +40,12 @@ function Edit() {
         const product = doc(db, "productos", id)
         const data = {
             nombreProducto: nombreProducto, 
-            category: category, 
+            category: category,
+            categoriaDeseada: categoriaDeseada, 
             description: description, 
             imgUrl: imgUrl,
             tel: tel,
-            nombreCliente: nombreCliente,
+            // nombreCliente: nombreCliente,
             departamento: departamento
         }
         await updateDoc(product, data)
@@ -89,29 +92,28 @@ function Edit() {
     //     );
     // };
 
-    const handleDeleteImage = async (imageURL) => {
-        try {
-            const imageRef = ref(storage, imageURL);
-            await DeleteFile(imageRef);
-            setImgUrl("");
-        } catch (error) {
-            console.error("Error deleting image:", error);
-        }
-    };
-
-    
-    // const handleDeleteFile = async (fileURL) => {
+    // const handleDeleteImage = async (imageURL) => {
     //     try {
-    //         const imageRef = ref(storage, fileURL);
+    //         const imageRef = ref(storage, imageURL);
     //         await DeleteFile(imageRef);
-    //         if (fileURL === imgUrl) {
-    //             setImgUrl("");
-    //         }  
-            
+    //         setImgUrl("");
     //     } catch (error) {
     //         console.error("Error deleting image:", error);
     //     }
     // };
+
+    
+    const handleDeleteFile = async (fileURL) => {
+        try {
+            const imageRef = ref(storage, fileURL);
+            await DeleteFile(imageRef);
+            if (fileURL === imgUrl) {
+                setImgUrl("");
+            } 
+        } catch (error) {
+            console.error("Error deleting image:", error);
+        }
+    };
 
     return (
         <div className="container">
@@ -121,7 +123,7 @@ function Edit() {
 
                     <form onSubmit={updateProduct}>
                         <div className="mb-3">
-                            <label className="form-label">Nombre del Producto</label>
+                        <label className="form-label">Nombre del Producto</label>
                             <input
                                 type="text"
                                 value={nombreProducto}
@@ -138,9 +140,9 @@ function Edit() {
                                 className="form-control"
                             />
                         </div>
-                      
+
                         <div className="mb-3">
-                            <label className="form-label">Categoria</label>
+                            <label className="form-label">Categoria Publicada</label>
                             <select
                                 value={category}
                                 onChange={(e) => setCategory(e.target.value)}
@@ -153,21 +155,34 @@ function Edit() {
                             </select>
                         </div>
                         <div className="mb-3">
-                            <label className="form-label">Imagen</label>
+                            <label className="form-label">Categoria Buscada</label>
+                            <select
+                                value={categoriaDeseada}
+                                onChange={(e) => setCategoriaDeseada(e.target.value)}
+                                className="form-select"
+                            >
+                                <option value="">Seleccionar categoría</option>
+                                <option value="ropa">Ropa</option>
+                                <option value="juguete">Juguete</option>
+
+                            </select>
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Subir Imagen</label>
                             <input
                                 type="file"
-                                accept="image/*"
+                                accept="image/*;capture=camera"
                                 onChange={handleUpload}
                                 className="form-control"
                             />
                             {imgUrl && (
                                 <div>
-                                    <img src={imgUrl} alt="Preview" />
-                                    <button onClick={() => handleDeleteImage(imgUrl)}>Eliminar Imagen</button>
+                                    <img src={imgUrl} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                                    <button onClick={() => handleDeleteFile(imgUrl)}>Eliminar Imagen</button>
                                 </div>
                             )}
                         </div>
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                             <label className="form-label">Nombre del Vendedor</label>
                             <input
                                 type="text"
@@ -176,7 +191,7 @@ function Edit() {
                                 placeholder="Nombre del Vendedor"
                                 className="form-control"
                             />
-                        </div>
+                        </div> */}
 
                         <div className="mb-3">
                             <label className="form-label">Telefono del Vendedor</label>
@@ -199,7 +214,6 @@ function Edit() {
                                 className="form-control"
                             />
                         </div>
-                
                         <button type="submit" className="btn btn-primary">Actualizar</button>
                     </form>
                 </div>

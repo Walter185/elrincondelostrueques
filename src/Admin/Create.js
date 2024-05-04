@@ -8,7 +8,7 @@ import db, { storage, DeleteFile, auth } from "../Firebase/firebase";
 const Create = () => {
     const [ owner, setOwner ] = useState("");
     const [nombreProducto, setNombreProducto] = useState("");
-    const [categoriaPublicada, setCategoriaPublicada] = useState("");
+    const [category, setCategory] = useState("");
     const [categoriaDeseada, setCategoriaDeseada] = useState("");
     const [description, setDescription] = useState("");
     const [imgUrl, setImgUrl] = useState("");
@@ -23,7 +23,7 @@ const Create = () => {
             await addDoc(collection(db,"productos"), {
             owner: auth?.currentUser?.uid, 
             nombreProducto,
-            categoriaPublicada,
+            category,
             categoriaDeseada,
             description, 
             imgUrl,
@@ -32,10 +32,10 @@ const Create = () => {
             timestamp
         })
         navigate("/")
-        alert('Funciono bien');
+        alert('Aviso creado satisfactoriamente');
         setOwner("");
         setNombreProducto("");
-        setCategoriaPublicada("");
+        setCategory("");
         setCategoriaDeseada("");
         setDescription("");
         setImgUrl("");
@@ -131,8 +131,8 @@ const Create = () => {
                         <div className="mb-3">
                             <label className="form-label">Categoria Publicada</label>
                             <select
-                                value={categoriaPublicada}
-                                onChange={(e) => setCategoriaPublicada(e.target.value)}
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
                                 className="form-select"
                             >
                                 <option value="">Seleccionar categoría</option>

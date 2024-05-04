@@ -1,145 +1,114 @@
-import {
-  Button,
-  chakra,
-  FormControl,
-  FormLabel,
-  Heading,
-  HStack,
-  Input,
-  Stack,
-  useToast,
-} from '@chakra-ui/react'
-import { useState } from 'react'
-import { FaGoogle } from 'react-icons/fa'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Card } from '../Card/index'
-import DividerWithText from '../DividerWithText/index'
-import { Layout } from '../Layout/Layout'
-import { useAuth } from '../../Context/context'
-import useMounted from '../hooks/useMounted'
-import { auth } from '../../Firebase/firebase'
+import React, { useRef, useState } from 'react';
+import { FaGoogle } from 'react-icons/fa';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import DividerWithText from '../DividerWithText/index'; // Assuming DividerWithText component is already implemented
+import { useAuth } from '../../Context/context';
+import "./Login.css"
+import validator from "validator";
 
-export default function Loginpage() {
-  let navigate = useNavigate();
-  const { login } = useAuth()
-  const { signInWithGoogle } = useAuth()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const toast = useToast()
-  const location = useLocation()
-  const mounted = useMounted()
-  const { currentUser } = useAuth();
+export const Loginpage = () => {
+  const navigate = useNavigate();
+  const { login, signInWithGoogle, resetPassword } = useAuth();
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const location = useLocation();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
-  function handleRedirectToOrBack() {
-    navigate(location.state?.from ?? '/show')
-  }
+  const handleRedirectToOrBack = () => {
+    navigate(location.state?.from ?? '/show');
+  };
+
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    try {
+      const { email, password } = getInputs();
+      if (isUserCredentialsValid(email, password)) {
+        await login(email, password);
+        handleRedirectToOrBack();
+      } else {
+        setError(true);
+        setErrorMessage('Ingresa un correo electrónico en forma correcta.');
+      }
+    } catch (error) {
+      console.error(error);
+      setError(true);
+      setErrorMessage('Email o contraseña incorrectos, vuelve a intentar.');
+    }
+  };
+
+  const getInputs = () => {
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    return { email, password };
+  };
+
+  const isUserCredentialsValid = (email, password) => {
+    return validator.isEmail(email) && password;
+  };
 
   return (
-    <Layout>
-      <Heading textAlign='center' my={12}>
-        No hay Plata | Iniciar sesión
-      </Heading>
-      <Card maxW='md' mx='auto' mt={4}>
-        <chakra.form
-          onSubmit={async e => {
-            e.preventDefault()
-            if (!email || !password) {
-              toast({
-                description: 'Credentials not valid.',
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-              })
-              return
-            }
-            // your login logic here
-            setIsSubmitting(true)
-            login(email, password)
-              .then(res => {
-                handleRedirectToOrBack()
-                // alert(auth.currentUser.uid);
-
-              })
-              .catch(error => {
-                console.log(error.message)
-                toast({
-                  description: error.message,
-                  status: 'error',
-                  duration: 9000,
-                  isClosable: true,
-                })
-              })
-              .finally(() => {
-                // setTimeout(() => {
-                //   mounted.current && setIsSubmitting(false)
-                //   console.log(mounted.current)
-                // }, 1000)
-                mounted.current && setIsSubmitting(false)
-              })
-          }}
-        >
-          <Stack spacing='6'>
-            <FormControl id='email'>
-              <FormLabel>Email address</FormLabel>
-              <Input
-                name='email'
-                type='email'
-                autoComplete='email'
-                required
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-            </FormControl>
-            <FormControl id='password'>
-              <FormLabel>Password</FormLabel>
-              <Input
-                name='password'
-                type='password'
-                autoComplete='password'
-                value={password}
-                required
-                onChange={e => setPassword(e.target.value)}
-              />
-            </FormControl>
-            {/* <PasswordField /> */}
-            <Button
-              type='submit'
-              colorScheme='pink'
-              size='lg'
-              fontSize='md'
-              isLoading={isSubmitting}
-            >
-              Ingresar
-            </Button>
-          </Stack>
-        </chakra.form>
-        <HStack justifyContent='space-between' my={4}> 
-          <Button variant='link'>
-            <Link to='/forgot-password'>Forgot password?</Link>
-          </Button> 
-          <Button variant='link' onClick={() => navigate('/register')}>
-            Registrarse
-          </Button>
-          </HStack>
-          <DividerWithText my={6}>OR</DividerWithText>
-        <Button
-          variant='outline'
-          colorScheme='red'
-          leftIcon={<FaGoogle />}
-          onClick={() =>
-            signInWithGoogle()
-              .then(user => {
-                handleRedirectToOrBack()
-              // alert(auth.currentUser.uid);  
-                console.log(user)
-              })
-              .catch(e => console.log(e.message))
-          }
-        >
-          Ingrese con Google
-        </Button>
-      </Card>
-    </Layout>
-  )
-}
+    <>
+      <div className="App">
+        <h1 className="text-center my-12">Club del Trueque | Iniciar sesión</h1>
+        <div className="contenedor">
+          <div className="row d-flex justify-content-center">
+            <div className="col-md-4">
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium">Correo electrónico</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder='Ingrese su correo...'
+                    required
+                    ref={emailRef}
+                    className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password" className="block mb-2 text-sm font-medium">Contraseña</label>
+                  <input
+                    type="password"
+                    id="password"
+                    placeholder='Ingrese su contraseña...'
+                    required
+                    ref={passwordRef}
+                    className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+                <button type="submit" id='botonLogin'>
+                  Ingresar
+                </button>
+                {error && (
+                  <div className="text-red-500 mt-2 error-message">{errorMessage}</div>
+                )}
+              </form>
+              <span className="flex">
+               <Link to="/forgot" className="text-blue-500 hover:underline">
+                  Olvidó su contraseña?</Link> 
+              </span>
+              <span className="flex">
+                <Link to="/register" className="text-blue-500 hover:underline">
+                  Registrarse</Link>
+              </span>
+                <DividerWithText><span className='o'>o</span></DividerWithText>
+                <button onClick={() =>
+                    signInWithGoogle()
+                    .then(user => {
+                      handleRedirectToOrBack()
+                      console.log(user)
+                    })
+                    .catch(e => console.log(e.message))
+                  } id='botonGoogle'>
+                        <FaGoogle />
+                        <span> Ingresar con Google</span>
+              </button>
+            </div>
+            </div>
+          </div>
+        </div>
+s    </>
+  );
+};

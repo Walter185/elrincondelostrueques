@@ -1,13 +1,27 @@
-import { Box, useColorModeValue } from '@chakra-ui/react'
-import * as React from 'react'
+import React from 'react';
+import styled from 'styled-components';
 
-export const Card = props => (
-  <Box
-    bg={useColorModeValue('white', 'gray.700')}
-    py='8'
-    px={{ base: '4', md: '10' }}
-    shadow='base'
-    rounded={{ sm: 'lg' }}
-    {...props}
-  />
-)
+const Tarjeta = styled.div`
+  text-align= center;
+  justify-content: center;
+`;
+
+const Card = ({ children, className = '' }) => {
+  return (
+    <Tarjeta
+      className={`card ${className}`}
+      style={{
+        // backgroundColor: useColorModeValue('white', '#333'), // Adjust for dark mode
+        padding: '8px',
+        paddingLeft: '4px',
+        paddingRight: (props) => (props.isMobile ? '4px' : '10px'), // Responsive padding
+        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)', // Basic shadow
+        borderRadius: '10px', // Adjust as needed
+      }}
+    >
+      {children}
+    </Tarjeta>
+  );
+};
+
+export default Card;

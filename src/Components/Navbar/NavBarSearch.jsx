@@ -6,6 +6,9 @@ const Form = styled.form`
     width: 50%;
     height: 50px;
     display:flex;
+    @media screen and (max-width: 1000px) {
+        margin-top:20px;
+      }
 `;
 
 export default function NavBarSearch(){

@@ -1,169 +1,171 @@
-import {
-  Button,
-  Center,
-  chakra,
-  FormControl,
-  FormLabel,
-  Heading,
-  Input,
-  Stack,
-  useToast,
-} from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
-import { FaGoogle } from 'react-icons/fa'
-import { Card } from '../Card/index'
-import DividerWithText from '../DividerWithText/index'
-import { Layout } from '../Layout/Layout'
-import { useAuth } from '../../Context/context'
-import { useLocation, useNavigate } from 'react-router-dom'
-
+import React, { useState, useEffect, useRef } from 'react';
+import { FaGoogle } from 'react-icons/fa';
+import DividerWithText from '../DividerWithText/index'; // Assuming DividerWithText component is already implemented
+import validator from "validator";
+import { useAuth } from '../../Context/context';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import "./Register.css"
 
 export default function Registerpage() {
-  let navigate = useNavigate();
-  const { signInWithGoogle } = useAuth()
-  const { register } = useAuth()
-  const [nombre, setNombre] = useState('')
-  const [apellido, setApellido] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const toast = useToast()
-  const mounted = useRef(false)
-  const location = useLocation()
+  const navigate = useNavigate();
+  const { signInWithGoogle } = useAuth();
+  const { register } = useAuth();
+  const location = useLocation();
+  const nombreRef = useRef(null);
+  const apellidoRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
+  const handleRedirectToOrBack = () => {
+    navigate(location.state?.from ?? '/show');
+  };
 
-  useEffect(() => {
-    mounted.current = true
-    return () => {
-      mounted.current = false
+  const handleSignup = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    try {
+      const { nombre, apellido, email, password, confirmPassword } = getInputs();
+      if (isSignupValid({ nombre, apellido, email, password, confirmPassword })) {
+        await register(nombre, apellido, email, password );
+        handleRedirectToOrBack();
+      } else {
+        alert(`Cannot create your account, ${email} might be existed, please try again!`);
+      }
+    } catch (error) {
     }
-  }, [])
+  };
+     
 
-  function handleRedirectToOrBack() {
-    navigate(location.state?.from ?? '/show')
-  }
+  const getInputs = () => {
+    const nombre = nombreRef.current.value;
+    const apellido = apellidoRef.current.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+    const confirmPassword = confirmPasswordRef.current.value;
+    return { nombre, apellido, email, password, confirmPassword };
+  };
+
+  const isSignupValid = ({ nombre, apellido, email, password, confirmPassword }) => {
+    if (validator.isEmpty(nombre)) {
+     alert("Por favor ingrese su nombre");
+      return false;
+    }
+    if (validator.isEmpty(apellido)) {
+      alert("Por favor ingrese su apellido");
+       return false;
+     }
+    if (!validator.isEmail(email)) {
+      alert("Please input your email");
+      return false;
+    }
+    if (validator.isEmpty(password) || !validator.isLength(password, { min: 6 })) {
+      alert("Please input your password. You password must have at least 6 characters");
+      return false;
+    }
+    if (validator.isEmpty(confirmPassword)) {
+      alert("Please input your confirm password");
+      return false;
+    }
+    if (password !== confirmPassword) {
+      alert("Confirm password and password must be the same");
+      return false;
+    }
+    return true;
+  };
 
   return (
-    <Layout>
-      <Heading textAlign='center' my={6}>
-        Register
-      </Heading>
-      <Card maxW='md' mx='auto' mt={1}>
-        <chakra.form
-          onSubmit={async e => {
-            e.preventDefault()
-            if (!email || !password) {
-              toast({
-                description: 'Falta email o contraseña',
-                status: 'error',
-                duration: 9000,
-                isClosable: true,
-              })
-              return
-            }
-            // your register logic here
-            setIsSubmitting(true)
-            register(email, password, confirmPassword, nombre, apellido)
-              .then(res => {})
-              .catch(error => {
-                console.log(error.message)
-                toast({
-                  description: error.message,
-                  status: 'error',
-                  duration: 9000,
-                  isClosable: true,
+    <>
+      <div className="App2">
+        <h1 className="text-left">Club del Trueque | Registrarse</h1>
+        <div className="contenedor">
+          <div className="row d-flex justify-content-center">
+            <div className="col-md-4">
+              <form onSubmit={handleSignup} >
+                <div className="form-group">
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium">Nombre</label>
+                  <input
+                    type="text"
+                    placeholder="Ingrese nombre..."
+                    required
+                    ref={nombreRef}
+                    className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="apellido" className="block mb-2 text-sm font-medium">Apellido</label>
+                  <input
+                    type="text"
+                    placeholder="Ingrese apellido..."
+                    required
+                    ref={apellidoRef}
+                    className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium">Email address</label>
+                  <input
+                    type="email"
+                    placeholder="Ingrese email..."
+                    required
+                    ref={emailRef}
+                    className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="password" className="block mb-2 text-sm font-medium">Contraseña</label>
+                  <input
+                    type="text"
+                    placeholder="Ingrese contraseña..."
+                    required
+                    ref={passwordRef}
+                    className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium">Confirme contraseña</label>
+                  <input
+                    type="text"
+                    placeholder="Confirme contraseña..."
+                    required
+                    ref={confirmPasswordRef}
+                    className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+                <button
+                  type="submit" id='botonLogin'
+                > Registrarse
+                </button>
+                {error && (
+                  <div className="text-red-500 mt-2 error-message">{errorMessage}</div>
+                )}
+              </form>
+              <span className="flex">
+               <Link to="/forgot" className="text-blue-500 hover:underline">
+                  Olvidó su contraseña?</Link> 
+              </span>
+              <span className="flex">
+                <Link to="/login" className="text-blue-500 hover:underline">
+                  Ya tiene usuario? Ingrese aquí
+                </Link>
+              </span>
+            </div>
+            <DividerWithText><span className='o'>o</span></DividerWithText>
+            <button onClick={() =>
+              signInWithGoogle()
+                .then(user => {
+                  handleRedirectToOrBack()
+                  console.log(user)
                 })
-              })
-              .finally(() => {
-                mounted.current && setIsSubmitting(false)
-                handleRedirectToOrBack()
-
-              })
-          }}
-        >
-          <Stack spacing='2'>
-          <FormControl id='nombre'>
-              <FormLabel>Nombre</FormLabel>
-              <Input
-                placeholder="Ingrese nombre..."
-                type='text'
-                required
-                value={nombre}
-                onChange={e => setNombre(e.target.value)}
-              />
-            </FormControl>
-            <FormControl id='apellido'>
-              <FormLabel>Apellido</FormLabel>
-              <Input
-                placeholder="Ingrese apellido..."
-                type='text'
-                required
-                value={apellido}
-                onChange={e => setApellido(e.target.value)}
-              />
-            </FormControl>
-            <FormControl id='email'>
-              <FormLabel>Email address</FormLabel>
-              <Input
-                placeholder="Ingrese email..."
-                type='email'
-                required
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-            </FormControl>
-            <FormControl id='password'>
-              <FormLabel>Password</FormLabel>
-              <Input
-                placeholder="Ingrese contraseña..."
-                type='password'
-                required
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-              />
-            </FormControl>
-            <FormControl id='confirmPassword'>
-              <FormLabel>Confirme Password</FormLabel>
-              <Input
-                placeholder="Confirme su contraseña..."
-                type='password'
-                required
-                value={confirmPassword}
-                onChange={e => setConfirmPassword(e.target.value)}
-              />
-            </FormControl>
-            <Button
-              type='submit'
-              colorScheme='pink'
-              size='lg'
-              fontSize='md'
-              isLoading={isSubmitting}
-            >
-              Registrarse
-            </Button>
-          </Stack>
-        </chakra.form>
-        <Center my={4}>
-          <Button variant='link' onClick={() => navigate('/login')}>
-            Si ya tiene usuario ingrese aquí
-          </Button>
-        </Center>
-        <DividerWithText my={6}>OR</DividerWithText>
-        <Button
-          variant='outline'
-          isFullWidth
-          colorScheme='red'
-          leftIcon={<FaGoogle />}
-          onClick={() =>
-            signInWithGoogle()
-              .then(user => console.log(user))
-              .catch(e => console.log(e.message))
-          }
-        >
-          Ingrese con Google
-        </Button>
-      </Card>
-    </Layout>
+                .catch(e => console.log(e.message))
+            } id='botonGoogle'>
+              <FaGoogle />
+              <span> Ingresar con Google</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      </>
   )
 }

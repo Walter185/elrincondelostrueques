@@ -15,7 +15,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app)
+const db = getFirestore(app)
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 export const googleProvider = new GoogleAuthProvider();
@@ -73,7 +73,7 @@ export async function getAllProductsbyOwner(){
 
 export async function getProductsByCategory(categoryid){
     const productsRef = collection(db, "productos");
-    const qry = query(productsRef, where("category", "==", categoryid));
+    const qry = query(productsRef, where("category", "==", categoryid ));
     const snapshot = await getDocs(qry);
 
     const products = snapshot.docs.map(element => {
@@ -123,7 +123,7 @@ export async function getRopas() {
         return product;
     });
 
-    products = products.filter((el)=>el.nombreProducto.toLowerCase().includes(searchid.trim().toLowerCase()) ||el.departamento.toLowerCase().includes(searchid.trim().toLowerCase()) || el.description.toLowerCase().includes(searchid.trim().toLowerCase())|| el.category.toLowerCase().includes(searchid.trim().toLowerCase()));
+    products = products.filter((el)=>el.nombreProducto.toLowerCase().includes(searchid.trim().toLowerCase()) || el.departamento.toLowerCase().includes(searchid.trim().toLowerCase()) || el.description.toLowerCase().includes(searchid.trim().toLowerCase())|| el.category.toLowerCase().includes(searchid.trim().toLowerCase()));
     return products;
 }
 

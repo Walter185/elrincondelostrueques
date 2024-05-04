@@ -8,13 +8,6 @@ const Section = styled.section`
   // background-color: #343a40;
   `;
 
-const Title = styled.h4`
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  margin-top: 30px;
-  `;
-
 const MachineContainer = styled.div`
   display: flex;
   flex-wrap: wrap;

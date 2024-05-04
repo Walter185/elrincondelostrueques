@@ -13,7 +13,7 @@ import {
 import { doc, setDoc } from 'firebase/firestore';
 
 
-export const cartContext = createContext({
+export const truequeContext = createContext({
   currentUser: null,
   signInWithGoogle: () => Promise,
   login: () => Promise,
@@ -23,12 +23,18 @@ export const cartContext = createContext({
   resetPassword: () => Promise,
 })
 
-export const useAuth = () => useContext(cartContext)
+export const useAuth = () => useContext(truequeContext)
 
 
-function CartProvider(props) {
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
-  const [currentUser, setCurrentUser] = useState(null)
+function TruequeProvider({ children }) {
+  const [ cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+  const [ currentUser, setCurrentUser] = useState(null)
+  const [ darkMode, setDarkMode ] = useState(false)
+  const [loading, setLoading] = useState(true);
+
+  const toogleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -47,36 +53,20 @@ function CartProvider(props) {
     return signInWithEmailAndPassword(auth, email, password)
   }
 
-  const register = async (email, password, confirmPassword, nombre, apellido) => {
-    if (password === confirmPassword) {
-      try {
+  const register = async (nombre, apellido, email, password ) => {
         await createUserWithEmailAndPassword(auth, email, password);
-        alert(currentUser.uid);
         await setDoc(doc(db, "users", auth?.currentUser?.uid), {
           nombre,
           apellido,
           email,
           password
         });
-      } catch (err) {
-        //handeling error
-        console.error(err);
-        alert('Hubo un error')
-      }
-    } else {
-      alert('La contraseña no es la misma')
-    }
+     
   };
 
-  function forgotPassword(email) {
-    return sendPasswordResetEmail(auth, email, {
-      url: `http://localhost:3000/login`,
-    })
-  }
-
-  function resetPassword(oobCode, newPassword) {
-    return confirmPasswordReset(auth, oobCode, newPassword)
-  }
+  const resetPassword = (email) => {
+    return auth.sendPasswordResetEmail(email);
+  };
 
   function logout() {
     return signOut(auth)
@@ -91,7 +81,13 @@ function CartProvider(props) {
     (cart.length > 0) ? localStorage.setItem('cart', JSON.stringify(cart)) : localStorage.clear();
 
   }, [cart]);
-
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setCurrentUser(user);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, []);
   // function addToCart(product){
   //     let newCart = [...cart];
 
@@ -111,9 +107,9 @@ function CartProvider(props) {
   //     }
   // }
 
-  function clearCart() {
-    setCart([]);
-  }
+  // function clearCart() {
+  //   setCart([]);
+  // }
 
   // function inCart(id){
   //     let index = cart.findIndex( element => element.id === id);
@@ -137,26 +133,29 @@ function CartProvider(props) {
   //     return totalP;
   // }
 
+  const value={
+    cart,
+    // addToCart,
+    currentUser,
+    darkMode,
+    toogleDarkMode,
+    signInWithGoogle,
+    login,
+    register,
+    logout,
+    resetPassword,
+    // removeFromCart, 
+    // inCart, 
+    // clearCart, 
+    // getTotalQuantity, 
+    // getTotalPrice 
+  };
+
   return (
-    <cartContext.Provider value={{
-      cart,
-      // addToCart,
-      currentUser,
-      signInWithGoogle,
-      login,
-      register,
-      logout,
-      forgotPassword,
-      resetPassword,
-      // removeFromCart, 
-      // inCart, 
-      // clearCart, 
-      // getTotalQuantity, 
-      // getTotalPrice 
-    }}>
-      {props.children}
-    </cartContext.Provider>
+    <truequeContext.Provider value={value}>
+     {!loading && children}
+  </truequeContext.Provider>
   )
 }
 
-export { CartProvider }
+export { TruequeProvider}

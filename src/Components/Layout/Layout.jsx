@@ -1,10 +1,11 @@
-import React from 'react'
-import { Box, Container } from '@chakra-ui/react'
+import React from 'react';
 
-export function Layout({ children }) {
+const Layout = ({ children }) => {
   return (
-    <Box mb={16}>
-      <Container maxW='container.lg'>{children}</Container>
-    </Box>
-  )
-}
+    <div className="container" style={{ marginBottom: '64px' }}>
+      {children}
+    </div>
+  );
+};
+
+export default Layout;
