@@ -7,25 +7,16 @@ import img2 from "../../Assets/Img/compra-en-casa.jpg"
 import img3 from "../../Assets/Img/trato-hecho.jpg"
 
 const Img = styled.img`
-height: 450px;
+height: 350px;
 object-fit: fill;
 position: initial;
 
-@media screen and (max-width: 768px) {
-  object-fit: fill;
+@media screen and (max-width: 1200px) {
+  height: 300px;
+
+} 
+@media screen and (max-width: 800px) {
   height: 250px;
-
-}  
-`;
-
-const Div = styled.div`
-width:75%;
-margin-left: 15%;
-margin-top: -0.2px !important;
-@media screen and (max-width: 768px) {
-  width: 100%;
-  margin-left: 0%;
-
 }  
 `;
 
@@ -60,21 +51,33 @@ export default function CarrouselPrincipal() {
 
   return (
     <>
-      <Div className="my-1">
-        <div>
-          <Carousel
-            showArrows={true}
-            showThumbs={false}
-            autoPlay={true}
-            infiniteLoop={true}
-            className="carousel-container"
-            selectedItem={imageData[currentIndex]}
-            onChange={handleChange}
-          >
-            {renderSlides}
-          </Carousel>
+      <div className="my-1">
+      <div className="col-sm-12 col-md-12 col-lg-12 p-1">
+        <div className="row">
+        <div className="col-sm-0 col-md-2 col-lg-2 p-1">
+        <img src="#" alt="" />
+              <p>Publicidad</p>
         </div>
-      </Div>
+          <div className="col-sm-12 col-md-8 col-lg-8 p-1">
+            <Carousel
+              showArrows={true}
+              showThumbs={false}
+              autoPlay={true}
+              infiniteLoop={true}
+              className="carousel-container"
+              selectedItem={imageData[currentIndex]}
+              onChange={handleChange}
+            >
+              {renderSlides}
+            </Carousel>
+            </div>
+            <div className="col-sm-0 col-md-2 col-lg-2 p-1">
+              <img src="#" alt="" />
+              <p>Publicidad</p>
+            </div>
+      </div>
+      </div>
+      </div>
     </>
   );
 }

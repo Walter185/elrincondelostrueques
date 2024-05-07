@@ -9,21 +9,27 @@
  width: 100px;
  margin-left: 20px;
  margin-top: 5px;
- background: yellow;
  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  font-weight: bolder;
+}
+.tema {
+  padding: 5px;
+
 }
 #botonEntrar {
   height: 30px;
   width: 100px;
   margin-left: 20px;
   margin-top: 5px;
-  background: yellow;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bolder;
  }
 #tl{
   margin-top: -12px;
+}
+#logo {
+  height: 50px;
+  margin-top: 5px;
 }
 #barra {
   flex-grow: 1;

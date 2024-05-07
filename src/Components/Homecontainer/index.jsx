@@ -4,7 +4,7 @@ import Productos from "../Productos";
 import Banner from "../Banner/Banner";
 
 const Div = styled.div`
-background: linear-gradient(90deg, rgba(0, 147, 216, 1) 0%, rgba(3, 173, 238, 1) 50%);
+// background: linear-gradient(-45deg, orange 0%, white 100%);
 
 `; 
 export default function HomeContainer() {

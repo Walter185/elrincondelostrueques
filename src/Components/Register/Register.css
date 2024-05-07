@@ -20,7 +20,6 @@ input {
     border-radius: 10px;
 }
 #botonLogin {
-    background-color: yellow;
     width: 50%;
     height: 30px;
     margin-top: 20px;
@@ -29,7 +28,6 @@ input {
     margin-bottom: 20px;
 }
 #botonGoogle {
-    background-color: yellow;
     width: 235px;
     height: 30px;
     margin-top: 10px;

@@ -21,7 +21,7 @@ function App(props) {
       <ToastContainer autoClose={2000} hideProgressBar />
       <TruequeProvider>
         <BrowserRouter>
-          <Navbar />
+          <Navbar/>
           <Routes >
             <Route exact path="/" element={<LandingPage />} />
             <Route path="/login" element={<Loginpage />} />
@@ -35,7 +35,9 @@ function App(props) {
             <Route path="/create" element={<RequireAuth><Create /></RequireAuth>} />
             <Route path="/edit/:id" element={<RequireAuth><Edit /></RequireAuth>} />
           </Routes>
+   
         </BrowserRouter>
+
       </TruequeProvider>
     </>
   );

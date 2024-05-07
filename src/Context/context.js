@@ -13,8 +13,9 @@ import {
 import { doc, setDoc } from 'firebase/firestore';
 
 
-export const truequeContext = createContext({
+const truequeContext = createContext({
   currentUser: null,
+  darkMode: null,
   signInWithGoogle: () => Promise,
   login: () => Promise,
   register: () => Promise,
@@ -24,17 +25,17 @@ export const truequeContext = createContext({
 })
 
 export const useAuth = () => useContext(truequeContext)
+export const useTheme = () => useContext(truequeContext);
 
 function TruequeProvider({ children }) {
   const [ cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
   const [ currentUser, setCurrentUser] = useState(null)
-  const [ darkMode, setDarkMode ] = useState(false)
+  const [theme, setTheme] = useState('light');
   const [loading, setLoading] = useState(true);
-
-  const toogleDarkMode = () => {
-    setDarkMode(!darkMode);
+  
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       setCurrentUser(user ? user : null)
@@ -48,6 +49,7 @@ function TruequeProvider({ children }) {
     console.log('The user is', currentUser)
   }, [currentUser])
 
+  
   function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password)
   }
@@ -136,8 +138,8 @@ function TruequeProvider({ children }) {
     cart,
     // addToCart,
     currentUser,
-    darkMode,
-    toogleDarkMode,
+    theme, 
+    toggleTheme,
     signInWithGoogle,
     login,
     register,
@@ -157,4 +159,4 @@ function TruequeProvider({ children }) {
   )
 }
 
-export { TruequeProvider};
+export { TruequeProvider, truequeContext};
