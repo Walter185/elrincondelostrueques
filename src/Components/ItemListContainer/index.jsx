@@ -4,6 +4,7 @@ import { getAllProducts, getProductsByCategory, getProductsByName } from '../../
 import BreadCrumb from "../BreadCrumb";
 import Card from "../ItemListContainer/Card";
 import Loader from "../Loader";
+import "./ItemListContainer.css"
 
 export default function ItemListContainer(){
     const [products, setProducts] = useState([]);
@@ -41,7 +42,7 @@ export default function ItemListContainer(){
         :   
             <>
             {(products.length !== 0) ?
-                <div className="container d-flex flex-wrap justify-content-center mb-4">
+                <div className="container d-flex flex-wrap justify-content-center mb-4" id="cont">
                     {products.map((product) => <Card key={product.id} product={product}/>)}
                 </div>
             :

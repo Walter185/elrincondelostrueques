@@ -10,7 +10,7 @@ export default function Banner({ category }) {
                     <div className="textbanner-text" translate='no'>
                         <p className="textbanner-title text-light"><b>{category}</b></p>
                         <button className="btn btn-outline-light textbanner-button">
-                        {category === "Productos" ? "Ver todos los Trueques" : `Ver trueques de ${category}`}
+                        {category === "Productos" ? "Ver todos los Trueques" : `Ver trueques para ${category}`}
                         </button>
                     </div>
                 </div>

@@ -14,11 +14,10 @@ function NavScrollExample() {
   const { logout, currentUser } = useAuth();
   const { theme, toggleTheme } = useContext(truequeContext);
 
-  // Estilos condicionales según el tema actual
   const containerStyles = {
-    backgroundColor: theme === 'dark' ? 'grey'  : '#ebebeb',
-    color: theme === 'dark' ? '#fff' : '#222',
-  };
+    backgroundColor: theme === 'dark' ? '#343a40'  : '#fff',
+    color: theme === 'dark' ? '#fff' : '#343a40',
+};
 
   return (
     <Navbar expand="lg" style={containerStyles}>
@@ -32,7 +31,7 @@ function NavScrollExample() {
             id='barra'
             >
             
-            <Nav.Link href='/'>Inicio</Nav.Link>
+            <Nav.Link href='/' style={containerStyles}>Inicio</Nav.Link>
             <NavBarDropdown />
             <span className='tema' onClick={toggleTheme}>
               {theme === 'dark'? <FaSun /> : <FaMoon />}

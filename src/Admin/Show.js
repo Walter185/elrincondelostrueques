@@ -99,7 +99,7 @@ const Show = () => {
                   </button>
                 </td>
                 <td>
-                  <ThumbnailImage src={product.imagen} alt={product.nombreProducto} />
+                  <ThumbnailImage src={product.imgUrl} alt={product.nombreProducto} />
                 </td>
               </tr>
             ))}

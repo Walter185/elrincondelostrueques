@@ -2,15 +2,19 @@ import CarrouselPrincipal from "../Carousel";
 import styled from "styled-components";
 import Productos from "../Productos";
 import Banner from "../Banner/Banner";
+import { useContext } from "react";
+import { truequeContext } from "../../Context/context";
 
-const Div = styled.div`
-// background: linear-gradient(-45deg, orange 0%, white 100%);
 
-`; 
 export default function HomeContainer() {
+  const { theme } = useContext(truequeContext);
 
+  const containerStyles = {
+    backgroundColor: theme === 'dark' ? '#343a40'  : '#fff',
+    color: theme === 'dark' ? '#fff' : '#343a40',
+};
     return (
-        <Div>
+        <div style={containerStyles}>
             <CarrouselPrincipal />
             <div className="container-fluid pt-2 px-3">
 
@@ -67,6 +71,6 @@ export default function HomeContainer() {
           </div>
           </div> 
         </div>
-        </Div>
+        </div>
 )}
     

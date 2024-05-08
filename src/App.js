@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
 import Navbar from './Components/Navbar';
 import { TruequeProvider } from './Context/context';
 import { ToastContainer } from 'react-toastify';
@@ -13,6 +12,8 @@ import RequireAuth from './Components/Login/RequireAuth';
 import ItemListContainer from './Components/ItemListContainer';
 import ForgotPassword from './Components/Forgot';
 import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
+import { Foot } from './Components/Footer';
+import HomeContainer from './Components/Homecontainer';
 
 
 function App(props) {
@@ -23,7 +24,7 @@ function App(props) {
         <BrowserRouter>
           <Navbar/>
           <Routes >
-            <Route exact path="/" element={<LandingPage />} />
+            <Route exact path="/" element={<HomeContainer />} />
             <Route path="/login" element={<Loginpage />} />
             <Route path="/register" element={<Registerpage />} />
             <Route path="/detail/:id" element={<ItemDetailContainer />} />
@@ -35,6 +36,7 @@ function App(props) {
             <Route path="/create" element={<RequireAuth><Create /></RequireAuth>} />
             <Route path="/edit/:id" element={<RequireAuth><Edit /></RequireAuth>} />
           </Routes>
+          <Foot />
    
         </BrowserRouter>
 
