@@ -1,11 +1,11 @@
-.container_create {
+.container_edit {
     padding: 10px;
     margin-left: 25%;
     margin-right: 5px;
     justify-content: center;
 }
 
-#crear_titulo {
+#edit_titulo {
     margin-left: 15%;
     padding: 10px;
     margin-bottom: 20px;
@@ -18,7 +18,7 @@
     position: relative;
 }
 
-#boton_create {
+#boton_edit {
     margin: 20px;
     margin-left: 20%;
     padding: 10px 60px;
@@ -26,10 +26,10 @@
     font-weight: bolder;
 }
 @media only screen and (max-width: 1000px) {
-    .container_create{
+    .container_edit{
         margin-left: 5%;
     }
-    #crear_titulo {
+    #edit_titulo {
         padding: 20px;
     }
 }

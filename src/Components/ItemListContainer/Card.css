@@ -16,6 +16,7 @@
     width: 98%;
     max-height:300px;
     box-sizing: border-box;
+    cursor: pointer;
 
 }
 .descripcion {

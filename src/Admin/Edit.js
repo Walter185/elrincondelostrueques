@@ -4,12 +4,14 @@ import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import db, { storage, DeleteFile, auth } from "../Firebase/firebase";
 import { useAuth } from "../Context/context";
+import "./Edit.css"
 
 function Edit() {
     const [category, setCategory] = useState("");
     const [categoriaDeseada, setCategoriaDeseada] = useState("");
     const [description, setDescription] = useState("");
     const [imgUrl, setImgUrl] = useState("");
+    const [imgUrl2, setImgUrl2] = useState("");
     const [tel, setTel] = useState("");
     const [owner, setOwner] = useState("");
     const [nombreProducto, setNombreProducto] = useState("");
@@ -33,6 +35,7 @@ function Edit() {
                 setCategory(product.data().category)
                 setDescription(product.data().description)
                 setImgUrl(product.data().imgUrl)
+                setImgUrl2(product.data().imgUrl2)
                 setTel(product.data().tel)
                 setOwner(product.data().owner)
             } else {
@@ -57,6 +60,7 @@ function Edit() {
             categoriaDeseada: categoriaDeseada, 
             description: description, 
             imgUrl: imgUrl,
+            imgUrl2: imgUrl2,
             tel: tel,
             departamento: departamento
         }
@@ -69,8 +73,6 @@ function Edit() {
 
     }
     }
-
- 
 
     const handleUpload = async (e) => {
         const file = e.target.files[0];
@@ -89,6 +91,23 @@ function Edit() {
             }
         );
     };
+    const handleUpload2 = async (e) => {
+        const file = e.target.files[0];
+        const storageRef = ref(storage, `images/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on('state_changed', 
+            null,
+            (error) => {
+                console.error('Error uploading file:', error);
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImgUrl2(downloadURL);
+                });
+            }
+        );
+    };
 
     
     const handleDeleteFile = async (fileURL) => {
@@ -102,13 +121,24 @@ function Edit() {
             console.error("Error deleting image:", error);
         }
     };
+    const handleDeleteFile2 = async (fileURL) => {
+        try {
+            const imageRef = ref(storage, fileURL);
+            await DeleteFile(imageRef);
+            if (fileURL === imgUrl2) {
+                setImgUrl2("");
+            } 
+        } catch (error) {
+            console.error("Error deleting image:", error);
+        }
+    };
 
  
     return (
-        <div className="container">
+        <div className="container_edit">
             <div className="row">
                 <div className="col">
-                    <h1>Editar Producto</h1>
+                    <h1 id="edit_titulo">Editar Aviso</h1>
 
                     <form onSubmit={updateProduct}>
                         <div className="mb-3">
@@ -202,6 +232,21 @@ function Edit() {
                                 </div>
                             )}
                         </div>
+                        <div className="mb-3">
+                            <label className="form-label">Subir Imagen 2</label>
+                            <input
+                                type="file"
+                                accept="image/*;capture=camera"
+                                onChange={handleUpload2}
+                                className="form-control"
+                            />
+                            {imgUrl2 && (
+                                <div>
+                                    <img src={imgUrl2} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                                    <button onClick={() => handleDeleteFile2(imgUrl2)}>Eliminar Imagen 2</button>
+                                </div>
+                            )}
+                        </div>
                        
                         <div className="mb-3">
                             <label className="form-label">Telefono del Vendedor</label>
@@ -243,7 +288,7 @@ function Edit() {
                                 <option value="Treinta y Tres">Treinta y Tres</option>
                             </select>
                         </div>
-                        <button type="submit" className="btn btn-primary">Actualizar</button>
+                        <button type="submit" className="btn btn-primary" id="boton_edit">Actualizar</button>
                     </form>
                 </div>
             </div>

@@ -36,7 +36,7 @@ function NavScrollExample() {
             <span className='tema' onClick={toggleTheme}>
               {theme === 'dark'? <FaSun /> : <FaMoon />}
             </span>
-            {currentUser && <Nav.Link href="/show">{currentUser.displayName}</Nav.Link>}
+            {currentUser && <Nav.Link href="/show"  style={containerStyles}>{currentUser.displayName}</Nav.Link>}
             {!currentUser && <Button id='botonEntrar'><Nav.Link href="/login" id="tl">Entrar</Nav.Link></Button>}
             
         

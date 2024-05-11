@@ -24,7 +24,7 @@ const Contador = () => {
 
   return (
     <div>
-      <h2>Total de Trueques activos actualmente:  <b className="total">{total}</b></h2>
+      <h2>Total de Trueques Activos Actualmente:  <b className="total">{total}</b></h2>
     </div>
   );
 };

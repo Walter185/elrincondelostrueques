@@ -6,11 +6,6 @@ import { Link } from "react-router-dom";
 import { getUltimosProductos } from "../../Firebase/firebase";
 import "./Recientes.css"
 
-const Section = styled.section`
-  padding-top: 10px;
-  margin-top: 30px;
-  background-color:transparent;
-  `;
 
 const Title = styled.h4`
   margin-left: auto;
@@ -135,7 +130,10 @@ export default function UltimosProductos() {
               infiniteLoop={true}
             >
               <div onClick={() => openExpandedImage(producto.imgUrl)}>
-                <img src={producto.imgUrl} alt={producto.nombreProducto} />
+                <img src={producto.imgUrl} alt={producto.title} />
+              </div>
+              <div onClick={() => openExpandedImage(producto.imgUrl2)}>
+                <img src={producto.imgUrl2} alt={producto.title} />
               </div>
             </Carousel>
             <MachineTitle>Trueque: {producto.nombreProducto}, Ubicado en: <b>{producto.departamento}</b></MachineTitle>
