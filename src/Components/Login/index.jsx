@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import DividerWithText from '../DividerWithText/index'; // Assuming DividerWithText component is already implemented
-import { truequeContext, useAuth } from '../../Context/context';
+import { useAuth } from '../../Context/context';
 import "./Login.css"
 import validator from "validator";
 
@@ -14,12 +14,7 @@ export const Loginpage = () => {
   const location = useLocation();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const { theme } = useContext(truequeContext);
 
-  const containerStyles = {
-    backgroundColor: theme === 'dark' ? '#343a40'  : '#fff',
-    color: theme === 'dark' ? '#fff' : '#343a40',
-};
 
   const handleRedirectToOrBack = () => {
     navigate(location.state?.from ?? '/show');
@@ -56,7 +51,7 @@ export const Loginpage = () => {
 
   return (
     <>
-      <div className="App" style={containerStyles}>
+      <div className="App">
         <h1 className="text-center my-12">Club del Trueque | Iniciar sesión</h1>
         <div className="contenedor">
           <div className="row d-flex justify-content-center">

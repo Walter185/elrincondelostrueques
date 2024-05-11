@@ -1,0 +1,38 @@
+.container_create {
+    padding: 10px;
+    margin-left: 25%;
+    margin-right: 5px;
+    /* display: block; */
+    /* align-items: center; */
+    justify-content: center;
+    /* width: 100%; */
+}
+#crear_titulo {
+    /* text-align: center; */
+    margin-left: 15%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.mb-3 {
+    max-width: 600px;
+    position: relative;
+}
+
+#boton_create {
+    margin: 20px;
+    margin-left: 20%;
+    padding: 10px 60px;
+    box-shadow: 2px 2px grey;
+    font-weight: bolder;
+}
+@media only screen and (max-width: 1000px) {
+    .container_create{
+        margin-left: 5%;
+    }
+    #crear_titulo {
+        padding: 20px;
+    }
+}

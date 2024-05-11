@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, getDoc, doc, query, where } from "firebase/firestore";
+import { getFirestore, collection, getDocs, getDoc, doc, query, where, orderBy, limit } from "firebase/firestore";
 import { GoogleAuthProvider, getAuth } from 'firebase/auth';
 import { deleteObject, ref, getStorage, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 
@@ -25,6 +25,7 @@ export const DeleteFile = (imageRef) => {
     const StorageRef = ref(storage, imageRef);
     return deleteObject(StorageRef);
 };
+
 
 export const uploadFile = (file, imageRef, setProgress, setRemoteImg) => {
     const storageRef = ref(storage, imageRef);
@@ -70,6 +71,25 @@ export async function getAllProductsbyOwner(){
 
     return products;
 }
+
+export async function getUltimosProductos() {
+    try {
+        const productsRef = collection(db, "productos");
+        const q = query(productsRef, orderBy("timestamp", "desc"), limit(4));
+        const snapshot = await getDocs(q);
+    
+        const lastFourProducts = snapshot.docs.map(doc => {
+          let product = doc.data();
+          product.id = doc.id;
+          return product;
+        });
+    
+        return lastFourProducts;
+      } catch (error) {
+        console.error("Error al obtener los últimos 4 productos:", error);
+        return [];
+      }
+    }
 
 export async function getProductsByCategory(categoryid){
     const productsRef = collection(db, "productos");

@@ -4,6 +4,7 @@ import moment from "moment";
 import { collection, addDoc } from "firebase/firestore"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import db, { storage, DeleteFile, auth } from "../Firebase/firebase";
+import "./Create.css"
 
 const Create = () => {
     const [ owner, setOwner ] = useState("");
@@ -85,10 +86,10 @@ const Create = () => {
     };
 
     return (
-        <div className="container">
+        <div className="container_create">
             <div className="row">
                 <div className="col">
-                    <h1>Crear Aviso Nuevo</h1>
+                    <h1 id="crear_titulo">Crear Aviso Nuevo</h1>
                     <form onSubmit={store}>
                         <div className="mb-3">
                             <label className="form-label">Nombre del Producto</label>
@@ -191,7 +192,7 @@ const Create = () => {
                         <div className="mb-3">
                             <label className="form-label">Teléfono de Contacto</label>
                             <input
-                                type="text"
+                                type="num"
                                 value={tel}
                                 onChange={(e) => setTel(e.target.value)}
                                 placeholder="Ingrese teléfono de contacto..."
@@ -209,7 +210,7 @@ const Create = () => {
                                 className="form-control"
                             />
                         </div>
-                        <button type="submit" className="btn btn-primary">Guardar</button>
+                        <button type="submit" className="btn btn-primary" id="boton_create">Guardar</button>
                     </form>
                 </div>
             </div>

@@ -1,10 +1,18 @@
 import CarrouselPrincipal from "../Carousel";
-import styled from "styled-components";
-import Productos from "../Productos";
 import Banner from "../Banner/Banner";
 import { useContext } from "react";
 import { truequeContext } from "../../Context/context";
+import styled from 'styled-components';
+import Contador from "../Contador";
+import UltimosProductos from "../Recientes";
 
+
+const Title = styled.h4`
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 30px;
+  `;
 
 export default function HomeContainer() {
   const { theme } = useContext(truequeContext);
@@ -16,6 +24,11 @@ export default function HomeContainer() {
     return (
         <div style={containerStyles}>
             <CarrouselPrincipal />
+            <Contador />
+            <UltimosProductos />
+            <Title style={{ color: "#78909c" }}>
+          <h1><b>Categorias</b></h1>
+        </Title><hr></hr>
             <div className="container-fluid pt-2 px-3">
 
         <div className="col-sm-12 col-md-12 col-lg-12 p-1">
@@ -46,6 +59,7 @@ export default function HomeContainer() {
             <div className="col-sm-6 col-md-4 col-lg-3 p-1">
             <Banner category="Herramientas" />
             </div>
+            </div>
             <div className="row">
             <div className="col-sm-6 col-md-4 col-lg-3 p-1">
               <Banner category="Contrucción" />
@@ -70,7 +84,6 @@ export default function HomeContainer() {
             </div>
           </div>
           </div> 
-        </div>
         </div>
 )}
     

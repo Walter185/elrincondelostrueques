@@ -31,7 +31,7 @@ const containerStyles = {
     return (
         <Footer style={containerStyles}>
             <P>El Club del Trueque | Uruguay <br/>
-            <small>Todos los derechos reservados&nbsp;&copy;2024</small>| <A href="https://api.whatsapp.com/send?phone=5491158465481" target="_blank">Desarrollado por Walter Liendo. Un ciudadano de la Comunidad para la Comunidad
+            <small>Todos los derechos reservados&nbsp;&copy;2024</small>| <A href="https://api.whatsapp.com/send?phone=5491158465481" target="_blank">Desarrollado por Walter Liendo.
             </A></P>
         </Footer>
     );

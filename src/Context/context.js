@@ -8,7 +8,6 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
-  // confirmPasswordReset,
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
@@ -25,16 +24,15 @@ const truequeContext = createContext({
 })
 
 export const useAuth = () => useContext(truequeContext)
-export const useTheme = () => useContext(truequeContext);
 
 function TruequeProvider({ children }) {
   const [ cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
   const [ currentUser, setCurrentUser] = useState(null)
-  const [theme, setTheme] = useState('light');
-  const [loading, setLoading] = useState(true);
+  const [ theme, setTheme] = useState('light');
+  const [ loading, setLoading] = useState(true);
   
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme( theme === 'light' ? 'dark' : 'light');
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, user => {
@@ -66,7 +64,7 @@ function TruequeProvider({ children }) {
   };
 
   const resetPassword = (email) => {
-    return auth.sendPasswordResetEmail(email);
+    return sendPasswordResetEmail(email);
   };
 
   function logout() {

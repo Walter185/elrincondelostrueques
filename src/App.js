@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './Components/Navbar';
-import { TruequeProvider } from './Context/context';
 import { ToastContainer } from 'react-toastify';
 import { Loginpage } from './Components/Login';
 import Registerpage from './Components/Register';
@@ -20,7 +19,6 @@ function App(props) {
   return (
     <>
       <ToastContainer autoClose={2000} hideProgressBar />
-      <TruequeProvider>
         <BrowserRouter>
           <Navbar/>
           <Routes >
@@ -37,10 +35,7 @@ function App(props) {
             <Route path="/edit/:id" element={<RequireAuth><Edit /></RequireAuth>} />
           </Routes>
           <Foot />
-   
         </BrowserRouter>
-
-      </TruequeProvider>
     </>
   );
 }

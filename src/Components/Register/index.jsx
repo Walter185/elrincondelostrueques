@@ -24,7 +24,7 @@ export default function Registerpage() {
   };
 
   const handleSignup = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault(); 
     try {
       const { nombre, apellido, email, password, confirmPassword } = getInputs();
       if (isSignupValid({ nombre, apellido, email, password, confirmPassword })) {
