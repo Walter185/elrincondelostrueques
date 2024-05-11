@@ -1,6 +1,7 @@
 import { collection, getDocs } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import db from "../../Firebase/firebase";
+import "./Contador.css"
 
 const Contador = () => {
   const [total, setTotal] = useState(0);
@@ -23,7 +24,7 @@ const Contador = () => {
 
   return (
     <div>
-      <h2>Total de Trueques activos actualmente:  <b style={{color:"green"}}>{total}</b></h2>
+      <h2>Total de Trueques activos actualmente:  <b className="total">{total}</b></h2>
     </div>
   );
 };

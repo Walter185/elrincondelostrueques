@@ -31,7 +31,7 @@ export default function NavBarSearch(){
                 type="search" 
                 name="userInput" 
                 value={userInput} 
-                placeholder="Ingrese su búsqueda..." 
+                placeholder="Buscar por producto, categoría, ubicación..." 
                 onChange={handleChange}
                 />
         </Form>

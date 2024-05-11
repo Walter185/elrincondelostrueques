@@ -169,8 +169,6 @@ const Create = () => {
                                 <option value="Bebés">Bebés</option>
                                 <option value="Vehículos">Vehículos</option>
                                 <option value="Servicios">Servicios</option>
-                                <option value="Servicios">Servicios</option>
-
                             </select>
                         </div>
                         <div className="mb-3">
@@ -192,7 +190,7 @@ const Create = () => {
                         <div className="mb-3">
                             <label className="form-label">Teléfono de Contacto</label>
                             <input
-                                type="num"
+                                type="number"
                                 value={tel}
                                 onChange={(e) => setTel(e.target.value)}
                                 placeholder="Ingrese teléfono de contacto..."

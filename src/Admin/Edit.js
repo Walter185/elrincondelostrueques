@@ -161,7 +161,6 @@ function Edit() {
                                 <option value="Bebés">Bebés</option>
                                 <option value="Vehículos">Vehículos</option>
                                 <option value="Servicios">Servicios</option>
-
                             </select>
                         </div>
                         <div className="mb-3">
@@ -186,7 +185,6 @@ function Edit() {
                                 <option value="Bebés">Bebés</option>
                                 <option value="Vehículos">Vehículos</option>
                                 <option value="Servicios">Servicios</option>
-
                             </select>
                         </div>
                         <div className="mb-3">
@@ -208,7 +206,7 @@ function Edit() {
                         <div className="mb-3">
                             <label className="form-label">Telefono del Vendedor</label>
                             <input
-                                type="text"
+                                type="number"
                                 value={tel}
                                 onChange={(e) => setTel(e.target.value)}
                                 placeholder="Telefono del Vendedor"

@@ -48,7 +48,7 @@ function Card(props){
                 <h4 id="nombreProducto">{nombreProducto}</h4>                
                 <h5 id="details">
                   <b>Ubicacion: {departamento}</b>              
-                  <b>Trueco po: {categoriaDeseada}</b>      
+                  <b>Trueco por: {categoriaDeseada}</b>      
                 </h5>
                
                 <Link to={`/detail/${id}`}>

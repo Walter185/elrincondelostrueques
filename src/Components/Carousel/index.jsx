@@ -39,7 +39,7 @@ export default function CarrouselPrincipal() {
 
   return (
     <>
-      <div className="TextFijo">Esta es una página para toda la comunidad. No se permiten publicaciones que pudieran herir las sensibilidades de algunos miembros del club. El desarrollador y El Club del Trueque no se hacen responsables por las malas transacciones efectuadas. </div>
+      <div className="TextFijo">Esta es una página para toda la comunidad. No se permiten publicaciones que pudieran herir las sensibilidades de algunos miembros del club. El desarrollador y El Club del Trueque no se hacen responsables por las transacciones efectuadas. </div>
       <div className="my-1">
         <div className="col-sm-12 col-md-12 col-lg-12 p-1">
           <div className="row">
