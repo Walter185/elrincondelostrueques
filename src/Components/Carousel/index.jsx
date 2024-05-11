@@ -5,7 +5,7 @@ import img1 from "../../Assets/Img/chica-con-celular.jpg";
 import img2 from "../../Assets/Img/compra-en-casa.jpg";
 import img3 from "../../Assets/Img/trato-hecho.jpg";
 import sponsor1 from "../../Assets/Img/sponsor1.jpg";
-import sponsor11 from "../../Assets/Img/sponsor11.jpg";
+// import sponsormp from "../../Assets/Img/sponsormp.jpg";
 import "./Carousel.css"
 
 export default function CarrouselPrincipal() {
@@ -44,7 +44,7 @@ export default function CarrouselPrincipal() {
         <div className="col-sm-12 col-md-12 col-lg-12 p-1">
           <div className="row">
             <div className="col-sm-0 col-md-2 col-lg-2 p-1">
-              <img src="#" alt="" />
+              {/* <a>    <img className="Img2" src={sponsormp} alt="Mercado Pago"></img>   </a> */}
             </div>
             <div className="col-sm-12 col-md-8 col-lg-8 p-1">
               <Carousel
@@ -60,10 +60,9 @@ export default function CarrouselPrincipal() {
               </Carousel>
             </div>
             <div className="col-sm-0 col-md-2 col-lg-2 p-1">
-              {/* <small>Sponsors</small> */}
               <a href="https://mainero.uy/"  target="_blank"><img className="Img" src={sponsor1} alt="Mainero"></img></a>
             </div>
-              <img className="Img2" src={sponsor11} alt="Mainero" />
+   
           </div>
         </div>
       </div>

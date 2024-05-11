@@ -201,14 +201,33 @@ const Create = () => {
                         </div>
 
                         <div className="mb-3">
-                            <label className="form-label">Lugar donde esta el producto</label>
-                            <input
-                                type="text"
+                            <label className="form-label">Lugar donde esta el trueque</label>
+                            <select
                                 value={departamento}
                                 onChange={(e) => setDepartamento(e.target.value)}
-                                placeholder="Ingrese Lugar donde esta el producto ..."
-                                className="form-control"
-                            />
+                                className="form-select"
+                            >
+                                <option value="">Seleccionar Departamento</option>
+                                <option value="Soriano">Soriano</option>
+                                <option value="Artigas">Artigas</option>
+                                <option value="Canelones">Canelones</option>
+                                <option value="Cerro Largo">Cerro Largo</option>
+                                <option value="Colonia">Colonia</option>
+                                <option value="Durazno">Durazno</option>
+                                <option value="Flores">Flores</option>
+                                <option value="Florida">Florida</option>
+                                <option value="Lavalleja">Lavalleja</option>
+                                <option value="Maldonado">Maldonado</option>
+                                <option value="Montevideo">Montevideo</option>
+                                <option value="Paysandú">Paysandú</option>
+                                <option value="Río Negro">Río Negro</option>
+                                <option value="Rivera">Rivera</option>
+                                <option value="Rocha">Rocha</option>
+                                <option value="Salto">Salto</option>
+                                <option value="San José">San José</option>
+                                <option value="Tacuarembó">Tacuarembó</option>
+                                <option value="Treinta y Tres">Treinta y Tres</option>
+                            </select>
                         </div>
                         <button type="submit" className="btn btn-primary" id="boton_create">Guardar</button>
                     </form>

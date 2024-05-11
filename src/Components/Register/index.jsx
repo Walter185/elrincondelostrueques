@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaGoogle } from 'react-icons/fa';
-import DividerWithText from '../DividerWithText/index'; // Assuming DividerWithText component is already implemented
+import DividerWithText from '../DividerWithText/index';
 import validator from "validator";
 import { useAuth } from '../../Context/context';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import "./Register.css"
+import "./Register.css";
 
 export default function Registerpage() {
   const navigate = useNavigate();
@@ -13,6 +13,7 @@ export default function Registerpage() {
   const location = useLocation();
   const nombreRef = useRef(null);
   const apellidoRef = useRef(null);
+  const nacimientoRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
@@ -24,11 +25,11 @@ export default function Registerpage() {
   };
 
   const handleSignup = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     try {
-      const { nombre, apellido, email, password, confirmPassword } = getInputs();
-      if (isSignupValid({ nombre, apellido, email, password, confirmPassword })) {
-        await register(nombre, apellido, email, password );
+      const { nombre, apellido, nacimiento, email, password, confirmPassword } = getInputs();
+      if (isSignupValid({ nombre, apellido, nacimiento, email, password, confirmPassword })) {
+        await register(nombre, apellido, nacimiento,  email, password );
         handleRedirectToOrBack();
       } else {
         alert(`Cannot create your account, ${email} might be existed, please try again!`);
@@ -36,26 +37,26 @@ export default function Registerpage() {
     } catch (error) {
     }
   };
-     
 
   const getInputs = () => {
     const nombre = nombreRef.current.value;
     const apellido = apellidoRef.current.value;
+    const nacimiento = nacimientoRef.current.value; // Corrected accessing the value
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
-    return { nombre, apellido, email, password, confirmPassword };
+    return { nombre, apellido, nacimiento, email, password, confirmPassword };
   };
 
-  const isSignupValid = ({ nombre, apellido, email, password, confirmPassword }) => {
-    if (validator.isEmpty(nombre)) {
-     alert("Por favor ingrese su nombre");
+  const isSignupValid = ({ nombre, apellido, nacimiento, email, password, confirmPassword }) => {
+    if (validator.isEmpty(nombre) || !validator.isLength(nombre, { min: 3 })) {
+      alert("Por favor ingrese su nombre");
       return false;
     }
-    if (validator.isEmpty(apellido)) {
+    if (validator.isEmpty(apellido) || !validator.isLength(apellido, { min: 2 })) {
       alert("Por favor ingrese su apellido");
-       return false;
-     }
+      return false;
+    }
     if (!validator.isEmail(email)) {
       alert("Please input your email");
       return false;
@@ -72,6 +73,18 @@ export default function Registerpage() {
       alert("Confirm password and password must be the same");
       return false;
     }
+    // Validate age
+    const today = new Date();
+    const birthDate = new Date(nacimiento);
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    if (age < 18) {
+      alert("Debe ser mayor de edad para registrarse.");
+      return false;
+    }
     return true;
   };
 
@@ -84,7 +97,7 @@ export default function Registerpage() {
             <div className="col-md-4">
               <form onSubmit={handleSignup} >
                 <div className="form-group">
-                  <label htmlFor="email" className="block mb-2 text-sm font-medium">Nombre</label>
+                  <label htmlFor="nombre" className="block mb-2 text-sm font-medium">Nombre</label>
                   <input
                     type="text"
                     placeholder="Ingrese nombre..."
@@ -104,6 +117,15 @@ export default function Registerpage() {
                   />
                 </div>
                 <div className="form-group">
+                  <label htmlFor="nacimiento" className="block mb-2 text-sm font-medium">Fecha de Nacimiento (Debes ser mayor de edad)</label>
+                  <input
+                    type="date"
+                    required
+                    ref={nacimientoRef}
+                    className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  />
+                </div>
+                <div className="form-group">
                   <label htmlFor="email" className="block mb-2 text-sm font-medium">Email address</label>
                   <input
                     type="email"
@@ -116,7 +138,7 @@ export default function Registerpage() {
                 <div className="form-group">
                   <label htmlFor="password" className="block mb-2 text-sm font-medium">Contraseña</label>
                   <input
-                    type="text"
+                    type="password"
                     placeholder="Ingrese contraseña..."
                     required
                     ref={passwordRef}
@@ -126,24 +148,22 @@ export default function Registerpage() {
                 <div className="form-group">
                   <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium">Confirme contraseña</label>
                   <input
-                    type="text"
+                    type="password"
                     placeholder="Confirme contraseña..."
                     required
                     ref={confirmPasswordRef}
                     className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
-                <button
-                  type="submit" id='botonLogin'
-                > Registrarse
-                </button>
+                <button type="submit" id="botonLogin"> Registrarse </button>
                 {error && (
                   <div className="text-red-500 mt-2 error-message">{errorMessage}</div>
                 )}
               </form>
               <span className="flex">
-               <Link to="/forgot" className="text-blue-500 hover:underline">
-                  Olvidó su contraseña?</Link> 
+                <Link to="/forgot" className="text-blue-500 hover:underline">
+                  Olvidó su contraseña?
+                </Link> 
               </span>
               <span className="flex">
                 <Link to="/login" className="text-blue-500 hover:underline">
@@ -166,6 +186,6 @@ export default function Registerpage() {
           </div>
         </div>
       </div>
-      </>
-  )
+    </>
+  );
 }

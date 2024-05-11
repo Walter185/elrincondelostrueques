@@ -20,10 +20,12 @@
     position: initial;
   
   }
-
-  .Img2 {
-    display: none;
-  }
+  /* .Img2 {
+    max-height: 350px;
+    object-fit: fill;
+    position: initial;
+    padding-left: 10%;
+  } */
   .home__bannert--big {
     font-size: 2rem;
   }

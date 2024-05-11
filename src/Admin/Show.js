@@ -64,7 +64,6 @@ const Show = () => {
               <th>Nombre del Producto</th>
               <th>Categoria Publicada</th>
               <th>Categoria Deseada</th>
-              {/* <th>Departamento</th> */}
               <th>E/B</th>
               <th>Previsualización</th>
             </tr>
@@ -75,7 +74,6 @@ const Show = () => {
                 <td>{product.nombreProducto}</td>
                 <td>{product.category}</td>
                 <td>{product.categoriaDeseada}</td>
-                {/* <td>{product.departamento}</td> */}
                 <td>
                   <Link to={`/edit/${product.id}`} className="btn btn-light">
                     <i className="fas fa-pencil"></i> Editar

@@ -52,11 +52,12 @@ function TruequeProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password)
   }
 
-  const register = async (nombre, apellido, email, password ) => {
+  const register = async (nombre, apellido, nacimiento, email, password ) => {
         await createUserWithEmailAndPassword(auth, email, password);
         await setDoc(doc(db, "users", auth?.currentUser?.uid), {
           nombre,
           apellido,
+          nacimiento,
           email,
           password
         });

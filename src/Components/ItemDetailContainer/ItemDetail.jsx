@@ -51,6 +51,7 @@ export default function ItemDetail({ product }) {
     nombreVendedor,
     tel,
     categoriaDeseada,
+    timestamp
   } = product;
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImage, setCurrentImage] = useState("");
@@ -96,6 +97,7 @@ export default function ItemDetail({ product }) {
                   Mandame un Whatsapp y tal vez podamos ponernos de acuerdo
                   para un Trueque.
                 </p>
+                <p>Fecha de la publicación: {timestamp}</p>
               </div>
             </div>
           </div>
