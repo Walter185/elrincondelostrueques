@@ -27,7 +27,7 @@ export default function HomeContainer() {
             <Contador />
             <UltimosProductos />
             <Title style={{ color: "#78909c" }}>
-          <h1><b>Categorias</b></h1>
+          <h1><b>Buscar por Categorías</b></h1>
         </Title><hr></hr>
             <div className="container-fluid pt-2 px-3">
 

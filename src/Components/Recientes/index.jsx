@@ -136,9 +136,9 @@ export default function UltimosProductos() {
                 <img src={producto.imgUrl2} alt={producto.title} />
               </div>
             </Carousel>
-            <MachineTitle>Trueque: {producto.nombreProducto}, Ubicado en: <b>{producto.departamento}</b></MachineTitle>
-            <MachineDescription>Categoría Publicada: <b>{producto.category}</b> </MachineDescription>
-            <MachineDescription>Categoría Desesada: <b>{producto.categoriaDeseada}</b></MachineDescription>
+            <MachineTitle>{producto.nombreProducto}</MachineTitle>
+            <MachineDescription>Ubicación: <b>{producto.departamento}</b></MachineDescription>
+            <MachineDescription>Trueco por : <b> {producto.categoriaDeseada} </b></MachineDescription>
             <br/>  <br/>
             <FichaTecnicaButton to={`/detail/${producto.id}`} className="btn btn-outline-primary">Ver más</FichaTecnicaButton>
           </MachineCard>
