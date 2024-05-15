@@ -12,6 +12,7 @@ const Title = styled.h4`
   margin-right: auto;
   text-align: center;
   margin-top: 30px;
+  padding-bottom: 10px;
   `;
 
 const MachineContainer = styled.div`
@@ -119,7 +120,7 @@ export default function UltimosProductos() {
     <div>
       <Title style={{ color: "#78909c" }}>
         <h1><b>Últimos Productos Agregados:</b></h1>
-      </Title><hr></hr>
+      </Title>
       <MachineContainer>
         {products.map(producto => (
           <MachineCard key={producto.id} >

@@ -34,7 +34,7 @@ const containerStyles = {
             <small>Todos los derechos reservados&nbsp;&copy;2024</small>| Desarrollado por Walter Liendo.<br/>
             <A href="https://api.whatsapp.com/send?phone=5491158465481" target="_blank">Contacta al desarrollador 
             </A><br/>
-            <A href="/cafecito" ><small>Invitale un cafecito al desarrollador</small></A></P>
+            <A href="/cafecito" >Invitale un cafecito al desarrollador</A></P>
         </Footer>
     );
 }

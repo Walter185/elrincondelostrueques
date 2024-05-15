@@ -24,19 +24,20 @@ export default function HomeContainer() {
   return (
     <div style={containerStyles}>
       <CarrouselPrincipal />
-      <Contador />
+      <Contador /><hr></hr>
       <UltimosProductos />
+      <hr></hr>
       <Title style={{ color: "#78909c" }}>
         <h1><b>Ver Todos los Trueques</b></h1>
-      </Title><hr></hr>
+      </Title>
       <div className="row">
             <div className="col-sm-12 col-md-12 col-lg-12 p-1">
               <Banner category="Productos" />
             </div>
-          </div>
+          </div><hr></hr>
       <Title style={{ color: "#78909c" }}>
         <h1><b>Buscar por Categorías</b></h1>
-      </Title><hr></hr>
+      </Title>
       <div className="container-fluid pt-2 px-3">
         <div className="col-sm-12 col-md-12 col-lg-12 p-1">
           <div className="row">
@@ -91,6 +92,7 @@ export default function HomeContainer() {
           </div>
         </div>
       </div>
+      <hr></hr>
     </div>
   )
 }

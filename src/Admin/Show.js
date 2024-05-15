@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import Nav from 'react-bootstrap/Nav';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteDoc, doc } from "firebase/firestore";
 import db, { getAllProductsbyOwner } from "../Firebase/firebase";
 import Swal from "sweetalert2";
@@ -18,6 +18,7 @@ const ThumbnailImage = styled.img`
 
 const Show = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate()
 
   const deleteProduct = async (id) => {
     const productDoc = doc(db, "productos", id);
@@ -38,6 +39,7 @@ const Show = () => {
       if (result.isConfirmed) {
         deleteProduct(id);
         Swal.fire("Borrado!", "El archivo ha sido borrado.", "success");
+        navigate("/show")
       }
     });
   };

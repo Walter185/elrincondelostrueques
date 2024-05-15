@@ -47,7 +47,8 @@ export default function ItemListContainer(){
                 </div>
             :
                 <div className="container text-center">
-                    <p className="m-4">No hay trueques para mostrar</p>
+                    <p className="m-4">No hubo resultados</p>
+                    <br/>
                     <Link to="/" className="mx-auto my-5"><button className="btn btn-primary">Ir a Inicio</button></Link>
                 </div>
             }
