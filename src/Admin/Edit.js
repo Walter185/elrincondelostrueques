@@ -20,7 +20,7 @@ function Edit() {
     const navigate = useNavigate()
     const location = useLocation();
     const { id } = useParams()
-    const { logout, currentUser } = useAuth();
+    const { logout } = useAuth();
 
     useEffect(() => {
 
@@ -117,6 +117,7 @@ function Edit() {
             if (fileURL === imgUrl) {
                 setImgUrl("");
             } 
+            navigate("/show")
         } catch (error) {
             console.error("Error deleting image:", error);
         }
@@ -128,6 +129,7 @@ function Edit() {
             if (fileURL === imgUrl2) {
                 setImgUrl2("");
             } 
+            navigate("/show")
         } catch (error) {
             console.error("Error deleting image:", error);
         }

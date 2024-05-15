@@ -99,6 +99,7 @@ const Create = () => {
             if (fileURL === imgUrl) {
                 setImgUrl("");
             } 
+            navigate("/show")
         } catch (error) {
             console.error("Error deleting image:", error);
         }

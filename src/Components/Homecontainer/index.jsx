@@ -18,19 +18,26 @@ export default function HomeContainer() {
   const { theme } = useContext(truequeContext);
 
   const containerStyles = {
-    backgroundColor: theme === 'dark' ? '#343a40'  : '#fff',
+    backgroundColor: theme === 'dark' ? '#343a40' : '#fff',
     color: theme === 'dark' ? '#fff' : '#343a40',
-};
-    return (
-        <div style={containerStyles}>
-            <CarrouselPrincipal />
-            <Contador />
-            <UltimosProductos />
-            <Title style={{ color: "#78909c" }}>
-          <h1><b>Buscar por Categorías</b></h1>
-        </Title><hr></hr>
-            <div className="container-fluid pt-2 px-3">
-
+  };
+  return (
+    <div style={containerStyles}>
+      <CarrouselPrincipal />
+      <Contador />
+      <UltimosProductos />
+      <Title style={{ color: "#78909c" }}>
+        <h1><b>Ver Todos los Trueques</b></h1>
+      </Title><hr></hr>
+      <div className="row">
+            <div className="col-sm-12 col-md-12 col-lg-12 p-1">
+              <Banner category="Productos" />
+            </div>
+          </div>
+      <Title style={{ color: "#78909c" }}>
+        <h1><b>Buscar por Categorías</b></h1>
+      </Title><hr></hr>
+      <div className="container-fluid pt-2 px-3">
         <div className="col-sm-12 col-md-12 col-lg-12 p-1">
           <div className="row">
             <div className="col-sm-6 col-md-12 col-lg-3 p-1">
@@ -39,28 +46,28 @@ export default function HomeContainer() {
             <div className="col-sm-6 col-md-4 col-lg-3 p-1">
               <Banner category="Accesorios" />
             </div>
-          <div className="col-sm-6 col-md-4 col-lg-3 p-1">
+            <div className="col-sm-6 col-md-4 col-lg-3 p-1">
               <Banner category="Salud" />
-          </div>
-          <div className="col-sm-6 col-md-4 col-lg-3 p-1">
+            </div>
+            <div className="col-sm-6 col-md-4 col-lg-3 p-1">
               <Banner category="Belleza" />
-          </div>
+            </div>
           </div>
           <div className="row">
             <div className="col-sm-6 col-md-4 col-lg-3 p-1">
               <Banner category="Deportes" />
             </div>
             <div className="col-sm-6 col-md-4 col-lg-3 p-1">
-            <Banner category="Hogar" />
+              <Banner category="Hogar" />
             </div>
             <div className="col-sm-6 col-md-4 col-lg-3 p-1">
-            <Banner category="Electrodomesticos" />
+              <Banner category="Electrodomesticos" />
             </div>
             <div className="col-sm-6 col-md-4 col-lg-3 p-1">
-            <Banner category="Herramientas" />
+              <Banner category="Herramientas" />
             </div>
-            </div>
-            <div className="row">
+          </div>
+          <div className="row">
             <div className="col-sm-6 col-md-4 col-lg-3 p-1">
               <Banner category="Contrucción" />
             </div>
@@ -73,17 +80,17 @@ export default function HomeContainer() {
             <div className="col-sm-6 col-md-4 col-lg-3 p-1">
               <Banner category="Bebés" />
             </div>
-            </div>
-            <div className="row">
+          </div>
+          <div className="row">
             <div className="col-sm-6 col-md-6 col-lg-6 p-1">
               <Banner category="Vehículos" />
             </div>
             <div className="col-sm-6 col-md-6 col-lg-6 p-1">
               <Banner category="Servicios" />
             </div>
-            </div>
           </div>
-          </div> 
         </div>
-)}
-    
+      </div>
+    </div>
+  )
+}

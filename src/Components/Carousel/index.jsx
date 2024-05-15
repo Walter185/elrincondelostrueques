@@ -39,12 +39,10 @@ export default function CarrouselPrincipal() {
 
   return (
     <>
-      <div className="TextFijo">Esta es una página para toda la comunidad. No se permiten publicaciones que pudieran herir las sensibilidades de algunos miembros del club. El desarrollador y El Club del Trueque no se hacen responsables por las transacciones efectuadas. </div>
       <div className="my-1">
         <div className="col-sm-12 col-md-12 col-lg-12 p-1">
           <div className="row">
             <div className="col-sm-0 col-md-2 col-lg-2 p-1">
-              {/* <a>    <img className="Img2" src={sponsormp} alt="Mercado Pago"></img>   </a> */}
             </div>
             <div className="col-sm-12 col-md-8 col-lg-8 p-1">
               <Carousel
@@ -60,7 +58,7 @@ export default function CarrouselPrincipal() {
               </Carousel>
             </div>
             <div className="col-sm-0 col-md-2 col-lg-2 p-1">
-              <a href="https://mainero.uy/"  target="_blank"><img className="Img" src={sponsor1} alt="Mainero"></img></a>
+              <a href="https://mainero.uy/"  target="_blank" rel="noreferrer"><img className="Img" src={sponsor1} alt="Mainero"></img></a>
             </div>
    
           </div>

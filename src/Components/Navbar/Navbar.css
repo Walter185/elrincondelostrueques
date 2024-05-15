@@ -34,6 +34,12 @@
 #barra {
   flex-grow: 1;
 }
+#barraGeneral {
+  height: 75px;
+  position: sticky;
+  top: 0;
+  z-index: 999;  
+}
   @media only screen and (max-width: 1000px) {
   #botonEntrar{
     width: 1px;

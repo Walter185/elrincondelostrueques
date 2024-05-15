@@ -20,7 +20,7 @@ function NavScrollExample() {
 };
 
   return (
-    <Navbar expand="lg" style={containerStyles}>
+    <Navbar expand="lg" id="barraGeneral" style={containerStyles}>
       <Container>
       <Nav.Link href='/'><img src={logo} id='logo' alt="logo trueque" /></Nav.Link>
         <Navbar.Toggle aria-controls="navbarScroll" />
