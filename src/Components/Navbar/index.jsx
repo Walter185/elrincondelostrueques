@@ -29,7 +29,7 @@ function NavScrollExample() {
       </Nav.Link>
         <Navbar.Toggle aria-controls="navbarScroll"/>
         <Navbar.Collapse id="navbarScroll" style={containerStyles}>
-          <NavBarSearch className="search" />
+          <NavBarSearch/>
           <Nav id='barra'>
             <Nav.Link href='/' id="inicio" style={containerStyles}>Inicio</Nav.Link>
             <NavBarDropdown />

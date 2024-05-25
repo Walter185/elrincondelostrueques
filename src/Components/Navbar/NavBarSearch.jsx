@@ -5,6 +5,7 @@ import { styled } from "styled-components";
 const Form = styled.form`
     width: 50%;
     height: 50px;
+    padding-right: 15px;
     display:flex;
     @media screen and (max-width: 1000px) {
         margin-top:20px;
