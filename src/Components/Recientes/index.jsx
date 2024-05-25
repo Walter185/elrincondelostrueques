@@ -29,8 +29,6 @@ const MachineCard = styled.div`
   padding: 15px;
   border: 1px solid #ccc;
   margin-bottom: 20px;
-  background: var(--chakra-colors-chakra-body-bg);
-  color: var(--chakra-colors-chakra-body-text);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
   &&:hover {
       box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);

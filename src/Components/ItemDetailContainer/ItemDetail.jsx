@@ -60,9 +60,9 @@ const Table = styled.div`
 `;
 const Whatsapp=styled.a`
     width: 100px !important;
-    height: 100px !important;
-    padding-left: 20px;
-    padding-right: 20px;
+    height: 110px !important;
+    padding-left: 15px;
+    padding-right: 15px;
     line-height: 90px;
     right: 20%;
     background: #25d366;
@@ -71,8 +71,6 @@ const Whatsapp=styled.a`
     text-align: center !important;
     font-size: 55px;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
-    padding-top: 10px;
-    margin-top: 10px;
     transition: all 300ms ease;
   &&:hover {
     background: #FFF;
