@@ -31,10 +31,14 @@ export default function HomeContainer() {
       <Title style={{ color: "#78909c" }}>
         <h1><b>Ver Todos los Trueques</b></h1>
       </Title>
-      <div className="row">
-            <div className="col-sm-12 col-md-12 col-lg-12 p-1">
+      <div className="container-fluid pt-2 px-3">
+        <div className="col-sm-12 col-md-12 col-lg-12 p-1">
+          <div className="row">
+          <div className="col-sm-12 col-md-12 col-lg-12p-1">
               <Banner category="Productos" />
-            </div>
+          </div>
+          </div>
+          </div>
           </div><hr></hr>
       <Title style={{ color: "#78909c" }}>
         <h1><b>Buscar por Categorías</b></h1>

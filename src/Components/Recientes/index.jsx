@@ -17,7 +17,7 @@ const Title = styled.h4`
 
 const MachineContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   justify-content: center;
   background-color: transparent;
   `;
