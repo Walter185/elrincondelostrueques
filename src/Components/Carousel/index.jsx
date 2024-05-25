@@ -39,7 +39,7 @@ export default function CarrouselPrincipal() {
 
   return (
     <>
-      <div className="my-1">
+      <div className="my-1" id="contenedorCalesita">
         <div className="col-sm-12 col-md-12 col-lg-12 p-1">
           <div className="row">
             <div className="col-sm-0 col-md-2 col-lg-2 p-1">

@@ -14,6 +14,10 @@
     gap: 1rem;
     z-index: 99;
   }
+
+#contenedorCalesita {
+  margin-top: 0.01px !important;
+}
   .Img {
     height: 350px;
     object-fit: fill;

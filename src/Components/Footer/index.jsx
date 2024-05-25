@@ -5,8 +5,7 @@ import { truequeContext } from "../../Context/context";
 const Footer = styled.footer`
     width: 100%;
     margin: auto;
-    padding-top: 40px;
-    margin-top: 5px;
+    margin-top: -25px;
     padding: 20px 0;
     text-align: center;
     letter-spacing: 1px;

@@ -14,16 +14,25 @@
 }
 .tema {
   padding: 5px;
-
+  
 }
-#botonEntrar {
+.navbar-nav  {
+  padding-left: 10px;
+}
+.navbar-collapse {
+  padding-left: 20px;
+  padding: 10px;
+}
+
+
+  #botonEntrar {
   height: 30px;
   width: 100px;
   margin-left: 20px;
   margin-top: 5px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bolder;
- }
+}
 #tl{
   margin-top: -12px;
 }
@@ -33,17 +42,22 @@
 }
 #barra {
   flex-grow: 1;
+  max-height: '250px';
+  margin-left:'20px';
 }
+
 #barraGeneral {
   height: 75px;
   position: sticky;
+  width: 100%;
   top: 0;
   z-index: 999;  
+  margin-bottom: -15px;
 }
   @media only screen and (max-width: 1000px) {
   #botonEntrar{
-    width: 1px;
-   margin-left: -12px;
+  width: 1px;
+  margin-left: -12px;
   background-color: transparent;
   border-color: transparent;
   }

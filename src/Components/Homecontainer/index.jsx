@@ -5,7 +5,7 @@ import { truequeContext } from "../../Context/context";
 import styled from 'styled-components';
 import Contador from "../Contador";
 import UltimosProductos from "../Recientes";
-
+import "./Homecontainer.css"
 
 const Title = styled.h4`
   margin-left: auto;
@@ -23,6 +23,7 @@ export default function HomeContainer() {
   };
   return (
     <div style={containerStyles}>
+      <hr></hr>
       <CarrouselPrincipal />
       <Contador /><hr></hr>
       <UltimosProductos />
