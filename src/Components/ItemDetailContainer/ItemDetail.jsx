@@ -3,61 +3,6 @@ import styled from "styled-components";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
-const TitleDiv = styled.div`
-  @media screen and (max-width: 1000px) {
-    display: none;
-  }
-`;
-
-const ModalDiv = styled.div`
-  .title {
-    color: #4a00e0;
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 16px;
-  }
-
-  .table {
-    overflow: auto;
-
-    table {
-      border-collapse: collapse;
-      font-size: 14px;
-      width: 474px;
-
-      th {
-        font-weight: 500;
-      }
-
-      td,
-      th {
-        border-top: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-        text-align: center;
-        padding: 10px;
-      }
-
-      tr {
-        th:first-child,
-        td:first-child {
-          border-left: 1px solid #ddd;
-        }
-
-        th:last-child,
-        td:last-child {
-          border-right: 1px solid #ddd;
-        }
-      }
-    }
-  }
-`;
-
-const Table = styled.div`
-  margin-top: 20px;
-  @media screen and (max-width: 1000px) {
-    display: none;
-  }
-`;
 const Whatsapp=styled.a`
     width: 100px !important;
     height: 110px !important;
@@ -82,9 +27,7 @@ const Div = styled.div`
   margin-top: 10px;
 `;
 
-const B = styled.b`
-  color: red;
-`;
+
 const ModalContainer = styled.div`
   display: ${(props) => (props.isopen ? "block" : "none")};
   position: fixed;
@@ -145,12 +88,6 @@ const Img = styled.img`
   cursor: pointer;
   
   `;
-const VideoSection = styled.div`
-  margin-top: 30px;
-  display: flex;
-  heigth: 500px;
-  justify-content: space-around;
-`;
 
 export default function ItemDetail({ product }) {
   const {
