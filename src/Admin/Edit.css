@@ -24,6 +24,7 @@
     padding: 10px 60px;
     box-shadow: 2px 2px grey;
     font-weight: bolder;
+    margin-bottom: 60px;
 }
 @media only screen and (max-width: 1000px) {
     .container_edit{

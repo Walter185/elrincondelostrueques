@@ -54,7 +54,7 @@ const Show = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="contenedor_show">
       <h3>Panel del administrador</h3>
       <button className="Boton">
         <Nav.Link href="/create">Nuevo</Nav.Link>
@@ -63,33 +63,36 @@ const Show = () => {
         <table className="table table-dark table-hover">
           <thead>
             <tr>
-              <th>Nombre del Producto</th>
-              <th>Categoria Publicada</th>
-              <th>Categoria Deseada</th>
-              <th>E/B</th>
               <th>Previsualización</th>
+              <th>Nombre del Producto</th>
+              {/* <th>Categoria Publicada</th>
+              <th>Categoria Deseada</th> */}
+              <th>Editar</th>
+              <th>Borrar</th>
             </tr>
           </thead>
           <tbody>
             {products.map((product) => (
               <tr key={product.id}>
+                <td>
+                  <ThumbnailImage src={product.imgUrl} alt={product.nombreProducto} />
+                </td>
                 <td>{product.nombreProducto}</td>
-                <td>{product.category}</td>
-                <td>{product.categoriaDeseada}</td>
+                {/* <td>{product.category}</td>
+                <td>{product.categoriaDeseada}</td> */}
                 <td>
                   <Link to={`/edit/${product.id}`} className="btn btn-light">
-                    <i className="fas fa-pencil"></i> Editar
+                    <i className="fas fa-pencil"></i> 
                   </Link>
+                </td>
+                <td>
                   <button
                     onClick={() => confirmDelete(product.id)}
                     className="btn btn-danger"
                   >
-                    <i className="fas fa-trash"></i> Borrar
+                    <i className="fas fa-trash"></i> 
                   </button>
-                </td>
-                <td>
-                  <ThumbnailImage src={product.imgUrl} alt={product.nombreProducto} />
-                </td>
+                  </td>
               </tr>
             ))}
           </tbody>

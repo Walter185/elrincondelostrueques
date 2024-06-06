@@ -37,10 +37,8 @@ function NavScrollExample() {
               {theme === 'dark'? <FaSun /> : <FaMoon />}
             </span>
             {currentUser && <Nav.Link href="/show"  style={containerStyles}>{currentUser.displayName}</Nav.Link>}
+            {!currentUser && <Nav.Link href="/register"  style={containerStyles}>Registrarse</Nav.Link>}
             {!currentUser && <Nav.Link href="/login"  style={containerStyles}>Ingresar</Nav.Link>}
-            
-        
-
             {currentUser && (
               <Button id='boton'>
               <Nav.Link href="/"

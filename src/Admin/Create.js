@@ -262,7 +262,6 @@ const Create = () => {
                                 className="form-select"
                             >
                                 <option value="">Seleccionar Departamento</option>
-                                <option value="Soriano">Soriano</option>
                                 <option value="Artigas">Artigas</option>
                                 <option value="Canelones">Canelones</option>
                                 <option value="Cerro Largo">Cerro Largo</option>
@@ -279,6 +278,7 @@ const Create = () => {
                                 <option value="Rocha">Rocha</option>
                                 <option value="Salto">Salto</option>
                                 <option value="San José">San José</option>
+                                <option value="Soriano">Soriano</option>
                                 <option value="Tacuarembó">Tacuarembó</option>
                                 <option value="Treinta y Tres">Treinta y Tres</option>
                             </select>

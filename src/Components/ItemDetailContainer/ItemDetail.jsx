@@ -94,6 +94,7 @@ export default function ItemDetail({ product }) {
     imgUrl,
     imgUrl2,
     nombreProducto,
+    description,
     departamento,
     nombreVendedor,
     tel,
@@ -168,6 +169,7 @@ export default function ItemDetail({ product }) {
           <div className="col-sm-12 col-md-6 text-center my-4">
 
                 <h4>{nombreProducto}</h4><br/>
+                <p>{description}</p>
                 <p>El producto se encuentra en: <b>{departamento}</b></p>
                 <p>Persona que realiza el trueque: <b>{nombreVendedor}</b></p>
                 <p>Estoy interesado por: <b>{categoriaDeseada}</b></p>

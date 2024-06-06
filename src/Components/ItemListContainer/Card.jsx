@@ -44,8 +44,8 @@ function Card(props){
       <div className="tarjeta">
             <div className="tarjeta-contenedor-img" onClick={() => openExpandedImage(imgUrl)}>
                 <img className="tarjeta-img" src={imgUrl} alt={nombreProducto}/><br/>
-                <p className="descripcion">{description}</p>
-                <h4 id="nombreProducto">{nombreProducto}</h4>                
+                {/* <p className="descripcion">{description}</p> */}
+                <h5 id="nombreProducto">{nombreProducto}</h5>                
                 <h5 id="details">
                   <b>Ubicacion: {departamento}</b>              
                   <b>Trueco por: {categoriaDeseada}</b>      
