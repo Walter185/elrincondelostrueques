@@ -46,10 +46,10 @@ export default function ItemListContainer(){
                     {products.map((product) => <Card key={product.id} product={product}/>)}
                 </div>
             :
-                <div className="container text-center">
+                <div className="container text-center" >
                     <p className="m-4">No hubo resultados</p>
                     <br/>
-                    <Link to="/" className="mx-auto my-5"><button className="btn btn-primary">Ir a Inicio</button></Link>
+                    <Link to="/" className="mx-auto my-5"><button id="noresult"className="btn btn-primary">Ir a Inicio</button></Link>
                 </div>
             }
             </>

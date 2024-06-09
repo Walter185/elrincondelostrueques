@@ -88,10 +88,13 @@ export default function HomeContainer() {
             </div>
           </div>
           <div className="row">
-            <div className="col-sm-6 col-md-6 col-lg-6 p-1">
+            <div className="col-sm-6 col-md-4 col-lg-4 p-1">
               <Banner category="Vehículos" />
             </div>
-            <div className="col-sm-6 col-md-6 col-lg-6 p-1">
+            <div className="col-sm-6 col-md-4 col-lg-4 p-1">
+              <Banner category="Mascotas" />
+            </div>
+            <div className="col-sm-6 col-md-4 col-lg-4 p-1">
               <Banner category="Servicios" />
             </div>
           </div>

@@ -19,7 +19,13 @@
   margin-top: 0.01px !important;
 }
   .Img {
-    height: 350px;
+    height: 400px;
+    object-fit: fill;
+    position: initial;
+  
+  }
+  .calesita {
+    height: 400px;
     object-fit: fill;
     position: initial;
   
@@ -31,12 +37,14 @@
 
   @media only screen and (max-width: 1200px) {
    
-  .Img {
+  .Img , .calesita {
     height: 300px;
   }
   }
   @media only screen and (max-width: 1000px) {
-    
+    .calesita {
+      height: 250px;
+    }
   }
   @media only screen and (max-width: 768px) {
     

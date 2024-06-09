@@ -14,6 +14,7 @@ import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailCont
 import { Foot } from './Components/Footer';
 import HomeContainer from './Components/Homecontainer';
 import { Cafecito } from './Components/Cafecito';
+import { Condiciones } from './Components/Condiciones';
 
 function App(props) {
   return (
@@ -33,7 +34,8 @@ function App(props) {
             <Route path="/show" element={<RequireAuth><Show /></RequireAuth>} />
             <Route path="/create" element={<RequireAuth><Create /></RequireAuth>} />
             <Route path="/edit/:id" element={<RequireAuth><Edit /></RequireAuth>} />
-            <Route path='/cafecito'element={<Cafecito />} />
+        1   <Route path='/cafecito' element={<Cafecito />} />
+            <Route path='/condiciones' element={<Condiciones />} />
           </Routes>
           <Foot />
         </BrowserRouter>

@@ -24,6 +24,14 @@
     max-height:300px ;
 }
 
+#bannerMascotas{
+    background: url(/public/img/bannerMascotas.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 3px black;
+}
+
 #bannerTecnología{
     background: url(/public/img/bannerTecnología.jpg);
     background-position: center;

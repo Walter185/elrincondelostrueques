@@ -35,7 +35,7 @@ const MachineCard = styled.div`
     }
     @media only screen and (max-width: 800px){
       font-size:medium;
-      width: 100%;
+      width: 45%;
       }
 `;
 
@@ -90,6 +90,8 @@ const FichaTecnicaButton = styled(Link)`
   position: absolute;
   bottom: 10px;
   right: 10px;
+  text-decoration: none;
+
 `;
 
 
@@ -119,6 +121,7 @@ export default function UltimosProductos() {
       <Title style={{ color: "#78909c" }}>
         <h1><b>Últimos Productos Agregados:</b></h1>
       </Title>
+
       <MachineContainer>
         {products.map(producto => (
           <MachineCard key={producto.id} >
@@ -145,6 +148,7 @@ export default function UltimosProductos() {
 
         <br />
       </MachineContainer>
+
       <ModalContainer isOpen={expandedImage}>
         <ModalContent onClick={closeExpandedImage}>
           <img src={expandedImage} alt="Expanded" className="expanded-image" />

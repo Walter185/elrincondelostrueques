@@ -33,7 +33,7 @@ export default function CarrouselPrincipal() {
 
   const renderSlides = imageData.map((image) => (
     <div key={image.alt}>
-      <img className="Img" src={image.src} alt={image.alt} />
+      <img className="calesita" src={image.src} alt={image.alt} />
     </div>
   ));
 

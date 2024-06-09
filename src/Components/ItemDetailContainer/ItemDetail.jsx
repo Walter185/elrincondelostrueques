@@ -172,7 +172,7 @@ export default function ItemDetail({ product }) {
                 <p>{description}</p>
                 <p>El producto se encuentra en: <b>{departamento}</b></p>
                 <p>Persona que realiza el trueque: <b>{nombreVendedor}</b></p>
-                <p>Estoy interesado por: <b>{categoriaDeseada}</b></p>
+                {/* <p>Estoy interesado por: <b>{categoriaDeseada}</b></p> */}
                 <p>Teléfono de contacto: <b>{tel}</b></p>
                 <p>Mandame un Whatsapp y tal vez podamos ponernos de acuerdo
                   para un Trueque, haz click en el icono           
