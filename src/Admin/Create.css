@@ -18,6 +18,12 @@
     position: relative;
 }
 
+.Preview {
+    max-width: 200px;
+    padding: 20px;
+}
+
+
 #boton_create {
     margin: 20px;
     margin-left: 20%;

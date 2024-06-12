@@ -178,6 +178,7 @@ const Create = () => {
                                 <option value="Moda">Moda</option>
                                 <option value="Juguetes">Juguetes</option>
                                 <option value="Bebés">Bebés</option>
+                                <option value="Mascotas">Mascotas</option>
                                 <option value="Vehículos">Vehículos</option>
                                 <option value="Servicios">Servicios</option>
 
@@ -205,6 +206,7 @@ const Create = () => {
                                 <option value="Juguetes">Juguetes</option>
                                 <option value="Bebés">Bebés</option>
                                 <option value="Vehículos">Vehículos</option>
+                                <option value="Mascotas">Mascotas</option>
                                 <option value="Servicios">Servicios</option>
                             </select>
                         </div>
@@ -219,7 +221,7 @@ const Create = () => {
                             />
                             {imgUrl && (
                                 <div>
-                                    <img src={imgUrl} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                                    <img src={imgUrl} alt="Preview" className="Preview"/>
                                     <button onClick={() => handleDeleteFile(imgUrl)}>Eliminar Imagen</button>
                                 </div>
                             )}
@@ -235,7 +237,7 @@ const Create = () => {
                             />
                             {imgUrl && (
                                 <div>
-                                    <img src={imgUrl2} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                                    <img src={imgUrl2} alt="Preview" className="Preview" />
                                     <button onClick={() => handleDeleteFile2(imgUrl2)}>Eliminar Imagen</button>
                                 </div>
                             )}
@@ -261,7 +263,7 @@ const Create = () => {
                                 onChange={(e) => setDepartamento(e.target.value)}
                                 className="form-select"
                             >
-                                <option value="">Seleccionar Departamento</option>
+                                <option value="">Seleccionar Lugar</option>
                                 <option value="Artigas">Artigas</option>
                                 <option value="Canelones">Canelones</option>
                                 <option value="Cerro Largo">Cerro Largo</option>
@@ -281,6 +283,7 @@ const Create = () => {
                                 <option value="Soriano">Soriano</option>
                                 <option value="Tacuarembó">Tacuarembó</option>
                                 <option value="Treinta y Tres">Treinta y Tres</option>
+                                <option value="Argentina">Argentina</option>
                             </select>
                         </div>
                         <button type="submit" className="btn btn-primary" id="boton_create">Guardar</button>

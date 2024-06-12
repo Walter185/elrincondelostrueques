@@ -192,6 +192,7 @@ function Edit() {
                                 <option value="Juguetes">Juguetes</option>
                                 <option value="Bebés">Bebés</option>
                                 <option value="Vehículos">Vehículos</option>
+                                <option value="Mascotas">Mascotas</option>
                                 <option value="Servicios">Servicios</option>
                             </select>
                         </div>
@@ -216,6 +217,7 @@ function Edit() {
                                 <option value="Juguetes">Juguetes</option>
                                 <option value="Bebés">Bebés</option>
                                 <option value="Vehículos">Vehículos</option>
+                                <option value="Mascotas">Mascotas</option>
                                 <option value="Servicios">Servicios</option>
                             </select>
                         </div>
@@ -229,7 +231,7 @@ function Edit() {
                             />
                             {imgUrl && (
                                 <div>
-                                    <img src={imgUrl} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                                    <img src={imgUrl} alt="Preview" className="Preview" />
                                     <button onClick={() => handleDeleteFile(imgUrl)}>Eliminar Imagen</button>
                                 </div>
                             )}
@@ -244,7 +246,7 @@ function Edit() {
                             />
                             {imgUrl2 && (
                                 <div>
-                                    <img src={imgUrl2} alt="Preview" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                                    <img src={imgUrl2} alt="Preview" className="Preview" />
                                     <button onClick={() => handleDeleteFile2(imgUrl2)}>Eliminar Imagen 2</button>
                                 </div>
                             )}
@@ -268,7 +270,7 @@ function Edit() {
                                 onChange={(e) => setDepartamento(e.target.value)}
                                 className="form-select"
                             >
-                                <option value="">Seleccionar Departamento</option>
+                                <option value="">Seleccionar Lugar</option>
                                 <option value="Soriano">Soriano</option>
                                 <option value="Artigas">Artigas</option>
                                 <option value="Canelones">Canelones</option>
@@ -288,6 +290,7 @@ function Edit() {
                                 <option value="San José">San José</option>
                                 <option value="Tacuarembó">Tacuarembó</option>
                                 <option value="Treinta y Tres">Treinta y Tres</option>
+                                <option value="Argentina">Argentina</option>
                             </select>
                         </div>
                         <button type="submit" className="btn btn-primary" id="boton_edit">Actualizar</button>

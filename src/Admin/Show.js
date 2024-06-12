@@ -65,8 +65,6 @@ const Show = () => {
             <tr>
               <th>Previsualización</th>
               <th>Nombre del Producto</th>
-              {/* <th>Categoria Publicada</th>
-              <th>Categoria Deseada</th> */}
               <th>Editar</th>
               <th>Borrar</th>
             </tr>
@@ -78,8 +76,6 @@ const Show = () => {
                   <ThumbnailImage src={product.imgUrl} alt={product.nombreProducto} />
                 </td>
                 <td>{product.nombreProducto}</td>
-                {/* <td>{product.category}</td>
-                <td>{product.categoriaDeseada}</td> */}
                 <td>
                   <Link to={`/edit/${product.id}`} className="btn btn-light">
                     <i className="fas fa-pencil"></i> 

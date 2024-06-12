@@ -27,7 +27,13 @@ const ModalContent = styled.div`
   align-items: center;
 `;
 
+const FichaTecnicaButton = styled(Link)`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  text-decoration: none;
 
+`;
 function Card(props){
     const {id, nombreProducto, nombreVendedor, description, imgUrl, imgUrl2, category, categoriaDeseada, departamento} = props.product;
     const [expandedImage, setExpandedImage] = useState(null);
@@ -52,7 +58,7 @@ function Card(props){
                 </h5>
                
                 <Link to={`/detail/${id}`}>
-                    <button id="vermas">Ver Detalles</button>
+                    <button id="vermas">Ver más</button>
                 </Link>
          
             </div>
