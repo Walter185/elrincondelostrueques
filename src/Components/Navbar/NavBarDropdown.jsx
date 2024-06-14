@@ -22,7 +22,7 @@ const { theme } = useContext(truequeContext);
     color: theme === 'dark' ? '#fff' : '#343a40',
 };
 
-    const categories = ["Tecnología", "Accesorios", "Salud","Belleza","Deportes","Hogar","Electrodomesticos","Herramientas","Contrucción","Moda","Juguetes","Bebés","Vehículos","Servicios"];
+    const categories = ["Tecnología", "Accesorios", "Salud","Belleza","Deportes","Hogar","Electrodomesticos","Herramientas","Contrucción","Moda","Juguetes","Bebés","Vehículos","Mascotas","Servicios"];
     // const {t} = useTranslation();
 
     return (
