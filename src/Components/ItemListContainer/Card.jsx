@@ -12,7 +12,7 @@ const ModalContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  // background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7);
 `;
 
 const ModalContent = styled.div`
@@ -21,21 +21,14 @@ const ModalContent = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  // background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const FichaTecnicaButton = styled(Link)`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  text-decoration: none;
-
-`;
 function Card(props){
-    const {id, nombreProducto, nombreVendedor, description, imgUrl, imgUrl2, category, categoriaDeseada, departamento} = props.product;
+    const {id, nombreProducto, imgUrl, categoriaDeseada, departamento} = props.product;
     const [expandedImage, setExpandedImage] = useState(null);
 
     const openExpandedImage = (image) => {

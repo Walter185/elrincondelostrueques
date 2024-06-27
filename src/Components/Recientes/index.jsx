@@ -17,7 +17,7 @@ const Title = styled.h4`
 
 const MachineContainer = styled.div`
   display: flex;
-  // flex-wrap: wrap;
+  flex-wrap: wrap;
   justify-content: center;
   background-color: transparent;
   `;
@@ -35,18 +35,16 @@ const MachineCard = styled.div`
     }
     @media only screen and (max-width: 800px){
       font-size:medium;
-      width: 45%;
+      width: 50%;
       }
 `;
 
 const MachineTitle = styled.h4`
   margin-top: 10px;
   margin-bottom: 5px;
-  font-size:large;
-  @media only screen and (max-width: 1500px){
-    }
-  @media only screen and (max-width: 800px){
-  font-size:medium;
+  font-size: small;
+  @media only screen and (max-width: 1000px){
+  font-size: small;
   }
 `;
 
@@ -132,10 +130,10 @@ export default function UltimosProductos() {
               infiniteLoop={true}
             >
               <div onClick={() => openExpandedImage(producto.imgUrl)}>
-                <img src={producto.imgUrl} alt={producto.title} />
+                <img className="tarjeta-img" src={producto.imgUrl} alt={producto.title} />
               </div>
               <div onClick={() => openExpandedImage(producto.imgUrl2)}>
-                <img src={producto.imgUrl2} alt={producto.title} />
+                <img className="tarjeta-img" src={producto.imgUrl2} alt={producto.title} />
               </div>
             </Carousel>
             <MachineTitle>{producto.nombreProducto}</MachineTitle>

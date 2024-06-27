@@ -1,12 +1,15 @@
-.tarjeta {
-max-width: 250px;
-margin-inline-end: 10px;
-max-height: 500px;
-padding-right: 20px;
-border-radius: 8px;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-&&:hover {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    border: transparent;
+
+.tarjeta-img {
+  margin : 13px;
+  width: 98%;
+  max-height: 250px;
+  box-sizing: border-box;
+  cursor: pointer;
+
+}
+@media only screen and (max-width: 1000px) {
+  
+  .tarjeta-img {
+      max-height: 150px;
   }
 }

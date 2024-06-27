@@ -7,15 +7,17 @@
     margin-bottom: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    &&:hover {
+}
+
+.tarjeta:hover {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         border: transparent;
       }
-}
+
 .tarjeta-img {
-    margin : 15px;
+    margin : 13px;
     width: 98%;
-    max-height:300px;
+    max-height: 250px;
     box-sizing: border-box;
     cursor: pointer;
 
@@ -28,6 +30,8 @@
  margin-top: -20px;
  text-align: center;
  padding-top: 10px;
+ font-size: small;
+ margin-left: 10px;
 }
 #details {
     margin-left: 15px;
@@ -40,23 +44,29 @@
     height: 40px;
     background-color: transparent;
     border-radius: 5px;
-    margin-left: 130px;
+    margin-left: 45%;
     margin-bottom: 20px;
     margin-top: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    &&:hover {
+}
+
+#vermas:hover {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         border: transparent;
       }
     
-}
+
 @media only screen and (max-width: 1000px) {
     
 .tarjeta {
     max-width: 200px;
 }
+
+.tarjeta-img {
+    max-height: 150px;
+}
+
 #nombreProducto {
-    font-size: medium;
     margin-left: 10px;
 
 }}

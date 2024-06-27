@@ -31,6 +31,7 @@ export default function BreadCrumb({ currentPage }) {
         case 'Juguetes':
         case 'Bebés':
         case 'Vehículos':
+        case 'Mascotas':
         case 'Servicios':
             return (
                 <div className='container pt-4 ps-5 pb-1'>
