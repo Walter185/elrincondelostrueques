@@ -7,12 +7,13 @@ import { getUltimosProductos } from "../../Firebase/firebase";
 import "./Recientes.css"
 
 
-const Title = styled.h4`
+const Title = styled.h1`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   margin-top: 30px;
   padding-bottom: 10px;
+  
   `;
 
 const MachineContainer = styled.div`
@@ -24,18 +25,19 @@ const MachineContainer = styled.div`
 
 const MachineCard = styled.div`
   position: relative;
-  width: 20%;
-  margin: 10px;
-  padding: 15px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  max-width: 250px;
+  margin-inline-end: 10px;
+  max-height: 500px;
+  padding-left: 15px;
+   padding-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   &&:hover {
       box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     }
     @media only screen and (max-width: 800px){
       font-size:medium;
-      width: 50%;
       }
 `;
 
@@ -43,6 +45,8 @@ const MachineTitle = styled.h4`
   margin-top: 10px;
   margin-bottom: 5px;
   font-size: small;
+  overflow: hidden;
+
   @media only screen and (max-width: 1000px){
   font-size: small;
   }
@@ -51,6 +55,8 @@ const MachineTitle = styled.h4`
 const MachineDescription = styled.h5`
   margin-top: 10px;
   font-size:large;
+  overflow: hidden;
+
   @media only screen and (max-width: 1500px){
     }
   @media only screen and (max-width: 800px){
@@ -59,7 +65,7 @@ const MachineDescription = styled.h5`
 `;
 
 const ModalContainer = styled.div`
-  display: ${(props) => (props.isopen ? "flex" : "none")};
+  display: ${(props) => (props.isOpen ? "block" : "none")};
   position: fixed;
   z-index: 999;
   top: 0;
@@ -67,9 +73,6 @@ const ModalContainer = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
-  transition: all 0.3s ease;
 `;
 
 const ModalContent = styled.div`
@@ -82,6 +85,12 @@ const ModalContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+   .expanded-image {
+    max-width: 95%;
+    max-height: 95%;
+    cursor: pointer;
+  }
 `;
 
 const FichaTecnicaButton = styled(Link)`
@@ -117,12 +126,12 @@ export default function UltimosProductos() {
   return (
     <div>
       <Title style={{ color: "#78909c" }}>
-        <h1><b>Últimos Productos Agregados:</b></h1>
+        <b>Últimos Productos Agregados:</b>
       </Title>
 
       <MachineContainer>
         {products.map(producto => (
-          <MachineCard key={producto.id} >
+          <MachineCard key={producto.id} onClick={() => openExpandedImage(producto.imgUrl)}>
             <Carousel
               showArrows={true}
               autoPlay={true}

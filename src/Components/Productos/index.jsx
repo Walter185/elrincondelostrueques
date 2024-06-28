@@ -12,7 +12,7 @@ const Section = styled.section`
   // background-color: #343a40;
   `;
 
-const Title = styled.h4`
+const Title = styled.h1`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -43,7 +43,7 @@ const MachineCard = styled.div`
       }
 `;
 
-const MachineTitle = styled.h4`
+const MachineTitle = styled.h1`
   margin-top: 10px;
   margin-bottom: 5px;
   @media only screen and (max-width: 800px){
@@ -111,7 +111,7 @@ export default function Productos() {
   return (
     <Section>
       <Title style={{ color: "#78909c" }}>
-        <h1><b>Productos</b></h1>
+        <b>Productos</b>
       </Title><hr></hr>
 
       <MachineContainer>

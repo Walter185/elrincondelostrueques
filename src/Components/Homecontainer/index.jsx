@@ -7,7 +7,7 @@ import Contador from "../Contador";
 import UltimosProductos from "../Recientes";
 import "./Homecontainer.css"
 
-const Title = styled.h4`
+const Title = styled.h1`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -29,7 +29,7 @@ export default function HomeContainer() {
       <UltimosProductos />
       <hr></hr>
       <Title style={{ color: "#78909c" }}>
-        <h1><b>Ver Todos los Trueques</b></h1>
+       <b>Ver Todos los Trueques</b>
       </Title>
       <div className="container-fluid pt-2 px-3">
         <div className="col-sm-12 col-md-12 col-lg-12 p-1">
@@ -41,7 +41,7 @@ export default function HomeContainer() {
           </div>
           </div><hr></hr>
       <Title style={{ color: "#78909c" }}>
-        <h1><b>Buscar por Categorías</b></h1>
+        <b>Buscar por Categorías</b>
       </Title>
       <div className="container-fluid pt-2 px-3">
         <div className="col-sm-12 col-md-12 col-lg-12 p-1">

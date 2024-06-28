@@ -1,72 +1,17 @@
-
-.tarjeta {
-    max-width: 250px;
-    margin-inline-end: 10px;
-    max-height: 500px;
-    padding-right: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.tarjeta:hover {
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        border: transparent;
-      }
-
 .tarjeta-img {
     margin : 13px;
     width: 98%;
-    max-height: 250px;
+    max-height: 200px !important;
     box-sizing: border-box;
     cursor: pointer;
 
 }
-.descripcion {
-    margin-left: 15px;
-    margin-top: -10px;
-}
-#nombreProducto {
- margin-top: -20px;
- text-align: center;
- padding-top: 10px;
- font-size: small;
- margin-left: 10px;
-}
-#details {
-    margin-left: 15px;
-    font-size: small;
-    display: flex;
-    flex-direction: column;
-}
-#vermas {
-    width: 100px;
-    height: 40px;
-    background-color: transparent;
-    border-radius: 5px;
-    margin-left: 45%;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-#vermas:hover {
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        border: transparent;
-      }
-    
 
 @media only screen and (max-width: 1000px) {
     
-.tarjeta {
-    max-width: 200px;
-}
 
 .tarjeta-img {
     max-height: 150px;
 }
 
-#nombreProducto {
-    margin-left: 10px;
-
-}}
+}
