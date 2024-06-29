@@ -100,7 +100,7 @@ function Card(props) {
   return (
     <div>
       <MachineContainer>
-        <MachineCard onClick={() => openExpandedImage(imgUrl)}>
+        <MachineCard>
           <Carousel
             showArrows={true}
             autoPlay={true}

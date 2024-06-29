@@ -131,7 +131,7 @@ export default function UltimosProductos() {
 
       <MachineContainer>
         {products.map(producto => (
-          <MachineCard key={producto.id} onClick={() => openExpandedImage(producto.imgUrl)}>
+          <MachineCard key={producto.id} >
             <Carousel
               showArrows={true}
               autoPlay={true}
