@@ -206,9 +206,11 @@
 @media screen and (max-width: 500px) {
     .textbanner{
         font-size: 140%;
-
     }
     .textbanner-button{
         translate: -60px;
+    }
+    .textbanner-button{
+        margin-left: -40px;
     }
 }

@@ -9,6 +9,7 @@ const Form = styled.form`
     display:flex;
     @media screen and (max-width: 1000px) {
         margin-top:20px;
+        width: 100%;
       }
 `;
 

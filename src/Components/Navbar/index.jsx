@@ -6,7 +6,6 @@ import NavBarDropdown from "./NavBarDropdown";
 import logo from "../../Assets/Img/logo.png";
 import logoDark from "../../Assets/Img/logoDark.png";
 import { truequeContext, useAuth } from '../../Context/context';
-import { Button } from 'react-bootstrap';
 import "./Navbar.css"
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { useContext } from 'react';
@@ -39,18 +38,14 @@ function NavScrollExample() {
             {currentUser && <Nav.Link href="/show"  style={containerStyles}>{currentUser.displayName}</Nav.Link>}
             {!currentUser && <Nav.Link href="/register"  style={containerStyles}>Registrarse</Nav.Link>}
             {!currentUser && <Nav.Link href="/login"  style={containerStyles}>Ingresar</Nav.Link>}
-            {currentUser && (
-              <Button id='boton'>
-              <Nav.Link href="/"
+            {currentUser && <Nav.Link href="/"
               name="logout"
-              id="tl"
+              style={containerStyles}
               onClick={async (e) => {
                 // e.preventDefaUt();
                 await logout();
               }}
-                >Salir</Nav.Link>
-              </Button>
-              )}
+                >Salir</Nav.Link>}
           </Nav>
           
 

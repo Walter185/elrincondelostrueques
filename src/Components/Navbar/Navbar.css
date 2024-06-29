@@ -4,7 +4,7 @@
   height: 50px;
 }
 
-#boton {
+.boton {
   height: 30px;
   width: 100px;
   margin-left: 20px;
@@ -67,5 +67,14 @@
     margin-left: -12px;
     background-color: transparent;
     border-color: transparent;
+  }
+  #inicio {
+    text-align: center;
+  }
+  .tema {
+    text-align: center;
+  }
+  .nav-link {
+    text-align: center;
   }
 }

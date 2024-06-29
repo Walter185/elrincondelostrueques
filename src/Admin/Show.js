@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from "react-router-dom";
 import { deleteDoc, doc } from "firebase/firestore";
@@ -55,7 +55,7 @@ const Show = () => {
 
   return (
     <div className="contenedor_show">
-      <h3>Panel del administrador</h3>
+      <h3>Panel Administrador</h3>
       <button className="Boton">
         <Nav.Link href="/create">Nuevo</Nav.Link>
       </button>
