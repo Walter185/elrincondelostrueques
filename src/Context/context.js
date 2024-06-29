@@ -9,7 +9,7 @@ import {
   GoogleAuthProvider,
   signOut,
 } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 
 const truequeContext = createContext({
@@ -19,7 +19,6 @@ const truequeContext = createContext({
   login: () => Promise,
   register: () => Promise,
   logout: () => Promise,
-  // forgotPassword: () => Promise,
   resetPassword: () => Promise,
 })
 
@@ -53,18 +52,30 @@ function TruequeProvider({ children }) {
   }
 
   const register = async (nombre, apellido, nacimiento, email, password ) => {
-        await createUserWithEmailAndPassword(auth, email, password);
-        await setDoc(doc(db, "users", auth?.currentUser?.uid), {
+    try {
+      // Create user with email and password
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Save additional user info in Firestore
+      await setDoc(doc(db, "users", auth?.currentUser?.uid), {
           nombre,
           apellido,
           nacimiento,
           email,
-          password
+          password,
+          createdAt: new Date(),
         });
-     
-  };
-
-  const resetPassword = (email) => {
+  
+        // Update current user state
+        setCurrentUser(user);
+        return user;
+      } catch (error) {
+        console.error("Error al registrar el usuario: ", error);
+        throw error;
+      }
+    };
+  function resetPassword(email) {
     return sendPasswordResetEmail(email);
   };
 
@@ -72,10 +83,32 @@ function TruequeProvider({ children }) {
     return signOut(auth)
   }
 
-  function signInWithGoogle() {
-    const provider = new GoogleAuthProvider()
-    return signInWithPopup(auth, provider)
-  }
+  const signInWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Save user info in Firestore if it's a new user
+      const userRef = doc(db, 'users', user.uid);
+      const userSnapshot = await getDoc(userRef);
+      if (!userSnapshot.exists()) {
+        await setDoc(userRef, {
+          nombre: user.displayName.split(' ')[0],
+          apellido: user.displayName.split(' ')[1] || '',
+          email: user.email,
+          createdAt: new Date(),
+        });
+      }
+
+      // Update current user state
+      setCurrentUser(user);
+      return user;
+    } catch (error) {
+      console.error("Error al iniciar sesión con Google: ", error);
+      throw error;
+    }
+  };
 
   useEffect(() => {
     (cart.length > 0) ? localStorage.setItem('cart', JSON.stringify(cart)) : localStorage.clear();
