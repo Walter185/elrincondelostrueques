@@ -142,6 +142,7 @@ export default function ItemDetail({ product }) {
               <Carousel
                 showArrows={true}
                 autoPlay={true}
+                showThumbs={false}
                 infiniteLoop={true}
                 selectedItem={currentIndex}
                 onChange={setCurrentIndex}

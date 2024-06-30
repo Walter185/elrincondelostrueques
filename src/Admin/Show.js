@@ -11,7 +11,6 @@ import { ref } from "firebase/storage";
 
 const MySwal = withReactContent(Swal);
 
-
 const ThumbnailImage = styled.img`
   max-width: 100px;
   height: auto;
@@ -19,7 +18,7 @@ const ThumbnailImage = styled.img`
 
 const Show = () => {
   const [products, setProducts] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const deleteProduct = async (id) => {
     const productDoc = doc(db, "productos", id);
@@ -35,7 +34,7 @@ const Show = () => {
     await deleteDoc(productDoc);
 
     // Refresh the products list
-    getAllProductsbyOwner(); 
+    setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
   };
 
   const confirmDelete = (id) => {
@@ -49,9 +48,9 @@ const Show = () => {
       confirmButtonText: "Sí, eliminarlo!",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteProduct(id);
-        Swal.fire("Borrado!", "El archivo ha sido borrado.", "success");
-        navigate("/show")
+        deleteProduct(id).then(() => {
+          Swal.fire("Borrado!", "El archivo ha sido borrado.", "success");
+        });
       }
     });
   };
@@ -100,7 +99,7 @@ const Show = () => {
                   >
                     <i className="fas fa-trash"></i> 
                   </button>
-                  </td>
+                </td>
               </tr>
             ))}
           </tbody>
