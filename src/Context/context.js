@@ -90,7 +90,7 @@ function TruequeProvider({ children }) {
       const user = result.user;
 
       // Save user info in Firestore if it's a new user
-      const userRef = doc(db, 'users', user.uid);
+      const userRef = doc(db, 'users', auth?.currentUser?.uid);
       const userSnapshot = await getDoc(userRef);
       if (!userSnapshot.exists()) {
         await setDoc(userRef, {
