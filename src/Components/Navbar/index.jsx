@@ -8,17 +8,31 @@ import logoDark from "../../Assets/Img/logoDark.png";
 import { truequeContext, useAuth } from '../../Context/context';
 import "./Navbar.css"
 import { FaMoon, FaSun } from 'react-icons/fa';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import db from '../../Firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 function NavScrollExample() {
   const { logout, currentUser } = useAuth();
   const { theme, toggleTheme } = useContext(truequeContext);
+  const [userName, setUserName] = useState('');
 
   const containerStyles = {
     backgroundColor: theme === 'dark' ? '#343a40'  : '#fff',
     color: theme === 'dark' ? '#fff' : '#343a40',
 };
 
+useEffect(() => {
+  if (currentUser) {
+    const fetchUserName = async () => {
+      const userDoc = await getDoc(doc(db, "users", currentUser.uid));
+      if (userDoc.exists()) {
+        setUserName(userDoc.data().nombre); // Assuming 'name' is the field storing the user's name
+      }
+    };
+    fetchUserName();
+  }
+}, [currentUser]);
   return (
     <Navbar expand="lg" id="barraGeneral" style={containerStyles}>
       <Container>
@@ -35,7 +49,7 @@ function NavScrollExample() {
             <span className='tema' onClick={toggleTheme} >
               {theme === 'dark'? <FaSun /> : <FaMoon />}
             </span>
-            {currentUser && <Nav.Link href="/show"  style={containerStyles}>{currentUser.displayName}</Nav.Link>}
+            {currentUser && <Nav.Link href="/show"  style={containerStyles}>{userName}</Nav.Link>}
             {!currentUser && <Nav.Link href="/register"  style={containerStyles}>Registrarse</Nav.Link>}
             {!currentUser && <Nav.Link href="/login"  style={containerStyles}>Ingresar</Nav.Link>}
             {currentUser && <Nav.Link href="/"

@@ -104,7 +104,6 @@ export default function ItemDetail({ product }) {
   const [modalOpen, setModalOpen] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentImage, setCurrentImage] = useState("");
-
   const openModal = (image, index) => {
     setCurrentImage(image.url);
     setCurrentIndex(index);
