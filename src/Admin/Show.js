@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from "react-router-dom";
+import db, { getAllProductsbyOwner, auth, DeleteFile, storage } from "../Firebase/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
-import db, { getAllProductsbyOwner } from "../Firebase/firebase";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import styled from "styled-components";
 import "./Show.css"
+import { ref } from "firebase/storage";
 
 const MySwal = withReactContent(Swal);
 
@@ -22,7 +23,18 @@ const Show = () => {
 
   const deleteProduct = async (id) => {
     const productDoc = doc(db, "productos", id);
+    const productData = products.find((product) => product.id === id);
+
+    // Delete images from storage
+    for (const url of productData.imgUrls) {
+      const imageRef = ref(storage, url);
+      await DeleteFile(imageRef);
+    }
+
+    // Delete product document
     await deleteDoc(productDoc);
+
+    // Refresh the products list
     getAllProductsbyOwner(); 
   };
 
@@ -57,7 +69,7 @@ const Show = () => {
     <div className="contenedor_show">
       <h3>Panel Administrador</h3>
       <button className="Boton">
-        <Nav.Link href="/create">Nuevo</Nav.Link>
+        <Nav.Link href="/create">Crear Nuevo Aviso</Nav.Link>
       </button>
       <div className="table-responsive">
         <table className="table table-dark table-hover">
@@ -73,7 +85,7 @@ const Show = () => {
             {products.map((product) => (
               <tr key={product.id}>
                 <td>
-                  <ThumbnailImage src={product.imgUrl} alt={product.nombreProducto} />
+                  <ThumbnailImage src={product.imgUrls[0]} alt={product.nombreProducto} />
                 </td>
                 <td>{product.nombreProducto}</td>
                 <td>

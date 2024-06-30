@@ -21,10 +21,15 @@ export const storage = getStorage(app);
 export const googleProvider = new GoogleAuthProvider();
 
 
-export const DeleteFile = (imageRef) => {
-    const StorageRef = ref(storage, imageRef);
-    return deleteObject(StorageRef);
-};
+export const DeleteFile = async (fileRef) => {
+    try {
+      await deleteObject(fileRef);
+      console.log("Archivo eliminado correctamente");
+    } catch (error) {
+      console.error("Error al eliminar archivo:", error);
+      throw error; // Puedes manejar el error según tu lógica de aplicación
+    }
+  };
 
 
 export const uploadFile = (file, imageRef, setProgress, setRemoteImg) => {
@@ -58,19 +63,17 @@ export async function getAllProducts(){
     });
 
     return products;
-}
-export async function getAllProductsbyOwner(){
-    const productsRef = collection(db, "productos");
-    const qry = query(productsRef, where("owner", "==", auth?.currentUser?.uid));
-    const snapshot = await getDocs(qry);
-    const products = snapshot.docs.map(element => {
-        let product = element.data();
-        product.id = element.id;
-        return product;
-    });
+};
 
+export const getAllProductsbyOwner = async () => {
+    const q = query(collection(db, "productos"), where("owner", "==", auth.currentUser.uid));
+    const querySnapshot = await getDocs(q);
+    const products = [];
+    querySnapshot.forEach((doc) => {
+      products.push({ ...doc.data(), id: doc.id });
+    });
     return products;
-}
+  };
 
 export async function getUltimosProductos() {
     try {

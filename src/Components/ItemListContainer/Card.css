@@ -1,11 +1,10 @@
 .tarjeta-img {
-    margin : 13px;
-    width: 98%;
+    width: 50%;
     max-height: 200px !important;
     box-sizing: border-box;
     cursor: pointer;
-
-}
+ 
+    }
 
 @media only screen and (max-width: 1000px) {
     

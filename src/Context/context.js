@@ -43,7 +43,7 @@ function TruequeProvider({ children }) {
   }, [])
 
   useEffect(() => {
-    console.log('The user is', currentUser)
+    console.log('Usuario logeado')
   }, [currentUser])
 
   
@@ -114,6 +114,7 @@ function TruequeProvider({ children }) {
     (cart.length > 0) ? localStorage.setItem('cart', JSON.stringify(cart)) : localStorage.clear();
 
   }, [cart]);
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setCurrentUser(user);
@@ -121,6 +122,7 @@ function TruequeProvider({ children }) {
     });
     return unsubscribe;
   }, []);
+
   // function addToCart(product){
   //     let newCart = [...cart];
 

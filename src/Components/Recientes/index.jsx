@@ -6,22 +6,20 @@ import { Link } from "react-router-dom";
 import { getUltimosProductos } from "../../Firebase/firebase";
 import "./Recientes.css"
 
-
 const Title = styled.h1`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   margin-top: 30px;
   padding-bottom: 10px;
-  
-  `;
+`;
 
 const MachineContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   background-color: transparent;
-  `;
+`;
 
 const MachineCard = styled.div`
   position: relative;
@@ -29,16 +27,16 @@ const MachineCard = styled.div`
   margin-inline-end: 10px;
   max-height: 500px;
   padding-left: 15px;
-   padding-right: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding-right: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   &&:hover {
-      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-    }
-    @media only screen and (max-width: 800px){
-      font-size:medium;
-      }
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  }
+  @media only screen and (max-width: 800px){
+    font-size:medium;
+  }
 `;
 
 const MachineTitle = styled.h4`
@@ -48,19 +46,19 @@ const MachineTitle = styled.h4`
   overflow: hidden;
 
   @media only screen and (max-width: 1000px){
-  font-size: small;
+    font-size: small;
   }
 `;
 
 const MachineDescription = styled.h5`
   margin-top: 10px;
-  font-size:large;
+  font-size: large;
   overflow: hidden;
 
   @media only screen and (max-width: 1500px){
-    }
+  }
   @media only screen and (max-width: 800px){
-  font-size:medium;
+    font-size: medium;
   }
 `;
 
@@ -86,7 +84,7 @@ const ModalContent = styled.div`
   justify-content: center;
   align-items: center;
 
-   .expanded-image {
+  .expanded-image {
     max-width: 95%;
     max-height: 95%;
     cursor: pointer;
@@ -98,14 +96,11 @@ const FichaTecnicaButton = styled(Link)`
   bottom: 10px;
   right: 10px;
   text-decoration: none;
-
 `;
-
 
 export default function UltimosProductos() {
   const [products, setProducts] = useState([]);
   const [expandedImage, setExpandedImage] = useState(null);
-
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -123,6 +118,7 @@ export default function UltimosProductos() {
   const closeExpandedImage = () => {
     setExpandedImage(null);
   };
+
   return (
     <div>
       <Title style={{ color: "#78909c" }}>
@@ -131,24 +127,23 @@ export default function UltimosProductos() {
 
       <MachineContainer>
         {products.map(producto => (
-          <MachineCard key={producto.id} >
+          <MachineCard key={producto.id}>
             <Carousel
               showArrows={true}
               autoPlay={true}
               showThumbs={false}
               infiniteLoop={true}
             >
-              <div onClick={() => openExpandedImage(producto.imgUrl)}>
-                <img className="tarjeta-img" src={producto.imgUrl} alt={producto.title} />
-              </div>
-              <div onClick={() => openExpandedImage(producto.imgUrl2)}>
-                <img className="tarjeta-img" src={producto.imgUrl2} alt={producto.title} />
-              </div>
+              {producto.imgUrls.map((url, index) => (
+                <div key={index} onClick={() => openExpandedImage(url)}>
+                  <img className="tarjeta-img" src={url} alt={`imagen-${index}`} />
+                </div>
+              ))}
             </Carousel>
             <MachineTitle>{producto.nombreProducto}</MachineTitle>
             <MachineDescription>Ubicación: <b>{producto.departamento}</b></MachineDescription>
-            <MachineDescription>Trueco por : <b> {producto.categoriaDeseada} </b></MachineDescription>
-            <br/>  <br/>
+            <MachineDescription>Trueco por : <b>{producto.categoriaDeseada}</b></MachineDescription>
+            <br /> <br />
             <FichaTecnicaButton to={`/detail/${producto.id}`} className="btn btn-outline-primary">Ver más</FichaTecnicaButton>
           </MachineCard>
         ))}

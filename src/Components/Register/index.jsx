@@ -73,6 +73,7 @@ export default function Registerpage() {
       alert("Las contraseñas no coinciden");
       return false;
     }
+    // Validate age
     const today = new Date();
     const birthDate = new Date(nacimiento);
     let age = today.getFullYear() - birthDate.getFullYear();

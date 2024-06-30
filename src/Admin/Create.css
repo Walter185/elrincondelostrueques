@@ -31,11 +31,22 @@
     box-shadow: 2px 2px grey;
     font-weight: bolder;
 }
+
+#btnCrear {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    width: 150px;
+    margin-left: 25%;
+}
 @media only screen and (max-width: 1000px) {
     .container_create{
         margin-left: 5%;
     }
     #crear_titulo {
         padding: 20px;
+    }
+    #btnCrear {
+        margin-left: 20%;
     }
 }
