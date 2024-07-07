@@ -19,8 +19,8 @@ input {
     border-radius: 10px;
 }
 #botonLogin {
-    width: 50%;
-    height: 30px;
+    width: 30%;
+    height: auto;
     margin-top: 20px;
     border-radius: 10px;
     font-weight: bolder;
@@ -28,7 +28,7 @@ input {
 }
 #botonGoogle {
     width: 235px;
-    height: 30px;
+    height: auto;
     margin-top: 10px;
     border-radius: 10px;
     font-weight: bolder;

@@ -14,11 +14,10 @@ h2 {
     justify-items: center;
 }
 
-.restablecimiento {
+.reestablecimiento {
     margin-top: 50px;
     width: 290px;
     height: 60px;
     border-radius: 10px;
-    background-color: yellow;
     font-weight: bolder;
 }

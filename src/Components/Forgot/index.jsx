@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../Context/context';
 import "./Forgot.css"
+import { Button } from 'react-bootstrap';
 
 
 const ForgotPassword = () => {
@@ -32,7 +33,7 @@ const ForgotPassword = () => {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Ingrese su Correo electrónico aquí..."
       />
-      <button className="restablecimiento" onClick={handleResetPassword}>Enviar correo de restablecimiento</button>
+      <Button className="reestablecimiento" onClick={handleResetPassword}>Enviar correo de restablecimiento</Button>
     </div>
   );
 };

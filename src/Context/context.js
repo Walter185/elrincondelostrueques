@@ -25,7 +25,7 @@ const truequeContext = createContext({
 export const useAuth = () => useContext(truequeContext)
 
 function TruequeProvider({ children }) {
-  const [ cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+  const [ cart ] = useState(JSON.parse(localStorage.getItem('cart')) || []);
   const [ currentUser, setCurrentUser] = useState(null)
   const [ theme, setTheme] = useState('light');
   const [ loading, setLoading] = useState(true);
@@ -43,7 +43,6 @@ function TruequeProvider({ children }) {
   }, [])
 
   useEffect(() => {
-    console.log('Usuario logeado')
   }, [currentUser])
 
   

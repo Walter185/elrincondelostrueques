@@ -5,6 +5,7 @@ import validator from "validator";
 import { useAuth } from '../../Context/context';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import "./Register.css";
+import { Button } from 'react-bootstrap';
 
 export default function Registerpage() {
   const navigate = useNavigate();
@@ -96,7 +97,7 @@ export default function Registerpage() {
           <div className="col-md-4">
             <form onSubmit={handleSignup}>
               <div className="form-group">
-                <label htmlFor="nombre" className="block mb-2 text-sm font-medium">Nombre</label>
+                <label htmlFor="nombre" className="block mb-1 text-sm font-medium">Nombre</label>
                 <input
                   type="text"
                   placeholder="Ingrese nombre..."
@@ -106,7 +107,7 @@ export default function Registerpage() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="apellido" className="block mb-2 text-sm font-medium">Apellido</label>
+                <label htmlFor="apellido" className="block mb-1 text-sm font-medium">Apellido</label>
                 <input
                   type="text"
                   placeholder="Ingrese apellido..."
@@ -116,7 +117,7 @@ export default function Registerpage() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="nacimiento" className="block mb-2 text-sm font-medium">Fecha de Nacimiento (Debes ser mayor de edad)</label>
+                <label htmlFor="nacimiento" className="block mb-1 text-sm font-medium">Fecha de Nacimiento (Debes ser mayor de edad)</label>
                 <input
                   type="date"
                   required
@@ -125,7 +126,7 @@ export default function Registerpage() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email" className="block mb-2 text-sm font-medium">Email address</label>
+                <label htmlFor="email" className="block mb-1 text-sm font-medium">Email address</label>
                 <input
                   type="email"
                   placeholder="Ingrese email..."
@@ -135,7 +136,7 @@ export default function Registerpage() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="password" className="block mb-2 text-sm font-medium">Contraseña</label>
+                <label htmlFor="password" className="block mb-1 text-sm font-medium">Contraseña</label>
                 <input
                   type="password"
                   placeholder="Ingrese contraseña..."
@@ -145,7 +146,7 @@ export default function Registerpage() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium">Confirme contraseña</label>
+                <label htmlFor="confirmPassword" className="block mb-1 text-sm font-medium">Confirme contraseña</label>
                 <input
                   type="password"
                   placeholder="Confirme contraseña..."
@@ -154,7 +155,7 @@ export default function Registerpage() {
                   className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </div>
-              <button type="submit" id="botonLogin"> Registrarse </button>
+              <Button type="submit" id="botonLogin"> Registrarse </Button>
               {error && (
                 <div className="text-red-500 mt-2 error-message">{errorMessage}</div>
               )}
@@ -171,7 +172,9 @@ export default function Registerpage() {
             </span>
           </div>
           <DividerWithText><span className='o'>o</span></DividerWithText>
-          <button onClick={() =>
+          <Button 
+            className='btn btn-danger'
+            onClick={() =>
             signInWithGoogle()
               .then(user => {
                 handleRedirectToOrBack();
@@ -181,7 +184,7 @@ export default function Registerpage() {
           } id='botonGoogle'>
             <FaGoogle />
             <span> Ingresar con Google</span>
-          </button>
+          </Button>
         </div>
       </div>
     </div>

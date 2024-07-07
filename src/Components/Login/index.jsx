@@ -1,18 +1,19 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import DividerWithText from '../DividerWithText/index'; // Assuming DividerWithText component is already implemented
 import { useAuth } from '../../Context/context';
 import "./Login.css"
 import validator from "validator";
+import { Button } from 'react-bootstrap';
 
 export const Loginpage = () => {
   const navigate = useNavigate();
-  const { login, signInWithGoogle, resetPassword } = useAuth();
+  const { login, signInWithGoogle } = useAuth();
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const location = useLocation();
   const emailRef = useRef(null);
+  const location = useLocation();
   const passwordRef = useRef(null);
 
 
@@ -58,7 +59,7 @@ export const Loginpage = () => {
             <div className="col-md-4">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="email" className="block mb-2 text-sm font-medium">Correo electrónico</label>
+                  <label htmlFor="email" className="block mb-1 text-sm font-medium">Correo electrónico</label>
                   <input
                     type="email"
                     id="email"
@@ -69,7 +70,7 @@ export const Loginpage = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password" className="block mb-2 text-sm font-medium">Contraseña</label>
+                  <label htmlFor="password" className="block mb-1 text-sm font-medium">Contraseña</label>
                   <input
                     type="password"
                     id="password"
@@ -79,9 +80,9 @@ export const Loginpage = () => {
                     className="bg-gray-50 border border-gray-300 rounded-md py-2 px-3 w-full focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                   />
                 </div>
-                <button type="submit" id='botonLogin'>
+                <Button type="submit" id='botonLogin'>
                   Ingresar
-                </button>
+                </Button>
                 {error && (
                   <div className="text-red-500 mt-2 error-message">{errorMessage}</div>
                 )}
@@ -95,7 +96,9 @@ export const Loginpage = () => {
                   Registrarse</Link>
               </span>
                 <DividerWithText><span className='o'>o</span></DividerWithText>
-                <button onClick={() =>
+                <Button 
+                    className='btn btn-danger'
+                    onClick={() =>
                     signInWithGoogle()
                     .then(user => {
                       handleRedirectToOrBack()
@@ -105,7 +108,7 @@ export const Loginpage = () => {
                   } id='botonGoogle'>
                         <FaGoogle />
                         <span> Ingresar con Google</span>
-              </button>
+              </Button>
             </div>
             </div>
           </div>

@@ -19,7 +19,7 @@ input {
     width: 100%;
     border-radius: 10px;
 }
-#botonLogin {
+#botonRegister {
     width: 50%;
     height: 30px;
     margin-top: 20px;
@@ -27,7 +27,7 @@ input {
     font-weight: bolder;
     margin-bottom: 20px;
 }
-#botonGoogle {
+#botonGoogle2 {
     width: 235px;
     height: 30px;
     margin-top: 10px;
