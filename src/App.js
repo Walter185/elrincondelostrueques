@@ -34,7 +34,7 @@ function App(props) {
             <Route path="/show" element={<RequireAuth><Show /></RequireAuth>} />
             <Route path="/create" element={<RequireAuth><Create /></RequireAuth>} />
             <Route path="/edit/:id" element={<RequireAuth><Edit /></RequireAuth>} />
-        1   <Route path='/cafecito' element={<Cafecito />} />
+            <Route path='/cafecito' element={<Cafecito />} />
             <Route path='/condiciones' element={<Condiciones />} />
           </Routes>
           <Foot />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from "react-router-dom";
-import db, { getAllProductsbyOwner, auth, DeleteFile, storage } from "../Firebase/firebase";
+import db, { getAllProductsbyOwner, DeleteFile, storage } from "../Firebase/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -50,6 +50,7 @@ const Show = () => {
       if (result.isConfirmed) {
         deleteProduct(id).then(() => {
           Swal.fire("Borrado!", "El archivo ha sido borrado.", "success");
+          navigate("/show")
         });
       }
     });
@@ -89,7 +90,7 @@ const Show = () => {
                 <td>{product.nombreProducto}</td>
                 <td>
                   <Link to={`/edit/${product.id}`} className="btn btn-light">
-                    <i className="fas fa-pencil"></i> 
+                    <i className="fas fa-pencil"></i>
                   </Link>
                 </td>
                 <td>
@@ -97,7 +98,7 @@ const Show = () => {
                     onClick={() => confirmDelete(product.id)}
                     className="btn btn-danger"
                   >
-                    <i className="fas fa-trash"></i> 
+                    <i className="fas fa-trash"></i>
                   </button>
                 </td>
               </tr>

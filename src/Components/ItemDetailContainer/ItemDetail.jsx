@@ -4,16 +4,15 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 const Whatsapp = styled.a`
-    width: 100px !important;
-    height: 110px !important;
-    padding-left: 15px;
+    width: 90px;
+    height: 70px;
+    padding-left: 17px;
     padding-right: 15px;
-    line-height: 90px;
     right: 20%;
     background: #25d366;
     color: #FFF;
-    border-radius: 70px;
-    text-align: center !important;
+    border-radius: 75px;
+    text-align: center;
     font-size: 55px;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
     transition: all 300ms ease;
@@ -163,7 +162,7 @@ export default function ItemDetail({ product }) {
                 para un Trueque, haz click en el icono           
               </p>
               <Whatsapp href={`https://api.whatsapp.com/send?phone=598${tel}`} className="btn-wsp" target="_blank">
-                <i className="fa fa-whatsapp icono"></i>
+              <i class="fa fa-whatsapp" aria-hidden="true"></i>
               </Whatsapp>
               <br /><br />
               <p>Fecha de la publicación: {timestamp}</p>

@@ -23,28 +23,28 @@ function Edit() {
 
   useEffect(() => {
     const getProductById = async () => {
-        try {
-            const product = await getDoc(doc(db, "productos", id));
-            if (product.exists()) {
-                setNombreProducto(product.data().nombreProducto);
-                setNombreVendedor(product.data().nombreVendedor);
-                setDepartamento(product.data().departamento);
-                setCategoriaDeseada(product.data().categoriaDeseada);
-                setCategory(product.data().category);
-                setDescription(product.data().description);
-                setImgUrls(product.data().imgUrls || []);
-                setTel(product.data().tel);
-                setOwner(product.data().owner);
-            } else {
-                console.log("El producto no existe");
-            }
-        } catch (error) {
-            console.error("Error fetching product:", error);
+      try {
+        const product = await getDoc(doc(db, "productos", id));
+        if (product.exists()) {
+          setNombreProducto(product.data().nombreProducto);
+          setNombreVendedor(product.data().nombreVendedor);
+          setDepartamento(product.data().departamento);
+          setCategoriaDeseada(product.data().categoriaDeseada);
+          setCategory(product.data().category);
+          setDescription(product.data().description);
+          setImgUrls(product.data().imgUrls || []);
+          setTel(product.data().tel);
+          setOwner(product.data().owner);
+        } else {
+          console.log("El producto no existe");
         }
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
     };
 
     getProductById();
-}, [id]);
+  }, [id]);
 
   const handleRedirectToOrBack = () => {
     navigate(location.state?.from ?? "/");
@@ -53,32 +53,32 @@ function Edit() {
   const updateProduct = async (e) => {
     e.preventDefault();
     if (owner === auth?.currentUser?.uid) {
-        const product = doc(db, "productos", id);
-        const data = {
-            nombreProducto: nombreProducto,
-            nombreVendedor: nombreVendedor,
-            category: category,
-            categoriaDeseada: categoriaDeseada,
-            description: description,
-            imgUrls: imgUrls,
-            tel: tel,
-            departamento: departamento,
-        };
-        try {
-            await updateDoc(product, data);
-            navigate("/show");
-        } catch (error) {
-            console.error("Error updating product:", error);
-        }
+      const product = doc(db, "productos", id);
+      const data = {
+        nombreProducto: nombreProducto,
+        nombreVendedor: nombreVendedor,
+        category: category,
+        categoriaDeseada: categoriaDeseada,
+        description: description,
+        imgUrls: imgUrls,
+        tel: tel,
+        departamento: departamento,
+      };
+      try {
+        await updateDoc(product, data);
+        navigate("/show");
+      } catch (error) {
+        console.error("Error updating product:", error);
+      }
     } else {
-        console.log(
-            "No deberías hacer esto, otro intento y quedará bloqueada tu cuenta.",
-            auth?.currentUser?.displayName
-        );
-        await logout();
-        handleRedirectToOrBack();
+      console.log(
+        "No deberías hacer esto, otro intento y quedará bloqueada tu cuenta.",
+        auth?.currentUser?.displayName
+      );
+      await logout();
+      handleRedirectToOrBack();
     }
-};
+  };
 
   const handleUpload = async (e) => {
     const file = e.target.files[0];
@@ -86,45 +86,45 @@ function Edit() {
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
-        "state_changed",
-        null,
-        (error) => {
-            console.error("Error uploading file:", error);
-        },
-        () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                setImgUrls([...imgUrls, downloadURL]);
-            });
-        }
+      "state_changed",
+      null,
+      (error) => {
+        console.error("Error uploading file:", error);
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setImgUrls([...imgUrls, downloadURL]);
+        });
+      }
     );
-};
+  };
 
-const handleDeleteFile = async (fileURL) => {
+  const handleDeleteFile = async (fileURL) => {
     try {
-        const imageRef = ref(storage, fileURL);
-        
-        // Verifica que haya más de una imagen antes de eliminar
-        if (imgUrls.length > 1) {
-            await DeleteFile(imageRef); // Elimina la imagen del Storage
-            // Actualiza el documento en Firestore eliminando la URL del array
-            const productRef = doc(db, "productos", id);
-            const updatedImgUrls = imgUrls.filter(url => url !== fileURL);
-            await updateDoc(productRef, {
-                imgUrls: updatedImgUrls.length > 0 ? updatedImgUrls : deleteField()
-            });
+      const imageRef = ref(storage, fileURL);
 
-            setImgUrls(updatedImgUrls); // Actualiza el estado local de imgUrls
-        } else {
-            alert("Debe haber al menos una imagen asociada al producto.");
-        }
+      // Verifica que haya más de una imagen antes de eliminar
+      if (imgUrls.length > 1) {
+        await DeleteFile(imageRef); // Elimina la imagen del Storage
+        // Actualiza el documento en Firestore eliminando la URL del array
+        const productRef = doc(db, "productos", id);
+        const updatedImgUrls = imgUrls.filter(url => url !== fileURL);
+        await updateDoc(productRef, {
+          imgUrls: updatedImgUrls.length > 0 ? updatedImgUrls : deleteField()
+        });
 
-        navigate("/show");
+        setImgUrls(updatedImgUrls); // Actualiza el estado local de imgUrls
+      } else {
+        alert("Debe haber al menos una imagen asociada al producto.");
+      }
+
+      navigate("/show");
     } catch (error) {
-        console.error("Error deleting image:", error);
+      console.error("Error deleting image:", error);
     }
-};
+  };
 
-  
+
   return (
     <div className="container_edit">
       <div className="row">
@@ -211,31 +211,31 @@ const handleDeleteFile = async (fileURL) => {
               </select>
             </div>
             <div className="mb-3">
-                            <label className="form-label">Subir Imagen</label>
-                            <input
-                                type="file"
-                                accept="image/*;capture=camera"
-                                onChange={handleUpload}
-                                className="form-control"
-                            />
-                            {imgUrls.map((url, index) => (
-                                <div key={index}>
-                                    <img src={url} alt={`Preview ${index + 1}`} className="Preview" />
-                                    <button onClick={() => handleDeleteFile(url)}>Eliminar Imagen</button>
-                                </div>
-                            ))}
-                            {imgUrls.length < 3 && (
-                                <div className="mb-3">
-                                    <label className="form-label">Subir Imagen Adicional</label>
-                                    <input
-                                        type="file"
-                                        accept="image/*;capture=camera"
-                                        onChange={handleUpload}
-                                        className="form-control"
-                                    />
-                                </div>
-                            )}
-                        </div>
+              <label className="form-label">Subir Imagen</label>
+              <input
+                type="file"
+                accept="image/*;capture=camera"
+                onChange={handleUpload}
+                className="form-control"
+              />
+              {imgUrls.map((url, index) => (
+                <div key={index}>
+                  <img src={url} alt={`Preview ${index + 1}`} className="Preview" />
+                  <button onClick={() => handleDeleteFile(url)}>Eliminar Imagen</button>
+                </div>
+              ))}
+              {imgUrls.length < 3 && (
+                <div className="mb-3">
+                  <label className="form-label">Subir Imagen Adicional</label>
+                  <input
+                    type="file"
+                    accept="image/*;capture=camera"
+                    onChange={handleUpload}
+                    className="form-control"
+                  />
+                </div>
+              )}
+            </div>
             <div className="mb-3">
               <label className="form-label">Teléfono del Vendedor</label>
               <input
