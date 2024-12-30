@@ -75,7 +75,7 @@ const MachineCard = styled.div`
   position: relative;
   max-width: 250px;
   margin-inline-end: 10px;
-  height: 430px;
+  height: 400px;
   padding-left: 15px;
   padding-right: 20px;
   margin-bottom: 20px;

@@ -1,11 +1,10 @@
-import CarrouselPrincipal from "../Carousel";
-import Banner from "../Banner/Banner";
+import CarrouselPrincipal from "../Components/Carousel/index";
+import Banner from "../Components/Banner/Banner";
 import { useContext } from "react";
-import { truequeContext } from "../../Context/context";
+import { truequeContext } from "../Context/context";
 import styled from 'styled-components';
-import Contador from "../Contador";
-import UltimosProductos from "../Recientes";
-import "./Homecontainer.css"
+import Contador from "../Components/Contador/index";
+import UltimosProductos from "../Components/Recientes/index";
 
 const Title = styled.h1`
   margin-left: auto;
@@ -13,8 +12,20 @@ const Title = styled.h1`
   text-align: center;
   margin-top: 30px;
   `;
+const Title2 = styled.h1`
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+font-weight: bolder;
+margin-top: 10px;
 
-export default function HomeContainer() {
+@media screen and (max-width: 768px) {
+  font-weight: normal;
+  
+}
+`;
+
+export default function Home() {
   const { theme } = useContext(truequeContext);
 
   const containerStyles = {
@@ -25,6 +36,7 @@ export default function HomeContainer() {
     <div style={containerStyles}>
       <hr></hr>
       <CarrouselPrincipal />
+      <Title2>El Club del Trueque ( URUGUAY )</Title2>
       <Contador /><hr></hr>
       <UltimosProductos />
       <hr></hr>
