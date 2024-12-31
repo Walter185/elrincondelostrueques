@@ -75,17 +75,50 @@ const ModalContent = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  // background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .expanded-image {
+    max-width: 95%;
+    max-height: 95%;
+    cursor: pointer;
+  }
+
+  .navigation-buttons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+    color: white;
+  }
+
+  .navigation-button {
+    background-color: grey;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+  }
+
+  .navigation-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 `;
 
-const FichaTecnicaButton = styled(Link)`
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+const Img = styled.img`
+  margin: auto;
+  max-width: 500px;
+  max-height: 400px;
+  object-fit: contain;
+  cursor: pointer;
 `;
+
 
 export default function Productos() {
   const [expandedImage, setExpandedImage] = useState(null);

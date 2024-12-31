@@ -106,13 +106,16 @@ const ModalContent = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  font-family: 'Baloo 2', sans-serif !important;
-  font-weight: 800 !important;
-  font-size: 3rem !important;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+
+  .expanded-image {
+    max-width: 95%;
+    max-height: 95%;
+  }
+  `;
 
 const FichaTecnicaButton = styled(Link)`
   position: absolute;

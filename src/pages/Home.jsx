@@ -36,7 +36,7 @@ export default function Home() {
     <div style={containerStyles}>
       <hr></hr>
       <CarrouselPrincipal />
-      <Title2>El Club del Trueque ( URUGUAY )</Title2>
+      <Title2>El Club del Trueque (URUGUAY)</Title2>
       <Contador /><hr></hr>
       <UltimosProductos />
       <hr></hr>
