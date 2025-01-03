@@ -1,6 +1,6 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { getProduct } from '../../Firebase/firebase';
 // import { cartContext } from '../../storage/cartContext';
 import BreadCrumb from '../BreadCrumb';
@@ -13,7 +13,7 @@ export default function ItemDetailContainer() {
 
     const [product, setProduct] = useState({});
     const [loading, setLoading] = useState(true);
-    const [isInCart, setIsInCart] = useState(false);
+    const [isInCart ] = useState(false);
 
     // function handleAddToCart(count){
     //     setIsInCart(true);

@@ -5,6 +5,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import db, { storage, DeleteFile, auth } from "../Firebase/firebase";
 import { useAuth } from "../Context/context";
 import "./Edit.css";
+import { Button } from "react-bootstrap";
 
 function Edit() {
   const [category, setCategory] = useState("");
@@ -85,19 +86,18 @@ function Edit() {
     const storageRef = ref(storage, `images/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    uploadTask.on(
-      "state_changed",
-      null,
-      (error) => {
-        console.error("Error uploading file:", error);
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setImgUrls([...imgUrls, downloadURL]);
-        });
-      }
+    uploadTask.on('state_changed',
+        null,
+        (error) => {
+            console.error('Error uploading file:', error);
+        },
+        () => {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                setImgUrls((prevUrls) => [...prevUrls, downloadURL]);
+            });
+        }
     );
-  };
+};
 
   const handleDeleteFile = async (fileURL) => {
     try {
@@ -221,10 +221,10 @@ function Edit() {
               {imgUrls.map((url, index) => (
                 <div key={index}>
                   <img src={url} alt={`Preview ${index + 1}`} className="Preview" />
-                  <button onClick={() => handleDeleteFile(url)}>Eliminar Imagen</button>
+                  <Button id="btnedit" className="btn btn-danger" onClick={() => handleDeleteFile(url)}>Borrar Imagen</Button>
                 </div>
               ))}
-              {imgUrls.length < 3 && (
+              {imgUrls.length < 4 && (
                 <div className="mb-3">
                   <label className="form-label">Subir Imagen Adicional</label>
                   <input

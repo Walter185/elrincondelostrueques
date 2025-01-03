@@ -1,10 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components';
-
-const Ol=styled.ol`
-    --bs-breadcrumb-divider: '>';
-`;
 
 export default function BreadCrumb({ currentPage }) {
 
@@ -35,11 +30,11 @@ export default function BreadCrumb({ currentPage }) {
         case 'Servicios':
             return (
                 <div className='container pt-4 ps-5 pb-1'>
-                    <Ol className="breadcrumb">
+                    <ol className="breadcrumb">
                         <li className="breadcrumb-item"><Link to="/">Inicio</Link></li>
                         <li className="breadcrumb-item"><Link to="/category/All">Trueques</Link></li>
                         <li className="breadcrumb-item active">{currentPage}</li>
-                    </Ol>
+                    </ol>
                 </div>
             )
         case 'Checkout':

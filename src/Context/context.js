@@ -14,7 +14,6 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const truequeContext = createContext({
   currentUser: null,
-  darkMode: null,
   signInWithGoogle: () => Promise,
   login: () => Promise,
   register: () => Promise,

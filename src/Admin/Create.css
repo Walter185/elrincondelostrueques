@@ -9,8 +9,8 @@
     margin-left: 15%;
     padding: 10px;
     margin-bottom: 20px;
-    font-weight: 600;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: "Archivo Black", sans-serif;
+    font-weight: bolder;
 }
 
 .mb-3 {
@@ -27,7 +27,7 @@
 #boton_create {
     margin: 20px;
     margin-left: 20%;
-    padding: 10px 60px;
+    padding: 10px 20px;
     box-shadow: 2px 2px grey;
     font-weight: bolder;
 }

@@ -18,6 +18,10 @@
     position: relative;
 }
 
+#btnedit {
+    margin: 20px;
+}
+
 #boton_edit {
     margin: 20px;
     margin-left: 20%;

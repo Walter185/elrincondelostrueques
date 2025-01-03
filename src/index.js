@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { TruequeProvider } from './Context/context';
+import "./Global.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

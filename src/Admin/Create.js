@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
 import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import db, { storage, DeleteFile, auth } from "../Firebase/firebase";
 import "./Create.css";
+import moment from "moment";
+import { Button } from "react-bootstrap";
 
 const Create = () => {
     const [owner, setOwner] = useState("");
@@ -46,7 +47,7 @@ const Create = () => {
                 productos: [docRef.id]
             });
 
-            navigate("/");
+            navigate("/show");
             alert('Aviso creado satisfactoriamente');
             setOwner("");
             setNombreProducto("");
@@ -64,19 +65,23 @@ const Create = () => {
     };
 
     const handleUpload = async (e) => {
+        if (imgUrls.length >= 4) {
+            alert("Tú puedes cargar un máximo de 4 imágenes.");
+            return;
+        }
+
         const file = e.target.files[0];
         const storageRef = ref(storage, `images/${file.name}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
 
-        uploadTask.on(
-            'state_changed',
+        uploadTask.on('state_changed', 
             null,
             (error) => {
                 console.error('Error uploading file:', error);
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setImgUrls((prevUrls) => [...prevUrls, downloadURL]);
+                    setImgUrls((prevImgUrls) => [...prevImgUrls, downloadURL]);
                 });
             }
         );
@@ -89,7 +94,7 @@ const Create = () => {
             setImgUrls((prevUrls) => prevUrls.filter((url) => url !== fileURL));
             navigate("/show");
         } catch (error) {
-            console.error("Error deleting image:", error);
+            console.error("Error eliminando la imagen:", error);
         }
     };
 
@@ -122,7 +127,7 @@ const Create = () => {
                             />
                         </div>
                         <div className="mb-3">
-                            <label className="form-label">Descripcion</label>
+                            <label className="form-label">Descripción</label>
                             <input
                                 type="text"
                                 required
@@ -153,8 +158,8 @@ const Create = () => {
                                 <option value="Moda">Moda</option>
                                 <option value="Juguetes">Juguetes</option>
                                 <option value="Bebés">Bebés</option>
-                                <option value="Mascotas">Mascotas</option>
                                 <option value="Vehículos">Vehículos</option>
+                                <option value="Mascotas">Mascotas</option>
                                 <option value="Servicios">Servicios</option>
                             </select>
                         </div>
@@ -196,10 +201,10 @@ const Create = () => {
                             {imgUrls.map((url, index) => (
                                 <div key={index}>
                                     <img src={url} alt={`Preview ${index + 1}`} className="Preview" />
-                                    <button onClick={() => handleDeleteFile(url)}>Eliminar Imagen</button>
+                                    <Button className="btn btn-danger" onClick={() => handleDeleteFile(url)}>Borrar Imagen</Button>
                                 </div>
                             ))}
-                            {imgUrls.length < 3 && (
+                            {imgUrls.length < 4 && (
                                 <div className="mb-3">
                                     <label className="form-label">Subir Imagen Adicional</label>
                                     <input
@@ -252,7 +257,7 @@ const Create = () => {
                                 <option value="Treinta y Tres">Treinta y Tres</option>
                             </select>
                         </div>
-                        <button type="submit" id="btnCrear" className="btn btn-primary">Crear</button>
+                        <button type="submit" id="btnCrear" className="btn btn-primary">Guardar</button>
                     </form>
                 </div>
             </div>

@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from "react-router-dom";
-import db, { getAllProductsbyOwner, DeleteFile, storage } from "../Firebase/firebase";
 import { deleteDoc, doc } from "firebase/firestore";
+import db, { getAllProductsbyOwner, DeleteFile, storage } from "../Firebase/firebase";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import styled from "styled-components";
 import "./Show.css"
 import { ref } from "firebase/storage";
+import { Button } from "react-bootstrap";
 
 const MySwal = withReactContent(Swal);
 
 const ThumbnailImage = styled.img`
   max-width: 100px;
   height: auto;
+  @media (max-width: 768px) {
+    max-width: 50px;
+  }
 `;
 
 const Show = () => {
@@ -68,9 +72,9 @@ const Show = () => {
   return (
     <div className="contenedor_show">
       <h3>Panel Administrador</h3>
-      <button className="Boton">
-        <Nav.Link href="/create">Crear Nuevo Aviso</Nav.Link>
-      </button>
+      <Button className="Boton">
+        <Nav.Link href="/create">Nuevo Aviso</Nav.Link>
+      </Button>
       <div className="table-responsive">
         <table className="table table-dark table-hover">
           <thead>
@@ -94,12 +98,12 @@ const Show = () => {
                   </Link>
                 </td>
                 <td>
-                  <button
+                  <Button
                     onClick={() => confirmDelete(product.id)}
                     className="btn btn-danger"
                   >
                     <i className="fas fa-trash"></i>
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}
