@@ -91,7 +91,7 @@ export default function Registerpage() {
 
   return (
     <div className="App2">
-      <h1 className="text-left">Club del Trueque | Registrarse</h1>
+      <h1 className="text-center my-12">Registrarse</h1>
       <div className="contenedor">
         <div className="row d-flex justify-content-center">
           <div className="col-md-4">

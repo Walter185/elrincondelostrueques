@@ -52,6 +52,13 @@
   margin-left: '20px';
 }
 
+.link {
+  text-decoration: none;
+  margin-top: 7px;
+  margin-right: 10px;
+  margin-left:10px;
+  text-align: center;
+}
 #barraGeneral {
   height: 75px;
   position: sticky;
@@ -72,9 +79,7 @@
     text-align: center;
   }
   .tema {
-    text-align: center;
-  }
-  .nav-link {
-    text-align: center;
-  }
+    padding: 0px;
+
+} 
 }

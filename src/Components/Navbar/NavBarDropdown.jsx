@@ -6,8 +6,8 @@ import { useContext } from "react";
 import { truequeContext } from "../../Context/context";
 
 const A= styled.a`
-text-decoration: none ;
-font-weight:bold;
+    text-decoration: none ;
+    margin-top: -1px;
 `;
 
 const Ul=styled.ul`
@@ -28,7 +28,7 @@ const { theme } = useContext(truequeContext);
     return (
         <Ul className="navbar-nav me-auto mb-2 mb-lg-0" >
             <li className="nav-item dropdown">
-                <A className="nav-link dropdown-toggle " style={containerStyles} href="#" data-bs-toggle="dropdown">Categorias</A>
+                <A className="nav-link dropdown-toggle" style={containerStyles} href="#" data-bs-toggle="dropdown">Categorias</A>
                 <ul className="dropdown-menu">
                     {/* <li><Link className="dropdown-item" to="/category/All">Todos los productos</Link></li> */}
                     {/* <hr className="mx-3"/> */}

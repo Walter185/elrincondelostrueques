@@ -8,8 +8,12 @@ const Form = styled.form`
     padding-right: 15px;
     display:flex;
     @media screen and (max-width: 1000px) {
-        margin-top:20px;
-        width: 100%;
+        width: 50%;
+        position: static;
+        margin-left: 170px;
+        margin-top: -50px;
+        display: flex;
+        ;
       }
 `;
 

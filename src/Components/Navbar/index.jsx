@@ -11,6 +11,7 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 import { useContext, useEffect, useState } from 'react';
 import db from '../../Firebase/firebase';
 import { doc, getDoc } from 'firebase/firestore';
+import { Link } from 'react-router-dom'
 
 function NavScrollExample() {
   const { logout, currentUser } = useAuth();
@@ -36,30 +37,28 @@ useEffect(() => {
   return (
     <Navbar expand="lg" id="barraGeneral" style={containerStyles}>
       <Container>
-      <Nav.Link href='/'>
         {theme === 'dark'? <img src={logoDark} id='logo' alt="logo trueque" /> : 
         <img src={logo} id='logo' alt='logo trueque dark' /> }
-      </Nav.Link>
         <Navbar.Toggle aria-controls="navbarScroll"/>
+        <NavBarSearch/>
         <Navbar.Collapse id="navbarScroll" style={containerStyles}>
-          <NavBarSearch/>
           <Nav id='barra'>
-            <Nav.Link href='/' id="inicio" style={containerStyles}>Inicio</Nav.Link>
+            <Link to='/' className="link" style={containerStyles}>Inicio</Link>
             <NavBarDropdown />
             <span className='tema' onClick={toggleTheme} >
               {theme === 'dark'? <FaSun /> : <FaMoon />}
             </span>
-            {currentUser && <Nav.Link href="/show"  style={containerStyles}>{userName}</Nav.Link>}
-            {!currentUser && <Nav.Link href="/register"  style={containerStyles}>Registrarse</Nav.Link>}
-            {!currentUser && <Nav.Link href="/login"  style={containerStyles}>Ingresar</Nav.Link>}
-            {currentUser && <Nav.Link href="/"
+            {currentUser && <Link to="/show" className="link" style={containerStyles}>{userName}</Link>}
+            {!currentUser && <Link to="/register" className="link" style={containerStyles}>Registrarse</Link>}
+            {!currentUser && <Link to="/login" className="link" style={containerStyles}>Ingresar</Link>}
+            {currentUser && <Link to="/"
               name="logout"
               style={containerStyles}
               onClick={async (e) => {
                 // e.preventDefaUt();
                 await logout();
               }}
-                >Salir</Nav.Link>}
+                >Salir</Link>}
           </Nav>
           
 

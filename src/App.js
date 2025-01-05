@@ -15,6 +15,7 @@ import { Foot } from './Components/Footer';
 import { Cafecito } from './Components/Cafecito';
 import { Condiciones } from './Components/Condiciones';
 import Home from './pages/Home';
+import CookieConsent from './CookieConsent/CookieConsent';
 
 function App(props) {
   return (
@@ -38,7 +39,9 @@ function App(props) {
             <Route path='/condiciones' element={<Condiciones />} />
           </Routes>
           <Foot />
+          <CookieConsent />
         </BrowserRouter>
+
     </>
   );
 }

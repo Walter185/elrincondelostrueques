@@ -53,7 +53,7 @@ export const Loginpage = () => {
   return (
     <>
       <div className="App">
-        <h1 className="text-center my-12">Club del Trueque | Iniciar sesión</h1>
+        <h1 className="text-center my-12">Iniciar sesión</h1>
         <div className="contenedor">
           <div className="row d-flex justify-content-center">
             <div className="col-md-4">

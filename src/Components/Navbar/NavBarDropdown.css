@@ -1,5 +1,8 @@
 
 @media only screen and (max-width: 1000px) {
-    .navbar-nav .dropdown{
-    display: none;
-}}
+    .navbar-nav {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    }
+}
