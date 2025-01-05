@@ -80,6 +80,8 @@
   }
   .tema {
     padding: 0px;
-
-} 
+  }
+  #logo {
+    height: 45px;
+  } 
 }

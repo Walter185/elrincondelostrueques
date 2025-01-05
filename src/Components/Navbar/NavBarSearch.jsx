@@ -8,13 +8,16 @@ const Form = styled.form`
     padding-right: 15px;
     display:flex;
     @media screen and (max-width: 1000px) {
-        width: 50%;
+        width: 43%;
+        height: 40px;
         position: static;
         margin-left: 170px;
-        margin-top: -50px;
-        display: flex;
+        margin-top: -45px;
         ;
       }
+      @media screen and (max-width: 375px)  {
+        width: 35%;
+    }
 `;
 
 export default function NavBarSearch(){
