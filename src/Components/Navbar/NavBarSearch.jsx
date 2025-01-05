@@ -15,8 +15,9 @@ const Form = styled.form`
         margin-top: -45px;
         ;
       }
-      @media screen and (max-width: 375px)  {
-        width: 35%;
+      @media screen and (max-width: 500px)  {
+        width: 40%;
+        margin-left: 150px;
     }
 `;
 
